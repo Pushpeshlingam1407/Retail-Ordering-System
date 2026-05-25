@@ -52,14 +52,16 @@ export default function UserDashboardPage() {
   );
 
   return (
-    <Box sx={{ maxWidth: 1100, mx: 'auto' }}>
-      {/* Greeting */}
-      <Box sx={{ mb: 4 }}>
-        <Typography variant="h5" fontWeight={800}>
-          Hello, {user?.name ?? 'User'} 👋
+    <Box sx={{ maxWidth: 1180, mx: 'auto' }}>
+      <Box sx={{ mb: 4, p: { xs: 2.5, md: 3 }, borderRadius: 4, color: 'white', background: 'linear-gradient(135deg, #111827 0%, #1d4ed8 100%)' }}>
+        <Typography variant="overline" sx={{ letterSpacing: 2, opacity: 0.75 }}>
+          Customer dashboard
         </Typography>
-        <Typography variant="body2" color="text.secondary" mt={0.5}>
-          Here's an overview of your activity.
+        <Typography variant="h4" fontWeight={900} sx={{ mt: 0.5 }}>
+          Hello, {user?.name ?? 'User'}
+        </Typography>
+        <Typography variant="body2" sx={{ opacity: 0.9, mt: 0.75, maxWidth: 720 }}>
+          Track recent orders, review delivery status, and watch for your confirmation email with tracking details.
         </Typography>
       </Box>
 
@@ -142,6 +144,9 @@ export default function UserDashboardPage() {
                         sx={{ display: 'flex', alignItems: 'center', gap: 0.4 }}>
                         <AccessTimeIcon sx={{ fontSize: 11 }} />
                         {new Date(o.placedAt).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })}
+                      </Typography>
+                      <Typography variant="caption" color="text.secondary" noWrap display="block">
+                        Delivery details will arrive by email after confirmation.
                       </Typography>
                     </Box>
                     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', flexShrink: 0, gap: 0.5 }}>

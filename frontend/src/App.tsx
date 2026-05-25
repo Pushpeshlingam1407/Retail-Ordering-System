@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import {
   Box, CssBaseline, Toolbar, Typography, AppBar,
   IconButton, Avatar, Divider,
-  Menu, MenuItem as MuiMenuItem, Chip, Tooltip,
+  Menu, MenuItem as MuiMenuItem, Chip,
 } from '@mui/material';
 import LogoutIcon from '@mui/icons-material/Logout';
 import PersonIcon from '@mui/icons-material/Person';
@@ -19,6 +19,7 @@ import ShopPage from './pages/ShopPage';
 import ProductsPage from './pages/ProductsPage';
 import OrdersPage from './pages/OrdersPage';
 import CouponsPage from './pages/CouponsPage';
+import OrderNotificationPage from './pages/OrderNotificationPage';
 
 // ─── Protected Route ───────────────────────────────────────────────────────────
 function ProtectedRoute({ children, adminOnly = false }: { children: React.ReactNode; adminOnly?: boolean }) {
@@ -82,7 +83,7 @@ function AppLayout() {
   const { user } = useAuth();
 
   return (
-    <Box sx={{ minHeight: '100vh', bgcolor: 'linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%)' }}>
+    <Box sx={{ minHeight: '100vh', background: 'linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%)' }}>
       <CssBaseline />
       <TopAppBar />
       <Toolbar />
@@ -105,6 +106,7 @@ function AppLayout() {
 
           {/* Shared routes (both roles) */}
           <Route path="/orders" element={<ProtectedRoute><OrdersPage /></ProtectedRoute>} />
+          <Route path="/order-notification" element={<ProtectedRoute><OrderNotificationPage /></ProtectedRoute>} />
 
           {/* User-only dashboard */}
           <Route path="/my-orders" element={<ProtectedRoute><ShopPage /></ProtectedRoute>} />

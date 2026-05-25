@@ -6,6 +6,7 @@ import {
   TableContainer, TableHead, TableRow, TextField, Tooltip, Typography,
   Divider, Stack,
 } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -28,6 +29,7 @@ const STATUS_COLORS: Record<OrderStatus, 'default' | 'warning' | 'info' | 'succe
 const ALL_STATUSES: OrderStatus[] = ['PENDING', 'CONFIRMED', 'SHIPPED', 'DELIVERED', 'CANCELLED'];
 
 export default function OrdersPage() {
+  const navigate = useNavigate();
   const [orders, setOrders] = useState<OrderResponse[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
@@ -108,12 +110,28 @@ export default function OrdersPage() {
   const handleStatusUpdate = async () => {
     if (!statusOrder) return;
     try {
-      await updateOrderStatus(statusOrder.id, newStatus);
+      const updatedOrder = await updateOrderStatus(statusOrder.id, newStatus);
       toast.success('Status updated!');
       setStatusDialog(false);
+      if (newStatus === 'CONFIRMED' || newStatus === 'CANCELLED') {
+        navigate('/order-notification', { state: { order: updatedOrder, outcome: newStatus } });
+      }
       load();
     } catch {
       toast.error('Failed to update status');
+    }
+  };
+
+  const quickSetStatus = async (order: OrderResponse, status: Extract<OrderStatus, 'CONFIRMED' | 'CANCELLED'>) => {
+    try {
+      const updatedOrder = await updateOrderStatus(order.id, status);
+      toast.success(status === 'CONFIRMED' ? 'Order accepted' : 'Order rejected');
+      if (status === 'CONFIRMED' || status === 'CANCELLED') {
+        setDetailOrder(updatedOrder);
+      }
+      load();
+    } catch {
+      toast.error('Failed to update order');
     }
   };
 
@@ -187,6 +205,32 @@ export default function OrdersPage() {
                         <VisibilityIcon fontSize="small" />
                       </IconButton>
                     </Tooltip>
+                    {o.status === 'PENDING' && (
+                      <>
+                        <Tooltip title="Accept order">
+                          <Button
+                            size="small"
+                            variant="contained"
+                            color="success"
+                            sx={{ mx: 0.75, minWidth: 90 }}
+                            onClick={() => quickSetStatus(o, 'CONFIRMED')}
+                          >
+                            Accept
+                          </Button>
+                        </Tooltip>
+                        <Tooltip title="Reject order">
+                          <Button
+                            size="small"
+                            variant="outlined"
+                            color="error"
+                            sx={{ minWidth: 90 }}
+                            onClick={() => quickSetStatus(o, 'CANCELLED')}
+                          >
+                            Reject
+                          </Button>
+                        </Tooltip>
+                      </>
+                    )}
                     <Tooltip title="Change status">
                       <IconButton size="small" color="warning" onClick={() => openStatus(o)}>
                         <EditIcon fontSize="small" />
@@ -270,6 +314,26 @@ export default function OrdersPage() {
                   </Typography>
                 </Box>
               ))}
+              <Divider />
+              <Typography fontWeight={700}>Admin actions:</Typography>
+              <Stack direction="row" spacing={1}>
+                <Button
+                  variant="contained"
+                  color="success"
+                  disabled={detailOrder.status !== 'PENDING'}
+                  onClick={() => quickSetStatus(detailOrder, 'CONFIRMED')}
+                >
+                  Accept
+                </Button>
+                <Button
+                  variant="outlined"
+                  color="error"
+                  disabled={detailOrder.status !== 'PENDING'}
+                  onClick={() => quickSetStatus(detailOrder, 'CANCELLED')}
+                >
+                  Reject
+                </Button>
+              </Stack>
             </Stack>
           )}
         </DialogContent>

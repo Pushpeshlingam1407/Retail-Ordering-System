@@ -30,11 +30,14 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final UserRepository userRepository;
     private final CouponRepository couponRepository;
+    private final OrderNotificationService orderNotificationService;
 
-    public OrderService(OrderRepository orderRepository, UserRepository userRepository, CouponRepository couponRepository) {
+    public OrderService(OrderRepository orderRepository, UserRepository userRepository, CouponRepository couponRepository,
+            OrderNotificationService orderNotificationService) {
         this.orderRepository = orderRepository;
         this.userRepository = userRepository;
         this.couponRepository = couponRepository;
+        this.orderNotificationService = orderNotificationService;
     }
 
     @Transactional(readOnly = true)
@@ -55,7 +58,9 @@ public class OrderService {
     public OrderResponseDTO create(OrderRequestDTO request) {
         Order order = new Order();
         applyRequest(order, request, true);
-        return toResponse(orderRepository.save(order));
+        Order saved = orderRepository.save(order);
+        orderNotificationService.sendOrderStatusEmail(saved);
+        return toResponse(saved);
     }
 
     public OrderResponseDTO update(Long id, OrderRequestDTO request) {
@@ -66,11 +71,16 @@ public class OrderService {
 
     public OrderResponseDTO updateStatus(Long id, OrderStatus status) {
         Order order = getOrderEntity(id);
+        OrderStatus previousStatus = order.getStatus();
         order.setStatus(status);
         if (status == OrderStatus.DELIVERED && order.getDeliveredAt() == null) {
             order.setDeliveredAt(LocalDateTime.now());
         }
-        return toResponse(orderRepository.save(order));
+        Order saved = orderRepository.save(order);
+        if (previousStatus != status) {
+            orderNotificationService.sendOrderStatusEmail(saved);
+        }
+        return toResponse(saved);
     }
 
     public void delete(Long id) {
