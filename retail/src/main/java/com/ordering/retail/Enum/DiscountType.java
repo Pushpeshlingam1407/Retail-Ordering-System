@@ -1,5 +1,5 @@
 package com.ordering.retail.Enum;
 
-public class DiscountType {
+public enum DiscountType {
     FLAT, PERCENTAGE
 }

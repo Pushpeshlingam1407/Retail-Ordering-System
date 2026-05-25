@@ -19,8 +19,9 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { AuthProvider, useAuth } from './context/AuthContext';
 import LoginPage from './pages/LoginPage';
+import SignUpPage from './pages/SignUpPage';
 import DashboardPage from './pages/DashboardPage';
-import UserDashboardPage from './pages/ShopPage';
+import ShopPage from './pages/ShopPage';
 import ProductsPage from './pages/ProductsPage';
 import OrdersPage from './pages/OrdersPage';
 import CouponsPage from './pages/CouponsPage';
@@ -269,7 +270,8 @@ function AppLayout() {
           <Route path="/orders" element={<ProtectedRoute><OrdersPage /></ProtectedRoute>} />
 
           {/* User-only dashboard */}
-          <Route path="/my-orders" element={<ProtectedRoute><UserDashboardPage /></ProtectedRoute>} />
+          <Route path="/my-orders" element={<ProtectedRoute><ShopPage /></ProtectedRoute>} />
+          <Route path="/shop" element={<ProtectedRoute><ShopPage /></ProtectedRoute>} />
 
           {/* Fallback */}
           <Route path="*" element={
@@ -289,6 +291,10 @@ function AppRoutes() {
       <Route
         path="/login"
         element={isAuthenticated ? <Navigate to="/" replace /> : <LoginPage />}
+      />
+      <Route
+        path="/signup"
+        element={isAuthenticated ? <Navigate to="/" replace /> : <SignUpPage />}
       />
       <Route path="/*" element={
         isAuthenticated ? <AppLayout /> : <Navigate to="/login" replace />
