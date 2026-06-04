@@ -112,19 +112,17 @@ export default function OrdersPage() {
       if (detailOrder?.id === statusOrder.id) setDetailOrder(updated);
       setStatusDialog(false);
       notify.success('Status updated');
-      if (newStatus === 'CONFIRMED' || newStatus === 'CANCELLED') navigate('/order-notification', { state: { order: updated, outcome: newStatus } });
     } catch { notify.error('Failed to update status'); }
   };
 
-  const quickAction = async (order: OrderResponse, status: Extract<OrderStatus, 'CONFIRMED' | 'CANCELLED'>) => {
+  const quickAction = async (order: OrderResponse, status: OrderStatus) => {
     if (actionIds[order.id]) return;
-    setActionIds(p => ({ ...p, [order.id]: status === 'CONFIRMED' ? 'accepting' : 'rejecting' }));
+    setActionIds(p => ({ ...p, [order.id]: 'processing' }));
     try {
       const updated = await updateOrderStatus(order.id, status);
       setOrders(os => os.map(o => o.id === updated.id ? updated : o));
       if (detailOrder?.id === order.id) setDetailOrder(updated);
-      notify.success(`Order ${status.toLowerCase()}`);
-      navigate('/order-notification', { state: { order: updated, outcome: status } });
+      notify.success(`Order marked as ${status.toLowerCase()}`);
     } catch { notify.error('Failed to update order'); }
     finally { setActionIds(p => { const n = { ...p }; delete n[order.id]; return n; }); }
   };
@@ -191,6 +189,12 @@ export default function OrdersPage() {
                           <Button size="small" variant="outlined" color="success" onClick={() => quickAction(o, 'CONFIRMED')} disabled={!!actionIds[o.id]}>Accept</Button>
                           <Button size="small" variant="outlined" color="error" onClick={() => quickAction(o, 'CANCELLED')} disabled={!!actionIds[o.id]}>Reject</Button>
                         </>
+                      )}
+                      {o.status === 'CONFIRMED' && (
+                        <Button size="small" variant="outlined" color="info" onClick={() => quickAction(o, 'SHIPPED')} disabled={!!actionIds[o.id]}>Ship Order</Button>
+                      )}
+                      {o.status === 'SHIPPED' && (
+                        <Button size="small" variant="contained" color="success" onClick={() => quickAction(o, 'DELIVERED')} disabled={!!actionIds[o.id]} disableElevation>Mark Delivered</Button>
                       )}
                       <IconButton size="small" onClick={() => openStatusDialog(o)}><EditIcon fontSize="small" /></IconButton>
                       <IconButton size="small" color="error" onClick={() => setDeleteId(o.id)}><DeleteIcon fontSize="small" /></IconButton>

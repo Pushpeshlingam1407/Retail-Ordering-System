@@ -13,7 +13,7 @@ import SyncAltIcon from '@mui/icons-material/SyncAlt';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 
 import { getProducts, createProduct, updateProduct, deleteProduct } from '../api/products';
-import { getInventory, updateInventory } from '../api/inventory';
+import { getInventory, upsertInventory } from '../api/inventory';
 import type { Product, ProductRequest, InventoryDTO, Inventory } from '../types';
 import ConfirmDialog from '../components/ConfirmDialog';
 import notify from '../utils/notify';
@@ -83,7 +83,7 @@ export default function ProductsPage() {
         pId = created.id;
       }
       if (pId) {
-        const updatedInv = await updateInventory({ ...invForm, productId: pId });
+        const updatedInv = await upsertInventory({ ...invForm, productId: pId });
         setInventories(prev => ({ ...prev, [pId!]: updatedInv }));
       }
       notify.success(editProduct ? 'Product updated' : 'Product created');

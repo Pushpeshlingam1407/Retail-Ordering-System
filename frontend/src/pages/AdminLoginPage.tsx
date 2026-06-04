@@ -6,13 +6,12 @@ import {
 } from '@mui/material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { validateEmail, validatePassword } from '../utils/validation';
 import notify from '../utils/notify';
 
-export default function LoginPage() {
+export default function AdminLoginPage() {
   const { login } = useAuth();
   const navigate = useNavigate();
 
@@ -34,8 +33,8 @@ export default function LoginPage() {
     if (!isValid) return;
     try {
       setLoading(true);
-      await login(email, password, 'USER');
-      notify.success('Welcome back!');
+      await login(email, password, 'ADMIN');
+      notify.success('Admin authenticated.');
       navigate('/');
     } catch (err: any) {
       setLoginError(err?.message ?? 'Invalid credentials. Please try again.');
@@ -46,16 +45,16 @@ export default function LoginPage() {
 
   return (
     <Box className="auth-bg">
-      <Paper sx={{ width: '100%', maxWidth: 440, p: { xs: 3, md: 5 }, borderRadius: '12px' }}>
+      <Paper sx={{ width: '100%', maxWidth: 440, p: { xs: 3, md: 5 }, borderRadius: '12px', borderTop: '4px solid #0f172a' }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 4, justifyContent: 'center' }}>
           <Box sx={{ width: 28, height: 28, borderRadius: '6px', background: '#0f172a', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700, color: '#fff' }}>R</Box>
           <Typography sx={{ fontSize: 18, fontWeight: 700, color: '#0f172a' }}>RetailOS</Typography>
         </Box>
 
         <Box sx={{ textAlign: 'center', mb: 3 }}>
-          <Typography variant="h5">Welcome back</Typography>
+          <Typography variant="h5">Admin Portal</Typography>
           <Typography sx={{ mt: 0.5, fontSize: 14, color: 'text.secondary' }}>
-            Sign in to your account
+            Sign in with administrator credentials
           </Typography>
         </Box>
 
@@ -66,9 +65,9 @@ export default function LoginPage() {
         <Box component="form" onSubmit={handleSubmit} noValidate>
           <Stack spacing={2.5}>
             <FormControl fullWidth error={!!emailError}>
-              <InputLabel>Email address</InputLabel>
+              <InputLabel>Admin Email</InputLabel>
               <OutlinedInput
-                label="Email address" type="email" autoComplete="email"
+                label="Admin Email" type="email" autoComplete="email"
                 value={email} onChange={e => { setEmail(e.target.value); setLoginError(''); }}
                 onBlur={() => setTouched(t => ({ ...t, email: true }))}
               />
@@ -93,21 +92,14 @@ export default function LoginPage() {
             </FormControl>
 
             <Button type="submit" variant="contained" color="primary" size="large" disabled={loading} fullWidth sx={{ py: 1.25 }}>
-              {loading ? <CircularProgress size={20} color="inherit" /> : 'Sign In'}
+              {loading ? <CircularProgress size={20} color="inherit" /> : 'Sign In as Admin'}
             </Button>
           </Stack>
         </Box>
 
-        <Typography sx={{ mt: 3, fontSize: 14, textAlign: 'center', color: 'text.secondary' }}>
-          New here?{' '}
-          <Link component="button" type="button" onClick={e => { e.preventDefault(); navigate('/signup'); }} sx={{ fontWeight: 600, color: 'primary.main', textDecoration: 'none' }}>
-            Create an account
-          </Link>
-        </Typography>
-
-        <Typography sx={{ mt: 2, fontSize: 13, textAlign: 'center', color: 'text.secondary' }}>
-          <Link component="button" type="button" onClick={e => { e.preventDefault(); navigate('/admin-login'); }} sx={{ color: 'text.secondary', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
-            Admin Portal
+        <Typography sx={{ mt: 3, fontSize: 13, textAlign: 'center', color: 'text.secondary' }}>
+          <Link component="button" type="button" onClick={e => { e.preventDefault(); navigate('/login'); }} sx={{ color: 'text.secondary', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
+            Return to User Login
           </Link>
         </Typography>
       </Paper>

@@ -60,7 +60,7 @@ function clearUser() {
 // ─── Context ──────────────────────────────────────────────────────────────────
 interface AuthContextValue {
   user: AuthUser | null;
-  login:  (email: string, password: string) => Promise<void>;
+  login:  (email: string, password: string, expectedRole: 'USER' | 'ADMIN') => Promise<void>;
   signup: (payload: SignupRequest) => Promise<void>;
   logout: () => void;
   isAuthenticated: boolean;
@@ -83,8 +83,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return () => clearTimeout(timer);
   }, [user?.token]);
 
-  const login = useCallback(async (email: string, password: string) => {
+  const login = useCallback(async (email: string, password: string, expectedRole: 'USER' | 'ADMIN') => {
     const authUser = await loginUser(email, password);
+    if (authUser.role !== expectedRole) {
+      if (expectedRole === 'ADMIN') {
+        throw new Error('Access denied. You do not have administrator privileges.');
+      } else {
+        throw new Error('Administrators must log in through the Admin Portal.');
+      }
+    }
     persistUser(authUser);
     setUser(authUser);
   }, []);

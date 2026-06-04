@@ -282,7 +282,7 @@ export default function ShopPage() {
         </Typography>
       </Box>
 
-      <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', lg: 'minmax(0, 2.2fr) 340px' }, gap: 2.5, alignItems: 'start' }}>
+      <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', lg: 'minmax(0, 2.2fr) 340px' }, gap: 2.5 }}>
         <Box>
           <TextField
             fullWidth size="small"
@@ -304,40 +304,89 @@ export default function ShopPage() {
                 const isOut  = stock != null && stock <= 0;
                 const isLow  = stock != null && stock > 0 && stock <= 5;
                 return (
-                  <Card key={product.id} sx={{ opacity: isOut ? 0.7 : 1, position: 'relative' }}>
-                    <CardMedia
-                      component="img" height="140"
-                      image={imageForProduct(product.id)} alt={product.name}
-                      sx={{ objectFit: 'cover' }}
-                    />
-                    {isLow && !isOut && (
-                      <Box sx={{ position: 'absolute', top: 8, right: 8 }}>
-                        <Chip label={`Only ${stock} left`} color="warning" size="small" />
+                return (
+                  <Card 
+                    key={product.id} 
+                    elevation={0}
+                    sx={{ 
+                      opacity: isOut ? 0.6 : 1, 
+                      position: 'relative',
+                      border: '1px solid',
+                      borderColor: 'rgba(226, 232, 240, 0.8)',
+                      borderRadius: '16px',
+                      background: 'linear-gradient(145deg, #ffffff 0%, #f8fafc 100%)',
+                      transition: 'all 300ms cubic-bezier(0.4, 0, 0.2, 1)',
+                      overflow: 'hidden',
+                      '&:hover': {
+                        transform: 'translateY(-4px)',
+                        borderColor: '#cbd5e1',
+                        boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01)'
+                      }
+                    }}
+                  >
+                    <Box sx={{ position: 'relative', overflow: 'hidden' }}>
+                      <CardMedia
+                        component="img" height="200"
+                        image={imageForProduct(product.id)} alt={product.name}
+                        sx={{ 
+                          objectFit: 'cover',
+                          transition: 'transform 500ms ease',
+                          '&:hover': { transform: 'scale(1.05)' }
+                        }}
+                      />
+                      {isLow && !isOut && (
+                        <Box sx={{ position: 'absolute', top: 12, right: 12 }}>
+                          <Chip label={`Only ${stock} left!`} size="small" sx={{ fontWeight: 700, fontSize: 11, letterSpacing: 0.5, textTransform: 'uppercase', backdropFilter: 'blur(8px)', bgcolor: 'rgba(245, 158, 11, 0.85)', color: '#fff', border: '1px solid rgba(255,255,255,0.2)' }} />
+                        </Box>
+                      )}
+                      {isOut && (
+                        <Box sx={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', bgcolor: 'rgba(255,255,255,0.5)', backdropFilter: 'blur(2px)' }}>
+                          <Chip label="Out of Stock" sx={{ fontWeight: 700, bgcolor: '#0f172a', color: '#fff' }} />
+                        </Box>
+                      )}
+                    </Box>
+                    <CardContent sx={{ p: 3, '&:last-child': { pb: 3 } }}>
+                      <Typography sx={{ fontWeight: 700, fontSize: 16, mb: 1, color: '#0f172a', lineHeight: 1.2 }} noWrap>{product.name}</Typography>
+                      <Box sx={{ display: 'flex', alignItems: 'flex-end', gap: 1, mb: 2.5 }}>
+                        <Typography sx={{ fontSize: 20, fontWeight: 800, color: '#0f172a', lineHeight: 1 }}>
+                          {formatINR(product.price)}
+                        </Typography>
                       </Box>
-                    )}
-                    <CardContent sx={{ p: 2, '&:last-child': { pb: 2 } }}>
-                      <Typography sx={{ fontWeight: 600, fontSize: 14, mb: 0.5 }} noWrap>{product.name}</Typography>
-                      <Typography sx={{ fontSize: 16, fontWeight: 700, mb: 1.5 }}>
-                        {formatINR(product.price)}
-                      </Typography>
                       {inCart > 0 ? (
-                        <Stack direction="row" alignItems="center" spacing={1}>
-                          <IconButton size="small" onClick={() => updateQty(product.id, inCart - 1)} sx={{ border: '1px solid #e2e8f0', p: 0.5 }}>
+                        <Stack direction="row" alignItems="center" spacing={1} sx={{ bgcolor: '#ffffff', p: 0.5, borderRadius: '10px', border: '1px solid #e2e8f0', boxShadow: 'inset 0 2px 4px 0 rgba(0,0,0,0.02)' }}>
+                          <IconButton size="small" onClick={() => updateQty(product.id, inCart - 1)} sx={{ color: '#475569', '&:hover': { bgcolor: '#f1f5f9' } }}>
                             <RemoveIcon fontSize="small" />
                           </IconButton>
-                          <Typography sx={{ fontWeight: 600, minWidth: 20, textAlign: 'center' }}>{inCart}</Typography>
-                          <IconButton size="small" onClick={() => addToCart(product.id)} disabled={isOut} sx={{ border: '1px solid #e2e8f0', p: 0.5 }}>
+                          <Typography sx={{ fontWeight: 700, flex: 1, textAlign: 'center', fontSize: 15 }}>{inCart}</Typography>
+                          <IconButton size="small" onClick={() => addToCart(product.id)} disabled={isOut} sx={{ color: '#0f172a', '&:hover': { bgcolor: '#f1f5f9' } }}>
                             <AddIcon fontSize="small" />
                           </IconButton>
                         </Stack>
                       ) : (
                         <Button
-                          variant={isOut ? 'outlined' : 'contained'} fullWidth size="small"
+                          variant={isOut ? 'outlined' : 'contained'} fullWidth 
                           disabled={isOut}
-                          startIcon={<ShoppingCartIcon fontSize="small" />}
+                          startIcon={!isOut && <ShoppingCartIcon fontSize="small" />}
                           onClick={() => addToCart(product.id)}
+                          sx={{ 
+                            py: 1.2,
+                            borderRadius: '10px', 
+                            textTransform: 'none', 
+                            fontWeight: 700,
+                            fontSize: 14,
+                            boxShadow: isOut ? 'none' : '0 4px 6px -1px rgba(15, 23, 42, 0.1)',
+                            bgcolor: isOut ? 'transparent' : '#0f172a',
+                            border: isOut ? '1px solid #cbd5e1' : 'none',
+                            color: isOut ? '#64748b' : '#fff',
+                            '&:hover': {
+                              boxShadow: isOut ? 'none' : '0 10px 15px -3px rgba(15, 23, 42, 0.2)',
+                              bgcolor: isOut ? 'transparent' : '#1e293b',
+                              transform: isOut ? 'none' : 'translateY(-1px)'
+                            },
+                            transition: 'all 200ms ease'
+                          }}
                         >
-                          {isOut ? 'Out of stock' : 'Add to cart'}
+                          {isOut ? 'Unavailable' : 'Add to Cart'}
                         </Button>
                       )}
                     </CardContent>
@@ -348,7 +397,19 @@ export default function ShopPage() {
           )}
         </Box>
 
-        <Stack spacing={2} sx={{ position: { lg: 'sticky' }, top: { lg: 16 } }}>
+        <Box 
+          sx={{ 
+            position: { lg: 'sticky' }, 
+            top: { lg: 16 }, 
+            alignSelf: { lg: 'start' },
+            maxHeight: { lg: 'calc(100vh - 32px)' },
+            overflowY: { lg: 'auto' },
+            '&::-webkit-scrollbar': { display: 'none' },
+            scrollbarWidth: 'none',
+            pb: 2
+          }}
+        >
+          <Stack spacing={2}>
           <Paper sx={{ p: 2.5 }}>
             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1.5 }}>
               <Typography sx={{ fontWeight: 600 }}>Order Summary</Typography>
@@ -438,40 +499,8 @@ export default function ShopPage() {
               <Button variant="contained" fullWidth onClick={placeOrder} disabled={placingOrder || cart.length === 0}>Place Order</Button>
             </Stack>
           </Paper>
-
-          <Paper sx={{ p: 2.5 }}>
-            <Typography sx={{ fontWeight: 600, mb: 1.5 }}>My Orders</Typography>
-            {orders.length === 0 ? (
-              <Typography sx={{ fontSize: 14, color: 'text.secondary', textAlign: 'center', py: 2 }}>No orders yet</Typography>
-            ) : (
-              <Stack spacing={1.5}>
-                {orders.map(order => (
-                  <Box
-                    key={order.id}
-                    sx={{
-                      p: 1.5, borderRadius: '6px', border: '1px solid',
-                      borderColor: selectedOrder?.id === order.id ? 'primary.main' : '#e2e8f0',
-                      bgcolor: selectedOrder?.id === order.id ? '#f8fafc' : 'transparent',
-                      cursor: 'pointer'
-                    }}
-                    onClick={() => setSelectedOrderId(order.id)}
-                  >
-                    <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
-                      <Typography sx={{ fontSize: 13, fontWeight: 600 }}>Order #{order.id}</Typography>
-                      <StatusBadge status={order.status} size="sm" />
-                    </Box>
-                    <Typography sx={{ fontSize: 12, color: 'text.secondary', mb: 1 }}>
-                      {new Date(order.placedAt).toLocaleDateString()} · {formatINR(Number(order.totalAmount) || 0)}
-                    </Typography>
-                    <Button size="small" startIcon={<ReplayIcon fontSize="small" />} onClick={(e) => { e.stopPropagation(); orderAgain(order); }}>
-                      Reorder
-                    </Button>
-                  </Box>
-                ))}
-              </Stack>
-            )}
-          </Paper>
         </Stack>
+        </Box>
       </Box>
 
       <CouponSuccessPopup
