@@ -155,7 +155,7 @@ export default function SignUpPage() {
         sx={{
           display: { xs: "none", lg: "flex" },
           flex: "1 1 35%",
-          bgcolor: "#191919",
+          bgcolor: "#1d1d1f",
           backgroundImage: 
             "radial-gradient(circle at 80% 20%, rgba(206,172,114,0.15) 0%, transparent 60%), radial-gradient(circle at 20% 80%, rgba(21,128,61,0.05) 0%, transparent 50%)",
           color: "#fff",
@@ -177,7 +177,7 @@ export default function SignUpPage() {
               justifyContent: "center",
               fontSize: 16,
               fontWeight: 700,
-              color: "#191919",
+              color: "#1d1d1f",
             }}
           >
             R
@@ -224,7 +224,7 @@ export default function SignUpPage() {
                 width: 28,
                 height: 28,
                 borderRadius: "6px",
-                background: "#191919",
+                background: "#1d1d1f",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -235,13 +235,13 @@ export default function SignUpPage() {
             >
               R
             </Box>
-            <Typography sx={{ fontSize: 16, fontWeight: 600, color: "#191919" }}>
+            <Typography sx={{ fontSize: 16, fontWeight: 600, color: "#1d1d1f" }}>
               RetailOS
             </Typography>
           </Box>
 
           <Box sx={{ mb: 4 }}>
-            <Typography variant="h4" sx={{ fontWeight: 600, color: "#191919", letterSpacing: "-0.03em" }}>
+            <Typography variant="h4" sx={{ fontWeight: 600, color: "#1d1d1f", letterSpacing: "-0.03em" }}>
               Create your account
             </Typography>
             <Typography sx={{ mt: 1, fontSize: 14, color: "text.secondary" }}>
@@ -472,7 +472,7 @@ export default function SignUpPage() {
               }}
               sx={{
                 fontWeight: 600,
-                color: "#191919",
+                color: "#1d1d1f",
                 textDecoration: "none",
                 "&:hover": { textDecoration: "underline" }
               }}

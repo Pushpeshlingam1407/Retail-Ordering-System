@@ -62,7 +62,7 @@ export default function AdminLoginPage() {
         sx={{
           display: { xs: "none", md: "flex" },
           flex: "1 1 42%",
-          bgcolor: "#191919",
+          bgcolor: "#1d1d1f",
           backgroundImage: 
             "radial-gradient(circle at 80% 20%, rgba(206,172,114,0.15) 0%, transparent 60%), radial-gradient(circle at 20% 80%, rgba(185,28,28,0.04) 0%, transparent 50%)",
           color: "#fff",
@@ -84,7 +84,7 @@ export default function AdminLoginPage() {
               justifyContent: "center",
               fontSize: 16,
               fontWeight: 700,
-              color: "#191919",
+              color: "#1d1d1f",
             }}
           >
             R
@@ -130,7 +130,7 @@ export default function AdminLoginPage() {
                 width: 28,
                 height: 28,
                 borderRadius: "6px",
-                background: "#191919",
+                background: "#1d1d1f",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -141,13 +141,13 @@ export default function AdminLoginPage() {
             >
               R
             </Box>
-            <Typography sx={{ fontSize: 16, fontWeight: 600, color: "#191919" }}>
+            <Typography sx={{ fontSize: 16, fontWeight: 600, color: "#1d1d1f" }}>
               RetailOS
             </Typography>
           </Box>
 
           <Box sx={{ mb: 4 }}>
-            <Typography variant="h4" sx={{ fontWeight: 600, color: "#191919", letterSpacing: "-0.03em" }}>
+            <Typography variant="h4" sx={{ fontWeight: 600, color: "#1d1d1f", letterSpacing: "-0.03em" }}>
               Admin Portal
             </Typography>
             <Typography sx={{ mt: 1, fontSize: 14, color: "text.secondary" }}>
@@ -247,7 +247,7 @@ export default function AdminLoginPage() {
                 navigate("/login");
               }}
               sx={{
-                color: "#191919",
+                color: "#1d1d1f",
                 fontWeight: 600,
                 textDecoration: "none",
                 "&:hover": { textDecoration: "underline" },

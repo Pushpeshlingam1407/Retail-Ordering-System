@@ -256,7 +256,7 @@ export default function ShopPage() {
         }}
       >
         <Box>
-          <Typography variant="h5" sx={{ fontWeight: 600, color: "#191919", letterSpacing: "-0.02em" }}>
+          <Typography variant="h5" sx={{ fontWeight: 600, color: "#1d1d1f", letterSpacing: "-0.02em" }}>
             Shop
           </Typography>
           <Typography sx={{ color: "text.secondary", mt: 0.5, fontSize: 14 }}>
@@ -286,7 +286,7 @@ export default function ShopPage() {
                 fontSize: 11,
                 fontWeight: 700,
                 bgcolor: "#ffffff",
-                color: "#191919",
+                color: "#1d1d1f",
                 border: "1px solid rgba(0,0,0,0.02)"
               }}
             />
@@ -402,7 +402,7 @@ export default function ShopPage() {
                             sx={{
                               fontWeight: 600,
                               fontSize: 12,
-                              bgcolor: "#191919",
+                              bgcolor: "#1d1d1f",
                               color: "#fff",
                             }}
                           />
@@ -415,7 +415,7 @@ export default function ShopPage() {
                           fontWeight: 600,
                           fontSize: 15,
                           mb: 0.5,
-                          color: "#191919",
+                          color: "#1d1d1f",
                           lineHeight: 1.25,
                         }}
                         noWrap
@@ -437,7 +437,7 @@ export default function ShopPage() {
                           sx={{
                             fontSize: 18,
                             fontWeight: 700,
-                            color: "#191919",
+                            color: "#1d1d1f",
                             lineHeight: 1,
                           }}
                         >
@@ -472,7 +472,7 @@ export default function ShopPage() {
                               flex: 1,
                               textAlign: "center",
                               fontSize: 14,
-                              color: "#191919"
+                              color: "#1d1d1f"
                             }}
                           >
                             {inCart}
@@ -482,7 +482,7 @@ export default function ShopPage() {
                             onClick={() => addToCart(product.id)}
                             disabled={isOut}
                             sx={{
-                              color: "#191919",
+                              color: "#1d1d1f",
                               "&:hover": { bgcolor: "#f3f1eb" },
                             }}
                           >

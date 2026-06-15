@@ -242,7 +242,7 @@ export default function OrdersPage() {
           mb: 4,
         }}
       >
-        <Typography variant="h5" sx={{ fontWeight: 600, color: "#191919", letterSpacing: "-0.02em" }}>
+        <Typography variant="h5" sx={{ fontWeight: 600, color: "#1d1d1f", letterSpacing: "-0.02em" }}>
           Order Management
         </Typography>
         <Stack direction="row" spacing={2}>
@@ -426,7 +426,7 @@ export default function OrdersPage() {
         fullWidth
       >
         <DialogTitle sx={{ px: 3, pt: 3, pb: 1 }}>
-          <Typography sx={{ fontSize: 18, fontWeight: 600, color: "#191919" }}>
+          <Typography sx={{ fontSize: 18, fontWeight: 600, color: "#1d1d1f" }}>
             Order #{detailOrder?.id}
           </Typography>
         </DialogTitle>
@@ -514,7 +514,7 @@ export default function OrdersPage() {
         fullWidth
       >
         <DialogTitle sx={{ px: 3, pt: 3, pb: 1 }}>
-          <Typography sx={{ fontSize: 18, fontWeight: 600, color: "#191919" }}>
+          <Typography sx={{ fontSize: 18, fontWeight: 600, color: "#1d1d1f" }}>
             New Order
           </Typography>
         </DialogTitle>
@@ -603,7 +603,7 @@ export default function OrdersPage() {
         fullWidth
       >
         <DialogTitle sx={{ px: 3, pt: 3, pb: 1 }}>
-          <Typography sx={{ fontSize: 18, fontWeight: 600, color: "#191919" }}>
+          <Typography sx={{ fontSize: 18, fontWeight: 600, color: "#1d1d1f" }}>
             Update Status
           </Typography>
         </DialogTitle>

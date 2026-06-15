@@ -187,7 +187,7 @@ export default function ProductsPage() {
           mb: 4,
         }}
       >
-        <Typography variant="h5" sx={{ fontWeight: 600, color: "#191919", letterSpacing: "-0.02em" }}>
+        <Typography variant="h5" sx={{ fontWeight: 600, color: "#1d1d1f", letterSpacing: "-0.02em" }}>
           Products & Inventory
         </Typography>
         <Stack direction="row" spacing={2}>
@@ -341,7 +341,7 @@ export default function ProductsPage() {
         fullWidth
       >
         <DialogTitle sx={{ px: 3, pt: 3, pb: 1 }}>
-          <Typography sx={{ fontSize: 18, fontWeight: 600, color: "#191919" }}>
+          <Typography sx={{ fontSize: 18, fontWeight: 600, color: "#1d1d1f" }}>
             {editProduct ? "Edit Product" : "New Product"}
           </Typography>
         </DialogTitle>
