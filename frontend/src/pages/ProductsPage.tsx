@@ -89,6 +89,7 @@ export default function ProductsPage() {
     lowStockThreshold: 10,
   });
   const [saving, setSaving] = useState(false);
+  const [dialogLoading, setDialogLoading] = useState(false);
 
   // Image upload state
   const [imageFile, setImageFile] = useState<File | null>(null);
@@ -147,41 +148,58 @@ export default function ProductsPage() {
     setDragOver(false);
   };
 
-  const openCreate = () => {
+  // Fetch brands & categories fresh every time dialog opens
+  const loadDropdowns = async () => {
+    setDialogLoading(true);
+    try {
+      const [bData, cData] = await Promise.all([getBrands(), getCategories()]);
+      setBrands(bData);
+      setCategories(cData);
+      return { bData, cData };
+    } catch {
+      notify.error("Failed to load brands/categories");
+      return { bData: brands, cData: categories };
+    } finally {
+      setDialogLoading(false);
+    }
+  };
+
+  const openCreate = async () => {
     setEditProduct(null);
+    resetImageState();
+    setInvForm({ productId: 0, quantity: 0, lowStockThreshold: 10 });
+    setDialogOpen(true);
+    const { bData, cData } = await loadDropdowns();
     setForm({
       name: "",
       price: 0,
-      categoryId: categories[0]?.id ?? 0,
-      brandId: brands[0]?.id ?? 0,
+      categoryId: cData[0]?.id ?? 0,
+      brandId: bData[0]?.id ?? 0,
       packaging: "Box",
       imageUrl: "",
     });
-    setInvForm({ productId: 0, quantity: 0, lowStockThreshold: 10 });
-    resetImageState();
-    setDialogOpen(true);
   };
 
-  const openEdit = (p: Product) => {
+  const openEdit = async (p: Product) => {
     setEditProduct(p);
-    setForm({
-      name: p.name,
-      price: p.price,
-      categoryId: p.category?.id ?? categories[0]?.id ?? 0,
-      brandId: p.brand?.id ?? brands[0]?.id ?? 0,
-      packaging: p.packaging ?? "Box",
-      imageUrl: p.imageUrl ?? "",
-    });
+    resetImageState();
+    if (p.imageUrl) setImagePreview(p.imageUrl);
     const inv = inventories[p.id];
     setInvForm({
       productId: p.id,
       quantity: inv?.quantity ?? 0,
       lowStockThreshold: inv?.lowStockThreshold ?? 10,
     });
-    resetImageState();
-    // Show existing image as preview
-    if (p.imageUrl) setImagePreview(p.imageUrl);
     setDialogOpen(true);
+    const { bData, cData } = await loadDropdowns();
+    setForm({
+      name: p.name,
+      price: p.price,
+      categoryId: p.category?.id ?? cData[0]?.id ?? 0,
+      brandId: p.brand?.id ?? bData[0]?.id ?? 0,
+      packaging: p.packaging ?? "Box",
+      imageUrl: p.imageUrl ?? "",
+    });
   };
 
   const handleFileSelect = (file: File) => {
