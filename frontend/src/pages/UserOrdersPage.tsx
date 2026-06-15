@@ -56,10 +56,10 @@ export default function UserOrdersPage() {
   return (
     <Box sx={{ maxWidth: 800, mx: "auto" }}>
       <Box sx={{ mb: 4 }}>
-        <Typography variant="h5" sx={{ fontWeight: 700, color: "#0f172a" }}>
+        <Typography variant="h5" sx={{ fontWeight: 600, color: "#191919", letterSpacing: "-0.02em" }}>
           My Orders
         </Typography>
-        <Typography sx={{ color: "text.secondary", mt: 0.5 }}>
+        <Typography sx={{ color: "text.secondary", mt: 0.5, fontSize: 14 }}>
           View and manage your previous orders
         </Typography>
       </Box>
@@ -70,46 +70,48 @@ export default function UserOrdersPage() {
           sx={{
             p: 6,
             textAlign: "center",
-            border: "1px solid #e2e8f0",
-            borderRadius: "16px",
+            border: "1px solid #e6e4dd",
+            borderRadius: "12px",
           }}
         >
-          <SearchIcon sx={{ fontSize: 48, color: "#cbd5e1", mb: 2 }} />
+          <SearchIcon sx={{ fontSize: 44, color: "text.secondary", mb: 2, opacity: 0.6 }} />
           <Typography
-            sx={{ fontSize: 18, fontWeight: 600, color: "#0f172a", mb: 1 }}
+            sx={{ fontSize: 18, fontWeight: 600, color: "#191919", mb: 1 }}
           >
             No orders found
           </Typography>
-          <Typography sx={{ color: "text.secondary", mb: 3 }}>
+          <Typography sx={{ color: "text.secondary", mb: 3, fontSize: 14 }}>
             You haven't placed any orders yet.
           </Typography>
           <Button
             variant="contained"
             onClick={() => navigate("/shop")}
             sx={{
-              bgcolor: "#0f172a",
+              bgcolor: "#191919",
               textTransform: "none",
               borderRadius: "8px",
-              px: 3,
+              px: 4,
+              py: 1.2,
+              "&:hover": { bgcolor: "#2e2e2e" },
             }}
           >
             Start Shopping
           </Button>
         </Paper>
       ) : (
-        <Stack spacing={2.5}>
+        <Stack spacing={3}>
           {orders.map((order) => (
             <Paper
               key={order.id}
               elevation={0}
               sx={{
                 p: 3,
-                border: "1px solid #e2e8f0",
-                borderRadius: "16px",
-                transition: "all 200ms",
+                border: "1px solid #e6e4dd",
+                borderRadius: "12px",
+                transition: "all var(--t-base)",
                 "&:hover": {
-                  borderColor: "#cbd5e1",
-                  boxShadow: "0 4px 6px -1px rgba(0,0,0,0.05)",
+                  borderColor: "#c8c6be",
+                  boxShadow: "0 12px 24px -10px rgba(25, 25, 25, 0.04), 0 4px 8px -2px rgba(25, 25, 25, 0.02)",
                 },
               }}
             >
@@ -125,7 +127,7 @@ export default function UserOrdersPage() {
               >
                 <Box>
                   <Typography
-                    sx={{ fontSize: 16, fontWeight: 700, color: "#0f172a" }}
+                    sx={{ fontSize: 16, fontWeight: 600, color: "#191919" }}
                   >
                     Order #{order.id}
                   </Typography>
@@ -150,16 +152,17 @@ export default function UserOrdersPage() {
                 <Box>
                   <Typography
                     sx={{
-                      fontSize: 12,
-                      fontWeight: 700,
+                      fontSize: 11,
+                      fontWeight: 600,
                       color: "text.secondary",
                       textTransform: "uppercase",
-                      mb: 1.5,
+                      letterSpacing: "0.05em",
+                      mb: 2,
                     }}
                   >
                     Items Ordered
                   </Typography>
-                  <Stack spacing={1}>
+                  <Stack spacing={1.5}>
                     {order.items.map((item) => (
                       <Box
                         key={item.productId}
@@ -169,7 +172,7 @@ export default function UserOrdersPage() {
                           alignItems: "center",
                         }}
                       >
-                        <Typography sx={{ fontSize: 14, color: "#0f172a" }}>
+                        <Typography sx={{ fontSize: 14, color: "#191919" }}>
                           <Typography
                             component="span"
                             sx={{
@@ -182,7 +185,7 @@ export default function UserOrdersPage() {
                           </Typography>{" "}
                           Product #{item.productId}
                         </Typography>
-                        <Typography sx={{ fontSize: 14, fontWeight: 500 }}>
+                        <Typography sx={{ fontSize: 14, fontWeight: 500, color: "#191919" }}>
                           {formatINR(Number(item.priceAtTime) * item.quantity)}
                         </Typography>
                       </Box>
@@ -192,19 +195,20 @@ export default function UserOrdersPage() {
 
                 <Box
                   sx={{
-                    bgcolor: "#f8fafc",
+                    bgcolor: "#faf9f6",
                     p: 2,
-                    borderRadius: "12px",
-                    border: "1px solid #e2e8f0",
+                    borderRadius: "10px",
+                    border: "1px solid #e6e4dd",
                   }}
                 >
                   <Typography
                     sx={{
-                      fontSize: 12,
-                      fontWeight: 700,
+                      fontSize: 11,
+                      fontWeight: 600,
                       color: "text.secondary",
                       textTransform: "uppercase",
-                      mb: 1.5,
+                      letterSpacing: "0.05em",
+                      mb: 2,
                     }}
                   >
                     Order Summary
@@ -213,13 +217,13 @@ export default function UserOrdersPage() {
                     sx={{
                       display: "flex",
                       justifyContent: "space-between",
-                      mb: 1,
+                      mb: 1.25,
                     }}
                   >
-                    <Typography sx={{ fontSize: 14, color: "text.secondary" }}>
+                    <Typography sx={{ fontSize: 13, color: "text.secondary" }}>
                       Subtotal
                     </Typography>
-                    <Typography sx={{ fontSize: 14 }}>
+                    <Typography sx={{ fontSize: 13, color: "#191919" }}>
                       {formatINR(
                         Number(order.totalAmount) +
                           (Number(order.discount) || 0),
@@ -231,17 +235,17 @@ export default function UserOrdersPage() {
                       sx={{
                         display: "flex",
                         justifyContent: "space-between",
-                        mb: 1,
+                        mb: 1.25,
                       }}
                     >
                       <Typography
-                        sx={{ fontSize: 14, color: "text.secondary" }}
+                        sx={{ fontSize: 13, color: "text.secondary" }}
                       >
                         Discount {order.couponCode && `(${order.couponCode})`}
                       </Typography>
                       <Typography
                         sx={{
-                          fontSize: 14,
+                          fontSize: 13,
                           color: "success.main",
                           fontWeight: 600,
                         }}
@@ -250,17 +254,17 @@ export default function UserOrdersPage() {
                       </Typography>
                     </Box>
                   )}
-                  <Divider sx={{ my: 1 }} />
+                  <Divider sx={{ my: 1.25 }} />
                   <Box
                     sx={{ display: "flex", justifyContent: "space-between" }}
                   >
                     <Typography
-                      sx={{ fontSize: 15, fontWeight: 700, color: "#0f172a" }}
+                      sx={{ fontSize: 14, fontWeight: 600, color: "#191919" }}
                     >
                       Total
                     </Typography>
                     <Typography
-                      sx={{ fontSize: 15, fontWeight: 800, color: "#0f172a" }}
+                      sx={{ fontSize: 15, fontWeight: 700, color: "#191919" }}
                     >
                       {formatINR(Number(order.totalAmount))}
                     </Typography>
@@ -279,10 +283,10 @@ export default function UserOrdersPage() {
                   sx={{
                     textTransform: "none",
                     borderRadius: "8px",
-                    fontWeight: 600,
-                    borderColor: "#cbd5e1",
-                    color: "#0f172a",
-                    "&:hover": { bgcolor: "#f1f5f9", borderColor: "#94a3b8" },
+                    fontWeight: 500,
+                    borderColor: "#e6e4dd",
+                    color: "#5e5e5e",
+                    "&:hover": { bgcolor: "#f3f1eb", borderColor: "#c8c6be", color: "#191919" },
                   }}
                 >
                   Order Again

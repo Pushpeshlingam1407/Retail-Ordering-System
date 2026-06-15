@@ -70,10 +70,10 @@ export default function SignUpPage() {
   const passwordStrength = passwordRules.filter((r) => r.met).length; // 0–5
   const strengthColor =
     passwordStrength <= 1
-      ? "#ef4444"
+      ? "#b91c1c"
       : passwordStrength <= 3
-        ? "#f59e0b"
-        : "#10b981";
+        ? "#b45309"
+        : "#15803d";
   const strengthLabel =
     passwordStrength === 0
       ? ""
@@ -173,7 +173,7 @@ export default function SignUpPage() {
               width: 28,
               height: 28,
               borderRadius: "6px",
-              background: "#0f172a",
+              background: "#191919",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -184,7 +184,7 @@ export default function SignUpPage() {
           >
             R
           </Box>
-          <Typography sx={{ fontSize: 18, fontWeight: 700, color: "#0f172a" }}>
+          <Typography sx={{ fontSize: 18, fontWeight: 700, color: "#191919" }}>
             RetailOS
           </Typography>
         </Box>

@@ -190,11 +190,13 @@ export default function CouponsPage() {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          mb: 3,
+          mb: 4,
         }}
       >
-        <Typography variant="h5">Coupons</Typography>
-        <Stack direction="row" spacing={1.5}>
+        <Typography variant="h5" sx={{ fontWeight: 600, color: "#191919", letterSpacing: "-0.02em" }}>
+          Coupons
+        </Typography>
+        <Stack direction="row" spacing={2}>
           <TextField
             size="small"
             placeholder="Search by code..."
@@ -204,7 +206,7 @@ export default function CouponsPage() {
               input: {
                 startAdornment: (
                   <InputAdornment position="start">
-                    <SearchIcon fontSize="small" />
+                    <SearchIcon fontSize="small" sx={{ color: "text.secondary" }} />
                   </InputAdornment>
                 ),
               },
@@ -214,6 +216,7 @@ export default function CouponsPage() {
             variant="contained"
             startIcon={<AddIcon />}
             onClick={openCreate}
+            sx={{ fontWeight: 500 }}
           >
             New Coupon
           </Button>
@@ -261,15 +264,18 @@ export default function CouponsPage() {
                         >
                           <Typography
                             sx={{
-                              fontFamily: "monospace",
+                              fontFamily: '"Instrument Sans", monospace',
                               fontWeight: 600,
+                              fontSize: 13,
                               color:
                                 c.active && !expired
-                                  ? "primary.main"
+                                  ? "#191919"
                                   : "text.secondary",
-                              p: 0.5,
-                              bgcolor: "#f1f5f9",
-                              borderRadius: 1,
+                              px: 1,
+                              py: 0.5,
+                              bgcolor: "#f3f1eb",
+                              borderRadius: "4px",
+                              border: "1px solid rgba(0,0,0,0.01)"
                             }}
                           >
                             {c.code}
@@ -277,8 +283,9 @@ export default function CouponsPage() {
                           <IconButton
                             size="small"
                             onClick={() => copyCode(c.code)}
+                            sx={{ color: "text.secondary" }}
                           >
-                            <ContentCopyIcon sx={{ fontSize: 14 }} />
+                            <ContentCopyIcon sx={{ fontSize: 13 }} />
                           </IconButton>
                         </Box>
                       </TableCell>
@@ -288,7 +295,7 @@ export default function CouponsPage() {
                             c.type === "PERCENTAGE" ? "Percentage" : "Flat"
                           }
                           size="small"
-                          sx={{ bgcolor: "#f1f5f9" }}
+                          sx={{ bgcolor: "#f3f1eb", color: "#5e5e5e", fontWeight: 500, fontSize: 12, border: "1px solid rgba(0,0,0,0.01)" }}
                         />
                       </TableCell>
                       <TableCell align="right" sx={{ fontWeight: 600 }}>
@@ -360,9 +367,13 @@ export default function CouponsPage() {
         maxWidth="xs"
         fullWidth
       >
-        <DialogTitle>{editCoupon ? "Edit Coupon" : "New Coupon"}</DialogTitle>
-        <DialogContent>
-          <Stack spacing={2} sx={{ mt: 1 }}>
+        <DialogTitle sx={{ px: 3, pt: 3, pb: 1 }}>
+          <Typography sx={{ fontSize: 18, fontWeight: 600, color: "#191919" }}>
+            {editCoupon ? "Edit Coupon" : "New Coupon"}
+          </Typography>
+        </DialogTitle>
+        <DialogContent sx={{ px: 3, pb: 2 }}>
+          <Stack spacing={2.5} sx={{ mt: 1.5 }}>
             <TextField
               label="Code"
               value={form.code}
@@ -440,14 +451,14 @@ export default function CouponsPage() {
                   color="success"
                 />
               }
-              label="Active"
+              label={<Typography sx={{ fontSize: 14, fontWeight: 500, color: "#191919" }}>Active</Typography>}
             />
           </Stack>
         </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setDialog(false)}>Cancel</Button>
-          <Button variant="contained" onClick={handleSave} disabled={saving}>
-            Save
+        <DialogActions sx={{ px: 3, pb: 3, pt: 1.5, gap: 1 }}>
+          <Button onClick={() => setDialog(false)} variant="text" color="secondary" sx={{ color: "text.secondary" }}>Cancel</Button>
+          <Button variant="contained" onClick={handleSave} disabled={saving} sx={{ fontWeight: 500 }}>
+            Save Coupon
           </Button>
         </DialogActions>
       </Dialog>

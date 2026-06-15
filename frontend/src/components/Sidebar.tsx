@@ -116,7 +116,7 @@ export function Sidebar({
         display: "flex",
         flexDirection: "column",
         background: "#ffffff",
-        borderRight: "1px solid #e2e8f0",
+        borderRight: "1px solid #e6e4dd",
         transition: "width 200ms ease",
         overflow: "hidden",
         position: "relative",
@@ -130,7 +130,7 @@ export function Sidebar({
           alignItems: "center",
           justifyContent: collapsed ? "center" : "space-between",
           px: collapsed ? 1 : 2,
-          borderBottom: "1px solid #e2e8f0",
+          borderBottom: "1px solid #e6e4dd",
           flexShrink: 0,
         }}
       >
@@ -141,7 +141,7 @@ export function Sidebar({
                 width: 32,
                 height: 32,
                 borderRadius: "6px",
-                background: "#0f172a",
+                background: "#191919",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -153,7 +153,7 @@ export function Sidebar({
               R
             </Box>
             <Typography
-              sx={{ fontSize: 16, fontWeight: 700, color: "#0f172a" }}
+              sx={{ fontSize: 16, fontWeight: 600, color: "#191919" }}
             >
               RetailOS
             </Typography>
@@ -165,7 +165,7 @@ export function Sidebar({
               width: 32,
               height: 32,
               borderRadius: "6px",
-              background: "#0f172a",
+              background: "#191919",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -183,6 +183,7 @@ export function Sidebar({
           sx={{
             display: { xs: "none", md: "flex" },
             ml: collapsed ? "auto" : 0,
+            color: "#5e5e5e"
           }}
         >
           {collapsed ? (
@@ -240,8 +241,8 @@ export function Sidebar({
               sx={{
                 width: 32,
                 height: 32,
-                bgcolor: "#e2e8f0",
-                color: "#0f172a",
+                bgcolor: "#f0ede6",
+                color: "#191919",
                 fontSize: 14,
                 fontWeight: 600,
               }}
@@ -251,7 +252,7 @@ export function Sidebar({
             <IconButton
               size="small"
               onClick={handleLogout}
-              sx={{ color: "#ef4444" }}
+              sx={{ color: "#b91c1c" }}
             >
               <LogoutIcon fontSize="small" />
             </IconButton>
@@ -262,8 +263,8 @@ export function Sidebar({
               sx={{
                 width: 36,
                 height: 36,
-                bgcolor: "#e2e8f0",
-                color: "#0f172a",
+                bgcolor: "#f0ede6",
+                color: "#191919",
                 fontSize: 14,
                 fontWeight: 600,
               }}
@@ -272,19 +273,19 @@ export function Sidebar({
             </Avatar>
             <Box sx={{ flex: 1, minWidth: 0 }}>
               <Typography
-                sx={{ fontSize: 13, fontWeight: 600, color: "#0f172a" }}
+                sx={{ fontSize: 13, fontWeight: 600, color: "#191919" }}
                 noWrap
               >
                 {user?.name}
               </Typography>
-              <Typography sx={{ fontSize: 12, color: "#64748b" }} noWrap>
+              <Typography sx={{ fontSize: 12, color: "#5e5e5e" }} noWrap>
                 {user?.email}
               </Typography>
             </Box>
             <IconButton
               size="small"
               onClick={handleLogout}
-              sx={{ color: "#64748b" }}
+              sx={{ color: "#5e5e5e" }}
             >
               <LogoutIcon fontSize="small" />
             </IconButton>

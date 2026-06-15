@@ -43,21 +43,27 @@ export default function ConfirmDialog({
       maxWidth="xs"
       fullWidth
     >
-      <DialogTitle sx={{ pb: 1 }}>
+      <DialogTitle sx={{ px: 3, pt: 3, pb: 1.5 }}>
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
           {danger && <WarningAmberIcon color="error" />}
-          <Typography sx={{ fontSize: 16, fontWeight: 600 }}>
+          <Typography sx={{ fontSize: 17, fontWeight: 600, color: "#191919" }}>
             {title}
           </Typography>
         </Box>
       </DialogTitle>
-      <DialogContent>
-        <Typography sx={{ fontSize: 14, color: "text.secondary" }}>
+      <DialogContent sx={{ px: 3, pb: 2 }}>
+        <Typography sx={{ fontSize: 14, color: "text.secondary", lineHeight: 1.5 }}>
           {message}
         </Typography>
       </DialogContent>
-      <DialogActions sx={{ p: 2, pt: 1 }}>
-        <Button onClick={onCancel} disabled={loading} color="inherit">
+      <DialogActions sx={{ px: 3, pb: 3, pt: 1.5, gap: 1 }}>
+        <Button 
+          onClick={onCancel} 
+          disabled={loading} 
+          variant="text" 
+          color="secondary"
+          sx={{ fontWeight: 500, color: "text.secondary" }}
+        >
           {cancelLabel}
         </Button>
         <Button
@@ -72,6 +78,7 @@ export default function ConfirmDialog({
               <DeleteIcon fontSize="small" />
             ) : undefined
           }
+          sx={{ fontWeight: 500 }}
         >
           {confirmLabel}
         </Button>

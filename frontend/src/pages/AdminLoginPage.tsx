@@ -64,7 +64,7 @@ export default function AdminLoginPage() {
           maxWidth: 440,
           p: { xs: 3, md: 5 },
           borderRadius: "12px",
-          borderTop: "4px solid #0f172a",
+          borderTop: "3px solid #191919",
         }}
       >
         <Box
@@ -81,7 +81,7 @@ export default function AdminLoginPage() {
               width: 28,
               height: 28,
               borderRadius: "6px",
-              background: "#0f172a",
+              background: "#191919",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -92,7 +92,7 @@ export default function AdminLoginPage() {
           >
             R
           </Box>
-          <Typography sx={{ fontSize: 18, fontWeight: 700, color: "#0f172a" }}>
+          <Typography sx={{ fontSize: 18, fontWeight: 700, color: "#191919" }}>
             RetailOS
           </Typography>
         </Box>

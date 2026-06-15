@@ -80,7 +80,7 @@ export default function LoginPage() {
               width: 28,
               height: 28,
               borderRadius: "6px",
-              background: "#0f172a",
+              background: "#191919",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -91,7 +91,7 @@ export default function LoginPage() {
           >
             R
           </Box>
-          <Typography sx={{ fontSize: 18, fontWeight: 700, color: "#0f172a" }}>
+          <Typography sx={{ fontSize: 18, fontWeight: 700, color: "#191919" }}>
             RetailOS
           </Typography>
         </Box>

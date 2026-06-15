@@ -1,4 +1,4 @@
-import { Chip } from "@mui/material";
+import { Box } from "@mui/material";
 
 export default function StatusBadge({
   status,
@@ -11,33 +11,58 @@ export default function StatusBadge({
 }) {
   const cfg: Record<string, { label: string; color: string; bgcolor: string }> =
     {
-      PENDING: { label: "Pending", color: "#b45309", bgcolor: "#fef3c7" }, // Amber
-      CONFIRMED: { label: "Confirmed", color: "#1d4ed8", bgcolor: "#dbeafe" }, // Blue
-      SHIPPED: { label: "Shipped", color: "#6d28d9", bgcolor: "#ede9fe" }, // Purple
-      DELIVERED: { label: "Delivered", color: "#15803d", bgcolor: "#dcfce3" }, // Green
-      CANCELLED: { label: "Cancelled", color: "#b91c1c", bgcolor: "#fee2e2" }, // Red
+      PENDING: { label: "Pending", color: "#b45309", bgcolor: "#fdf6e2" },
+      CONFIRMED: { label: "Confirmed", color: "#1d4ed8", bgcolor: "#edf2fe" },
+      SHIPPED: { label: "Shipped", color: "#6d28d9", bgcolor: "#f5f0ff" },
+      DELIVERED: { label: "Delivered", color: "#15803d", bgcolor: "#edf7ed" },
+      CANCELLED: { label: "Cancelled", color: "#b91c1c", bgcolor: "#fdf2f2" },
     };
 
   const current = cfg[status] || {
     label: status,
-    color: "#475569",
-    bgcolor: "#f1f5f9",
+    color: "#5e5e5e",
+    bgcolor: "#f3f1eb",
   };
 
+  const isSm = size === "sm";
+
   return (
-    <Chip
-      label={current.label}
+    <Box
       onClick={onClick}
-      size={size === "sm" ? "small" : "medium"}
       sx={{
+        display: "inline-flex",
+        alignItems: "center",
+        px: isSm ? 1 : 1.25,
+        py: isSm ? 0.35 : 0.5,
+        borderRadius: "6px",
         bgcolor: current.bgcolor,
         color: current.color,
         fontWeight: 600,
-        fontSize: size === "sm" ? 11 : 12,
-        height: size === "sm" ? 20 : 24,
+        fontSize: isSm ? 11 : 12,
+        border: "1px solid rgba(0,0,0,0.01)",
         cursor: onClick ? "pointer" : "default",
-        "&:hover": onClick ? { filter: "brightness(0.95)" } : undefined,
+        userSelect: "none",
+        transition: "all var(--t-fast)",
+        "&:hover": onClick ? { 
+          filter: "brightness(0.96)",
+          transform: "scale(0.97)"
+        } : undefined,
+        "&:active": onClick ? {
+          transform: "scale(0.94)"
+        } : undefined
       }}
-    />
+    >
+      <Box
+        sx={{
+          width: isSm ? 5 : 6,
+          height: isSm ? 5 : 6,
+          borderRadius: "50%",
+          bgcolor: current.color,
+          mr: 1,
+          flexShrink: 0
+        }}
+      />
+      {current.label}
+    </Box>
   );
 }

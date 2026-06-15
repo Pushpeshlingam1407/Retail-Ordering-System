@@ -246,7 +246,7 @@ export default function ShopPage() {
   }
 
   return (
-    <Box sx={{ maxWidth: 1400, mx: "auto", w: "100%" }}>
+    <Box sx={{ maxWidth: 1400, mx: "auto", width: "100%" }}>
       <Box
         sx={{
           mb: 4,
@@ -256,10 +256,10 @@ export default function ShopPage() {
         }}
       >
         <Box>
-          <Typography variant="h5" sx={{ fontWeight: 700, color: "#0f172a" }}>
+          <Typography variant="h5" sx={{ fontWeight: 600, color: "#191919", letterSpacing: "-0.02em" }}>
             Shop
           </Typography>
-          <Typography sx={{ color: "text.secondary", mt: 0.5 }}>
+          <Typography sx={{ color: "text.secondary", mt: 0.5, fontSize: 14 }}>
             Browse and add items to your cart
           </Typography>
         </Box>
@@ -268,12 +268,13 @@ export default function ShopPage() {
           onClick={() => navigate("/cart")}
           startIcon={<ShoppingCartIcon />}
           sx={{
-            bgcolor: "#0f172a",
-            borderRadius: "10px",
+            bgcolor: "#191919",
+            borderRadius: "8px",
             textTransform: "none",
-            fontWeight: 700,
+            fontWeight: 600,
             px: 3,
-            "&:hover": { bgcolor: "#1e293b" },
+            py: 1.2,
+            "&:hover": { bgcolor: "#2e2e2e" },
           }}
         >
           View Cart
@@ -285,10 +286,11 @@ export default function ShopPage() {
                 ml: 1,
                 height: 20,
                 minWidth: 20,
-                fontSize: 12,
+                fontSize: 11,
                 fontWeight: 700,
-                bgcolor: "#fff",
-                color: "#0f172a",
+                bgcolor: "#ffffff",
+                color: "#191919",
+                border: "1px solid rgba(0,0,0,0.02)"
               }}
             />
           )}
@@ -307,12 +309,12 @@ export default function ShopPage() {
               input: {
                 startAdornment: (
                   <InputAdornment position="start">
-                    <SearchIcon fontSize="small" />
+                    <SearchIcon fontSize="small" sx={{ color: "text.secondary" }} />
                   </InputAdornment>
                 ),
               },
             }}
-            sx={{ mb: 2 }}
+            sx={{ mb: 3 }}
           />
 
           {filteredProds.length === 0 ? (
@@ -342,31 +344,29 @@ export default function ShopPage() {
                     sx={{
                       opacity: isOut ? 0.6 : 1,
                       position: "relative",
-                      border: "1px solid",
-                      borderColor: "rgba(226, 232, 240, 0.8)",
-                      borderRadius: "16px",
-                      background:
-                        "linear-gradient(145deg, #ffffff 0%, #f8fafc 100%)",
-                      transition: "all 300ms cubic-bezier(0.4, 0, 0.2, 1)",
+                      border: "1px solid #e6e4dd",
+                      borderRadius: "12px",
+                      background: "#ffffff",
+                      transition: "all var(--t-base)",
                       overflow: "hidden",
                       "&:hover": {
-                        transform: "translateY(-4px)",
-                        borderColor: "#cbd5e1",
-                        boxShadow:
-                          "0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01)",
+                        transform: "translateY(-3px)",
+                        borderColor: "#c8c6be",
+                        boxShadow: "0 12px 24px -10px rgba(25, 25, 25, 0.04), 0 4px 8px -2px rgba(25, 25, 25, 0.02)",
                       },
                     }}
                   >
-                    <Box sx={{ position: "relative", overflow: "hidden" }}>
+                    <Box sx={{ position: "relative", overflow: "hidden", bgcolor: "#f3f1eb" }}>
                       <CardMedia
                         component="img"
-                        height="200"
+                        height="180"
                         image={imageForProduct(product)}
                         alt={product.name}
                         sx={{
                           objectFit: "cover",
-                          transition: "transform 500ms ease",
-                          "&:hover": { transform: "scale(1.05)" },
+                          mixBlendMode: "multiply",
+                          transition: "transform 400ms cubic-bezier(0.16, 1, 0.3, 1)",
+                          "&:hover": { transform: "scale(1.03)" },
                         }}
                       />
                       {isLow && !isOut && (
@@ -376,13 +376,13 @@ export default function ShopPage() {
                             size="small"
                             sx={{
                               fontWeight: 700,
-                              fontSize: 11,
+                              fontSize: 10,
                               letterSpacing: 0.5,
                               textTransform: "uppercase",
                               backdropFilter: "blur(8px)",
-                              bgcolor: "rgba(245, 158, 11, 0.85)",
+                              bgcolor: "rgba(180, 83, 9, 0.85)",
                               color: "#fff",
-                              border: "1px solid rgba(255,255,255,0.2)",
+                              border: "1px solid rgba(255,255,255,0.15)",
                             }}
                           />
                         </Box>
@@ -395,50 +395,51 @@ export default function ShopPage() {
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "center",
-                            bgcolor: "rgba(255,255,255,0.5)",
-                            backdropFilter: "blur(2px)",
+                            bgcolor: "rgba(250,249,246,0.6)",
+                            backdropFilter: "blur(1.5px)",
                           }}
                         >
                           <Chip
                             label="Out of Stock"
                             sx={{
-                              fontWeight: 700,
-                              bgcolor: "#0f172a",
+                              fontWeight: 600,
+                              fontSize: 12,
+                              bgcolor: "#191919",
                               color: "#fff",
                             }}
                           />
                         </Box>
                       )}
                     </Box>
-                    <CardContent sx={{ p: 3, "&:last-child": { pb: 3 } }}>
+                    <CardContent sx={{ p: 2.5, "&:last-child": { pb: 2.5 } }}>
                       <Typography
                         sx={{
-                          fontWeight: 700,
-                          fontSize: 16,
+                          fontWeight: 600,
+                          fontSize: 15,
                           mb: 0.5,
-                          color: "#0f172a",
-                          lineHeight: 1.2,
+                          color: "#191919",
+                          lineHeight: 1.25,
                         }}
                         noWrap
                       >
                         {product.name}
                       </Typography>
-                      <Typography sx={{ fontSize: 13, color: "text.secondary", mb: 1 }}>
-                        {product.brand?.name} • {product.category?.name} • {product.packaging}
+                      <Typography sx={{ fontSize: 12, color: "text.secondary", mb: 2 }}>
+                        {product.brand?.name} · {product.category?.name} · {product.packaging}
                       </Typography>
                       <Box
                         sx={{
                           display: "flex",
-                          alignItems: "flex-end",
-                          gap: 1,
-                          mb: 2.5,
+                          alignItems: "center",
+                          justifyContent: "space-between",
+                          mb: 2,
                         }}
                       >
                         <Typography
                           sx={{
-                            fontSize: 20,
-                            fontWeight: 800,
-                            color: "#0f172a",
+                            fontSize: 18,
+                            fontWeight: 700,
+                            color: "#191919",
                             lineHeight: 1,
                           }}
                         >
@@ -448,32 +449,32 @@ export default function ShopPage() {
                       {inCart > 0 ? (
                         <Stack
                           direction="row"
-                          spacing={2}
+                          spacing={1}
                           sx={{
                             alignItems: "center",
-                            bgcolor: "#ffffff",
+                            bgcolor: "#faf9f6",
                             p: 0.5,
-                            borderRadius: "10px",
-                            border: "1px solid #e2e8f0",
-                            boxShadow: "inset 0 2px 4px 0 rgba(0,0,0,0.02)",
+                            borderRadius: "8px",
+                            border: "1px solid #e6e4dd",
                           }}
                         >
                           <IconButton
                             size="small"
                             onClick={() => updateQty(product.id, inCart - 1)}
                             sx={{
-                              color: "#475569",
-                              "&:hover": { bgcolor: "#f1f5f9" },
+                              color: "#5e5e5e",
+                              "&:hover": { bgcolor: "#f3f1eb" },
                             }}
                           >
-                            <RemoveIcon fontSize="small" />
+                            <RemoveIcon fontSize="small" sx={{ fontSize: 16 }} />
                           </IconButton>
                           <Typography
                             sx={{
-                              fontWeight: 700,
+                              fontWeight: 600,
                               flex: 1,
                               textAlign: "center",
-                              fontSize: 15,
+                              fontSize: 14,
+                              color: "#191919"
                             }}
                           >
                             {inCart}
@@ -483,11 +484,11 @@ export default function ShopPage() {
                             onClick={() => addToCart(product.id)}
                             disabled={isOut}
                             sx={{
-                              color: "#0f172a",
-                              "&:hover": { bgcolor: "#f1f5f9" },
+                              color: "#191919",
+                              "&:hover": { bgcolor: "#f3f1eb" },
                             }}
                           >
-                            <AddIcon fontSize="small" />
+                            <AddIcon fontSize="small" sx={{ fontSize: 16 }} />
                           </IconButton>
                         </Stack>
                       ) : (
@@ -496,29 +497,23 @@ export default function ShopPage() {
                           fullWidth
                           disabled={isOut}
                           startIcon={
-                            !isOut && <ShoppingCartIcon fontSize="small" />
+                            !isOut && <ShoppingCartIcon fontSize="small" sx={{ fontSize: 16 }} />
                           }
                           onClick={() => addToCart(product.id)}
                           sx={{
-                            py: 1.2,
-                            borderRadius: "10px",
+                            py: 1,
+                            borderRadius: "8px",
                             textTransform: "none",
-                            fontWeight: 700,
-                            fontSize: 14,
-                            boxShadow: isOut
-                              ? "none"
-                              : "0 4px 6px -1px rgba(15, 23, 42, 0.1)",
-                            bgcolor: isOut ? "transparent" : "#0f172a",
+                            fontWeight: 600,
+                            fontSize: 13,
+                            bgcolor: isOut ? "transparent" : "#191919",
                             border: isOut ? "1px solid #cbd5e1" : "none",
-                            color: isOut ? "#64748b" : "#fff",
+                            color: isOut ? "#8e8e8e" : "#fff",
                             "&:hover": {
-                              boxShadow: isOut
-                                ? "none"
-                                : "0 10px 15px -3px rgba(15, 23, 42, 0.2)",
-                              bgcolor: isOut ? "transparent" : "#1e293b",
+                              bgcolor: isOut ? "transparent" : "#2e2e2e",
                               transform: isOut ? "none" : "translateY(-1px)",
                             },
-                            transition: "all 200ms ease",
+                            transition: "all 150ms ease",
                           }}
                         >
                           {isOut ? "Unavailable" : "Add to Cart"}

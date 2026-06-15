@@ -279,7 +279,7 @@ export default function CartPage() {
   return (
     <Box sx={{ maxWidth: 1000, mx: "auto" }}>
       <Box sx={{ mb: 4 }}>
-        <Typography variant="h5" sx={{ fontWeight: 700, color: "#0f172a" }}>
+        <Typography variant="h5" sx={{ fontWeight: 600, color: "#191919", letterSpacing: "-0.02em" }}>
           Shopping Cart
         </Typography>
       </Box>
@@ -290,27 +290,29 @@ export default function CartPage() {
           sx={{
             p: 6,
             textAlign: "center",
-            border: "1px solid #e2e8f0",
-            borderRadius: "16px",
+            border: "1px solid #e6e4dd",
+            borderRadius: "12px",
           }}
         >
-          <ShoppingBagIcon sx={{ fontSize: 48, color: "#cbd5e1", mb: 2 }} />
+          <ShoppingBagIcon sx={{ fontSize: 44, color: "text.secondary", mb: 2, opacity: 0.6 }} />
           <Typography
-            sx={{ fontSize: 18, fontWeight: 600, color: "#0f172a", mb: 1 }}
+            sx={{ fontSize: 18, fontWeight: 600, color: "#191919", mb: 1 }}
           >
             Your cart is empty
           </Typography>
-          <Typography sx={{ color: "text.secondary", mb: 3 }}>
+          <Typography sx={{ color: "text.secondary", mb: 3, fontSize: 14 }}>
             Looks like you haven't added anything to your cart yet.
           </Typography>
           <Button
             variant="contained"
             onClick={() => navigate("/shop")}
             sx={{
-              bgcolor: "#0f172a",
+              bgcolor: "#191919",
               textTransform: "none",
               borderRadius: "8px",
-              px: 3,
+              px: 4,
+              py: 1.2,
+              "&:hover": { bgcolor: "#2e2e2e" },
             }}
           >
             Continue Shopping
@@ -339,7 +341,7 @@ export default function CartPage() {
                     elevation={0}
                     sx={{
                       p: 2,
-                      border: "1px solid #e2e8f0",
+                      border: "1px solid #e6e4dd",
                       borderRadius: "12px",
                       display: "flex",
                       gap: 2,
@@ -353,6 +355,7 @@ export default function CartPage() {
                         height: 80,
                         borderRadius: "8px",
                         objectFit: "cover",
+                        bgcolor: "#faf9f6",
                       }}
                     />
                     <Box
@@ -364,15 +367,15 @@ export default function CartPage() {
                       }}
                     >
                       <Typography
-                        sx={{ fontWeight: 600, color: "#0f172a", fontSize: 15 }}
+                        sx={{ fontWeight: 600, color: "#191919", fontSize: 15 }}
                       >
                         {product.name}
                       </Typography>
                       <Typography sx={{ fontSize: 12, color: "text.secondary", mt: 0.5, mb: 0.5 }}>
-                        {product.brand?.name} • {product.category?.name} • {product.packaging}
+                        {product.brand?.name} · {product.category?.name} · {product.packaging}
                       </Typography>
                       <Typography
-                        sx={{ color: "text.secondary", fontSize: 14 }}
+                        sx={{ color: "text.secondary", fontSize: 13 }}
                       >
                         {formatINR(product.price)} each
                       </Typography>
@@ -380,13 +383,13 @@ export default function CartPage() {
                     <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
                       <Stack
                         direction="row"
-                        spacing={2}
+                        spacing={1}
                         sx={{
                           alignItems: "center",
-                          bgcolor: "#f8fafc",
-                          p: 1.5,
-                          borderRadius: "12px",
-                          border: "1px solid #e2e8f0",
+                          bgcolor: "#faf9f6",
+                          p: 0.5,
+                          borderRadius: "8px",
+                          border: "1px solid #e6e4dd",
                         }}
                       >
                         <IconButton
@@ -394,14 +397,17 @@ export default function CartPage() {
                           onClick={() =>
                             updateQty(product.id, line.quantity - 1)
                           }
+                          sx={{ color: "#5e5e5e", "&:hover": { bgcolor: "#f3f1eb" } }}
                         >
-                          <RemoveIcon fontSize="small" />
+                          <RemoveIcon fontSize="small" sx={{ fontSize: 16 }} />
                         </IconButton>
                         <Typography
                           sx={{
-                            fontWeight: 700,
+                            fontWeight: 600,
                             minWidth: 20,
                             textAlign: "center",
+                            fontSize: 14,
+                            color: "#191919"
                           }}
                         >
                           {line.quantity}
@@ -411,16 +417,18 @@ export default function CartPage() {
                           onClick={() =>
                             updateQty(product.id, line.quantity + 1)
                           }
+                          sx={{ color: "#191919", "&:hover": { bgcolor: "#f3f1eb" } }}
                         >
-                          <AddIcon fontSize="small" />
+                          <AddIcon fontSize="small" sx={{ fontSize: 16 }} />
                         </IconButton>
                       </Stack>
                       <Typography
                         sx={{
                           fontWeight: 700,
-                          fontSize: 16,
+                          fontSize: 15,
                           minWidth: 80,
                           textAlign: "right",
+                          color: "#191919"
                         }}
                       >
                         {formatINR(product.price * line.quantity)}
@@ -448,13 +456,13 @@ export default function CartPage() {
               elevation={0}
               sx={{
                 p: 3,
-                border: "1px solid #e2e8f0",
-                borderRadius: "16px",
+                border: "1px solid #e6e4dd",
+                borderRadius: "12px",
                 position: "sticky",
                 top: 24,
               }}
             >
-              <Typography sx={{ fontWeight: 600, mb: 2, fontSize: 16 }}>
+              <Typography sx={{ fontWeight: 600, mb: 2.5, fontSize: 16, color: "#191919" }}>
                 Order Summary
               </Typography>
 
@@ -462,11 +470,12 @@ export default function CartPage() {
               <Box sx={{ mb: 3 }}>
                 <Typography
                   sx={{
-                    fontSize: 12,
-                    fontWeight: 700,
+                    fontSize: 11,
+                    fontWeight: 600,
                     color: "text.secondary",
                     textTransform: "uppercase",
-                    mb: 1.5,
+                    letterSpacing: "0.05em",
+                    mb: 2,
                   }}
                 >
                   Delivery Address
@@ -532,20 +541,21 @@ export default function CartPage() {
                       alignItems: "center",
                       justifyContent: "space-between",
                       p: 1.5,
-                      borderRadius: 2,
-                      bgcolor: "#f1f5f9",
+                      borderRadius: "8px",
+                      bgcolor: "#f3f1eb",
+                      border: "1px solid #e6e4dd",
                     }}
                   >
                     <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
                       <SellIcon
                         fontSize="small"
-                        sx={{ color: "primary.main" }}
+                        sx={{ color: "#191919" }}
                       />
-                      <Typography sx={{ fontSize: 14, fontWeight: 700 }}>
+                      <Typography sx={{ fontSize: 14, fontWeight: 700, color: "#191919" }}>
                         {appliedCoupon.code}
                       </Typography>
                     </Box>
-                    <IconButton size="small" onClick={removeCoupon}>
+                    <IconButton size="small" onClick={removeCoupon} sx={{ color: "#5e5e5e" }}>
                       <CloseIcon fontSize="small" />
                     </IconButton>
                   </Box>
@@ -565,7 +575,7 @@ export default function CartPage() {
                       variant="outlined"
                       onClick={applyCoupon}
                       disabled={couponLoading || !couponInput.trim()}
-                      sx={{ borderRadius: 1.5 }}
+                      sx={{ borderRadius: "8px", border: "1px solid #e6e4dd", fontWeight: 500 }}
                     >
                       Apply
                     </Button>
@@ -610,12 +620,12 @@ export default function CartPage() {
                   }}
                 >
                   <Typography
-                    sx={{ fontSize: 18, fontWeight: 700, color: "#0f172a" }}
+                    sx={{ fontSize: 16, fontWeight: 600, color: "#191919" }}
                   >
                     Total Payable
                   </Typography>
                   <Typography
-                    sx={{ fontSize: 20, fontWeight: 800, color: "#0f172a" }}
+                    sx={{ fontSize: 18, fontWeight: 700, color: "#191919" }}
                   >
                     {formatINR(payable)}
                   </Typography>
@@ -628,13 +638,13 @@ export default function CartPage() {
                 onClick={placeOrder}
                 disabled={placingOrder}
                 sx={{
-                  py: 1.5,
-                  fontSize: 16,
-                  fontWeight: 700,
-                  borderRadius: "10px",
+                  py: 1.25,
+                  fontSize: 15,
+                  fontWeight: 600,
+                  borderRadius: "8px",
                   textTransform: "none",
-                  bgcolor: "#0f172a",
-                  "&:hover": { bgcolor: "#1e293b" },
+                  bgcolor: "#191919",
+                  "&:hover": { bgcolor: "#2e2e2e" },
                 }}
               >
                 Complete Checkout

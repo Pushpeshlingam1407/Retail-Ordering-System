@@ -52,7 +52,13 @@ export default function ProductsPage() {
 
   const [dialogOpen, setDialogOpen] = useState(false);
   const [editProduct, setEditProduct] = useState<Product | null>(null);
-  const [form, setForm] = useState<ProductRequest>({ name: "", price: 0 });
+  const [form, setForm] = useState<ProductRequest>({ 
+    name: "", 
+    price: 0,
+    categoryId: 1,
+    brandId: 1,
+    packaging: "Box"
+  });
   const [invForm, setInvForm] = useState<InventoryDTO>({
     productId: 0,
     quantity: 0,
@@ -93,14 +99,26 @@ export default function ProductsPage() {
 
   const openCreate = () => {
     setEditProduct(null);
-    setForm({ name: "", price: 0 });
+    setForm({ 
+      name: "", 
+      price: 0,
+      categoryId: 1,
+      brandId: 1,
+      packaging: "Box"
+    });
     setInvForm({ productId: 0, quantity: 0, lowStockThreshold: 10 });
     setDialogOpen(true);
   };
 
   const openEdit = (p: Product) => {
     setEditProduct(p);
-    setForm({ name: p.name, price: p.price });
+    setForm({ 
+      name: p.name, 
+      price: p.price,
+      categoryId: p.category?.id ?? 1,
+      brandId: p.brand?.id ?? 1,
+      packaging: p.packaging ?? "Box"
+    });
     const inv = inventories[p.id];
     setInvForm({
       productId: p.id,
@@ -166,11 +184,13 @@ export default function ProductsPage() {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          mb: 3,
+          mb: 4,
         }}
       >
-        <Typography variant="h5">Products & Inventory</Typography>
-        <Stack direction="row" spacing={1.5}>
+        <Typography variant="h5" sx={{ fontWeight: 600, color: "#191919", letterSpacing: "-0.02em" }}>
+          Products & Inventory
+        </Typography>
+        <Stack direction="row" spacing={2}>
           <TextField
             size="small"
             placeholder="Search products..."
@@ -180,7 +200,7 @@ export default function ProductsPage() {
               input: {
                 startAdornment: (
                   <InputAdornment position="start">
-                    <SearchIcon fontSize="small" />
+                    <SearchIcon fontSize="small" sx={{ color: "text.secondary" }} />
                   </InputAdornment>
                 ),
               },
@@ -190,6 +210,7 @@ export default function ProductsPage() {
             variant="contained"
             startIcon={<AddIcon />}
             onClick={openCreate}
+            sx={{ fontWeight: 500 }}
           >
             New Product
           </Button>
@@ -319,11 +340,13 @@ export default function ProductsPage() {
         maxWidth="sm"
         fullWidth
       >
-        <DialogTitle>
-          {editProduct ? "Edit Product" : "New Product"}
+        <DialogTitle sx={{ px: 3, pt: 3, pb: 1 }}>
+          <Typography sx={{ fontSize: 18, fontWeight: 600, color: "#191919" }}>
+            {editProduct ? "Edit Product" : "New Product"}
+          </Typography>
         </DialogTitle>
-        <DialogContent>
-          <Stack spacing={2} sx={{ mt: 1 }}>
+        <DialogContent sx={{ px: 3, pb: 2 }}>
+          <Stack spacing={2.5} sx={{ mt: 1.5 }}>
             <TextField
               label="Product Name"
               value={form.name}
@@ -343,7 +366,7 @@ export default function ProductsPage() {
               fullWidth
             />
             <Box
-              sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2 }}
+              sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2.5 }}
             >
               <TextField
                 label="Current Stock"
@@ -372,10 +395,10 @@ export default function ProductsPage() {
             </Box>
           </Stack>
         </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setDialogOpen(false)}>Cancel</Button>
-          <Button variant="contained" onClick={handleSave} disabled={saving}>
-            Save
+        <DialogActions sx={{ px: 3, pb: 3, pt: 1.5, gap: 1 }}>
+          <Button onClick={() => setDialogOpen(false)} variant="text" color="secondary" sx={{ color: "text.secondary" }}>Cancel</Button>
+          <Button variant="contained" onClick={handleSave} disabled={saving} sx={{ fontWeight: 500 }}>
+            Save Product
           </Button>
         </DialogActions>
       </Dialog>

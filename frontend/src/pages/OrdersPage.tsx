@@ -239,11 +239,13 @@ export default function OrdersPage() {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          mb: 3,
+          mb: 4,
         }}
       >
-        <Typography variant="h5">Order Management</Typography>
-        <Stack direction="row" spacing={1.5}>
+        <Typography variant="h5" sx={{ fontWeight: 600, color: "#191919", letterSpacing: "-0.02em" }}>
+          Order Management
+        </Typography>
+        <Stack direction="row" spacing={2}>
           <TextField
             size="small"
             placeholder="Search orders..."
@@ -253,13 +255,13 @@ export default function OrdersPage() {
               input: {
                 startAdornment: (
                   <InputAdornment position="start">
-                    <SearchIcon fontSize="small" />
+                    <SearchIcon fontSize="small" sx={{ color: "text.secondary" }} />
                   </InputAdornment>
                 ),
               },
             }}
           />
-          <FormControl size="small" sx={{ minWidth: 140 }}>
+          <FormControl size="small" sx={{ minWidth: 150 }}>
             <Select
               value={statusFilter}
               onChange={(e) =>
@@ -280,6 +282,7 @@ export default function OrdersPage() {
               resetForm();
               setCreateDialog(true);
             }}
+            sx={{ fontWeight: 500 }}
           >
             New Order
           </Button>
@@ -422,8 +425,12 @@ export default function OrdersPage() {
         maxWidth="sm"
         fullWidth
       >
-        <DialogTitle>Order #{detailOrder?.id}</DialogTitle>
-        <DialogContent>
+        <DialogTitle sx={{ px: 3, pt: 3, pb: 1 }}>
+          <Typography sx={{ fontSize: 18, fontWeight: 600, color: "#191919" }}>
+            Order #{detailOrder?.id}
+          </Typography>
+        </DialogTitle>
+        <DialogContent sx={{ px: 3, pb: 2 }}>
           {detailLoading ? (
             <Skeleton height={200} />
           ) : (
@@ -494,8 +501,8 @@ export default function OrdersPage() {
             )
           )}
         </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setDetailDialog(false)}>Close</Button>
+        <DialogActions sx={{ px: 3, pb: 3, pt: 1.5 }}>
+          <Button onClick={() => setDetailDialog(false)} variant="outlined" sx={{ color: "text.secondary", borderColor: "#e6e4dd" }}>Close</Button>
         </DialogActions>
       </Dialog>
 
@@ -506,8 +513,12 @@ export default function OrdersPage() {
         maxWidth="sm"
         fullWidth
       >
-        <DialogTitle>New Order</DialogTitle>
-        <DialogContent>
+        <DialogTitle sx={{ px: 3, pt: 3, pb: 1 }}>
+          <Typography sx={{ fontSize: 18, fontWeight: 600, color: "#191919" }}>
+            New Order
+          </Typography>
+        </DialogTitle>
+        <DialogContent sx={{ px: 3, pb: 2 }}>
           <Stack spacing={2} sx={{ mt: 1 }}>
             <TextField
               label="User ID"
@@ -576,9 +587,9 @@ export default function OrdersPage() {
             </Button>
           </Stack>
         </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setCreateDialog(false)}>Cancel</Button>
-          <Button variant="contained" onClick={handleCreate} disabled={saving}>
+        <DialogActions sx={{ px: 3, pb: 3, pt: 1.5, gap: 1 }}>
+          <Button onClick={() => setCreateDialog(false)} variant="text" color="secondary" sx={{ color: "text.secondary" }}>Cancel</Button>
+          <Button variant="contained" onClick={handleCreate} disabled={saving} sx={{ fontWeight: 500 }}>
             Place Order
           </Button>
         </DialogActions>
@@ -591,8 +602,12 @@ export default function OrdersPage() {
         maxWidth="xs"
         fullWidth
       >
-        <DialogTitle>Update Status</DialogTitle>
-        <DialogContent>
+        <DialogTitle sx={{ px: 3, pt: 3, pb: 1 }}>
+          <Typography sx={{ fontSize: 18, fontWeight: 600, color: "#191919" }}>
+            Update Status
+          </Typography>
+        </DialogTitle>
+        <DialogContent sx={{ px: 3, pb: 2 }}>
           <FormControl fullWidth sx={{ mt: 1 }}>
             <Select
               value={newStatus}
@@ -606,10 +621,10 @@ export default function OrdersPage() {
             </Select>
           </FormControl>
         </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setStatusDialog(false)}>Cancel</Button>
-          <Button variant="contained" onClick={handleStatusUpdate}>
-            Update
+        <DialogActions sx={{ px: 3, pb: 3, pt: 1.5, gap: 1 }}>
+          <Button onClick={() => setStatusDialog(false)} variant="text" color="secondary" sx={{ color: "text.secondary" }}>Cancel</Button>
+          <Button variant="contained" onClick={handleStatusUpdate} sx={{ fontWeight: 500 }}>
+            Update Status
           </Button>
         </DialogActions>
       </Dialog>
