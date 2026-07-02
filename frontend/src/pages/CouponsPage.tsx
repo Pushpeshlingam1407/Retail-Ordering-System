@@ -203,7 +203,10 @@ export default function CouponsPage() {
         <Stack
           direction="row"
           spacing={2}
-          sx={{ width: { xs: "100%", sm: "auto" }, justifyContent: "space-between" }}
+          sx={{
+            width: { xs: "100%", sm: "auto" },
+            justifyContent: "space-between",
+          }}
         >
           <SearchBar
             placeholder="Search by code..."
@@ -215,7 +218,11 @@ export default function CouponsPage() {
             variant="contained"
             startIcon={<AddIcon />}
             onClick={openCreate}
-            sx={{ fontWeight: 500, borderRadius: "999px", whiteSpace: "nowrap" }}
+            sx={{
+              fontWeight: 500,
+              borderRadius: "999px",
+              whiteSpace: "nowrap",
+            }}
           >
             New Coupon
           </Button>

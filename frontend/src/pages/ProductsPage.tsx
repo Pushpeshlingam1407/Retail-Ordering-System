@@ -122,8 +122,8 @@ export default function ProductsPage() {
       // Set sensible defaults once we know the real IDs
       setForm((f) => ({
         ...f,
-        brandId: f.brandId === 0 ? bData[0]?.id ?? 0 : f.brandId,
-        categoryId: f.categoryId === 0 ? cData[0]?.id ?? 0 : f.categoryId,
+        brandId: f.brandId === 0 ? (bData[0]?.id ?? 0) : f.brandId,
+        categoryId: f.categoryId === 0 ? (cData[0]?.id ?? 0) : f.categoryId,
       }));
 
       const invMap: Record<number, Inventory> = {};
@@ -264,9 +264,7 @@ export default function ProductsPage() {
       let pId = editProduct?.id;
       if (editProduct) {
         const updated = await updateProduct(editProduct.id, payload);
-        setProducts((ps) =>
-          ps.map((x) => (x.id === updated.id ? updated : x)),
-        );
+        setProducts((ps) => ps.map((x) => (x.id === updated.id ? updated : x)));
       } else {
         const created = await createProduct(payload);
         setProducts((ps) => [...ps, created]);
@@ -335,7 +333,10 @@ export default function ProductsPage() {
         <Stack
           direction="row"
           spacing={2}
-          sx={{ width: { xs: "100%", sm: "auto" }, justifyContent: "space-between" }}
+          sx={{
+            width: { xs: "100%", sm: "auto" },
+            justifyContent: "space-between",
+          }}
         >
           <SearchBar
             placeholder="Search products..."
@@ -347,7 +348,12 @@ export default function ProductsPage() {
             variant="contained"
             startIcon={<AddIcon />}
             onClick={openCreate}
-            sx={{ fontWeight: 600, borderRadius: "999px", px: 2.5, whiteSpace: "nowrap" }}
+            sx={{
+              fontWeight: 600,
+              borderRadius: "999px",
+              px: 2.5,
+              whiteSpace: "nowrap",
+            }}
           >
             New Product
           </Button>
