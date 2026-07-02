@@ -101,8 +101,8 @@ export default function CouponSuccessPopup({
                 cursor: "pointer",
                 transition: "all var(--t-fast)",
                 "&:hover": { bgcolor: "#f3f1eb", borderColor: "#1d1d1f" },
-                "&:active": { transform: "scale(0.98)" },
               }}
+            >
               <Typography
                 sx={{
                   fontFamily: '"Anthropic", "Cohere"',
