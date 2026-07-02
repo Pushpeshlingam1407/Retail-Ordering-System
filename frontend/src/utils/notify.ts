@@ -16,7 +16,8 @@ const BASE_STYLE = {
   fontWeight: "600",
   fontFamily: '"Anthropic", "Cohere", "Apple"',
   padding: "10px 22px",
-  boxShadow: "0 10px 30px -5px rgba(25, 25, 25, 0.08), 0 2px 8px -2px rgba(25, 25, 25, 0.02)",
+  boxShadow:
+    "0 10px 30px -5px rgba(25, 25, 25, 0.08), 0 2px 8px -2px rgba(25, 25, 25, 0.02)",
   maxWidth: "420px",
 };
 
@@ -76,7 +77,12 @@ const notify = {
   ) {
     return toast.promise(prom, msgs, {
       style: styleFor("rgba(230, 228, 221, 0.8)", "rgba(255, 255, 255, 0.9)"),
-      loading: { style: styleFor("rgba(109, 40, 217, 0.25)", "rgba(245, 243, 255, 0.92)") },
+      loading: {
+        style: styleFor(
+          "rgba(109, 40, 217, 0.25)",
+          "rgba(245, 243, 255, 0.92)",
+        ),
+      },
       success: {
         style: styleFor("rgba(21, 128, 61, 0.25)", "rgba(240, 253, 244, 0.92)"),
         iconTheme: { primary: "#15803D", secondary: "#ffffff" },
@@ -123,19 +129,39 @@ const notify = {
       color: "#6d28d9",
       msg: `Order #${orderId} updated`,
     };
-    
+
     // Map solid color to soft border/bg tints
     const getColors = (col: string) => {
       switch (col) {
-        case "#15803D": return { border: "rgba(21, 128, 61, 0.25)", bg: "rgba(240, 253, 244, 0.92)" };
-        case "#B91C1C": return { border: "rgba(185, 28, 28, 0.25)", bg: "rgba(254, 242, 242, 0.92)" };
-        case "#B45309": return { border: "rgba(180, 83, 9, 0.25)", bg: "rgba(255, 251, 235, 0.92)" };
-        case "#1D4ED8": return { border: "rgba(29, 78, 216, 0.25)", bg: "rgba(239, 246, 255, 0.92)" };
+        case "#15803D":
+          return {
+            border: "rgba(21, 128, 61, 0.25)",
+            bg: "rgba(240, 253, 244, 0.92)",
+          };
+        case "#B91C1C":
+          return {
+            border: "rgba(185, 28, 28, 0.25)",
+            bg: "rgba(254, 242, 242, 0.92)",
+          };
+        case "#B45309":
+          return {
+            border: "rgba(180, 83, 9, 0.25)",
+            bg: "rgba(255, 251, 235, 0.92)",
+          };
+        case "#1D4ED8":
+          return {
+            border: "rgba(29, 78, 216, 0.25)",
+            bg: "rgba(239, 246, 255, 0.92)",
+          };
         case "#6d28d9":
-        default: return { border: "rgba(109, 40, 217, 0.25)", bg: "rgba(245, 243, 255, 0.92)" };
+        default:
+          return {
+            border: "rgba(109, 40, 217, 0.25)",
+            bg: "rgba(245, 243, 255, 0.92)",
+          };
       }
     };
-    
+
     const colors = getColors(c.color);
     return toast(c.msg, {
       icon: c.icon,
@@ -162,7 +188,10 @@ const notify = {
       {
         icon: action === "added" ? "🛒" : "🗑️",
         duration: 2000,
-        style: styleFor("rgba(109, 40, 217, 0.25)", "rgba(245, 243, 255, 0.92)"),
+        style: styleFor(
+          "rgba(109, 40, 217, 0.25)",
+          "rgba(245, 243, 255, 0.92)",
+        ),
       },
     );
   },

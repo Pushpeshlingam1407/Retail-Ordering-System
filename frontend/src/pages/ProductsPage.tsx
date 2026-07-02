@@ -60,7 +60,16 @@ import type {
 import ConfirmDialog from "../components/ConfirmDialog";
 import notify from "../utils/notify";
 
-const PACKAGING_OPTIONS = ["Box", "Bag", "Bottle", "Can", "Pack", "Pouch", "Jar", "Sachet"];
+const PACKAGING_OPTIONS = [
+  "Box",
+  "Bag",
+  "Bottle",
+  "Can",
+  "Pack",
+  "Pouch",
+  "Jar",
+  "Sachet",
+];
 
 const PLACEHOLDER =
   "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' fill='%23f0ede6' rx='8'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='20' fill='%23c0b89a'%3E📦%3C/text%3E%3C/svg%3E";
@@ -127,7 +136,7 @@ export default function ProductsPage() {
           } catch {
             /* no inventory yet */
           }
-        })
+        }),
       );
       setInventories(invMap);
     } catch {
@@ -263,7 +272,10 @@ export default function ProductsPage() {
         pId = created.id;
       }
       if (pId) {
-        const updatedInv = await upsertInventory({ ...invForm, productId: pId });
+        const updatedInv = await upsertInventory({
+          ...invForm,
+          productId: pId,
+        });
         setInventories((prev) => ({ ...prev, [pId!]: updatedInv }));
       }
       notify.success(editProduct ? "Product updated" : "Product created");
@@ -289,7 +301,7 @@ export default function ProductsPage() {
   };
 
   const filtered = products.filter((p) =>
-    p.name.toLowerCase().includes(search.toLowerCase())
+    p.name.toLowerCase().includes(search.toLowerCase()),
   );
 
   // ─── Render ────────────────────────────────────────────────────────────────
@@ -313,7 +325,8 @@ export default function ProductsPage() {
             Products &amp; Inventory
           </Typography>
           <Typography sx={{ fontSize: 13, color: "text.secondary", mt: 0.5 }}>
-            {products.length} product{products.length !== 1 ? "s" : ""} in catalogue
+            {products.length} product{products.length !== 1 ? "s" : ""} in
+            catalogue
           </Typography>
         </Box>
         <Stack direction="row" spacing={2}>
@@ -326,7 +339,10 @@ export default function ProductsPage() {
               input: {
                 startAdornment: (
                   <InputAdornment position="start">
-                    <SearchIcon fontSize="small" sx={{ color: "text.secondary" }} />
+                    <SearchIcon
+                      fontSize="small"
+                      sx={{ color: "text.secondary" }}
+                    />
                   </InputAdornment>
                 ),
               },
@@ -362,21 +378,105 @@ export default function ProductsPage() {
         >
           <Table>
             <TableHead>
-              <TableRow sx={{ background: "linear-gradient(135deg,#f8f6f1 0%,#f0ede6 100%)" }}>
-                <TableCell sx={{ fontWeight: 700, fontSize: 12, color: "#8a8a8a", textTransform: "uppercase", letterSpacing: "0.06em" }}>Image</TableCell>
-                <TableCell sx={{ fontWeight: 700, fontSize: 12, color: "#8a8a8a", textTransform: "uppercase", letterSpacing: "0.06em" }}>Product</TableCell>
-                <TableCell sx={{ fontWeight: 700, fontSize: 12, color: "#8a8a8a", textTransform: "uppercase", letterSpacing: "0.06em" }}>Brand / Category</TableCell>
-                <TableCell align="right" sx={{ fontWeight: 700, fontSize: 12, color: "#8a8a8a", textTransform: "uppercase", letterSpacing: "0.06em" }}>Price</TableCell>
-                <TableCell align="right" sx={{ fontWeight: 700, fontSize: 12, color: "#8a8a8a", textTransform: "uppercase", letterSpacing: "0.06em" }}>Stock</TableCell>
-                <TableCell align="center" sx={{ fontWeight: 700, fontSize: 12, color: "#8a8a8a", textTransform: "uppercase", letterSpacing: "0.06em" }}>Status</TableCell>
-                <TableCell align="right" sx={{ fontWeight: 700, fontSize: 12, color: "#8a8a8a", textTransform: "uppercase", letterSpacing: "0.06em" }}>Actions</TableCell>
+              <TableRow
+                sx={{
+                  background: "linear-gradient(135deg,#f8f6f1 0%,#f0ede6 100%)",
+                }}
+              >
+                <TableCell
+                  sx={{
+                    fontWeight: 700,
+                    fontSize: 12,
+                    color: "#8a8a8a",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.06em",
+                  }}
+                >
+                  Image
+                </TableCell>
+                <TableCell
+                  sx={{
+                    fontWeight: 700,
+                    fontSize: 12,
+                    color: "#8a8a8a",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.06em",
+                  }}
+                >
+                  Product
+                </TableCell>
+                <TableCell
+                  sx={{
+                    fontWeight: 700,
+                    fontSize: 12,
+                    color: "#8a8a8a",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.06em",
+                  }}
+                >
+                  Brand / Category
+                </TableCell>
+                <TableCell
+                  align="right"
+                  sx={{
+                    fontWeight: 700,
+                    fontSize: 12,
+                    color: "#8a8a8a",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.06em",
+                  }}
+                >
+                  Price
+                </TableCell>
+                <TableCell
+                  align="right"
+                  sx={{
+                    fontWeight: 700,
+                    fontSize: 12,
+                    color: "#8a8a8a",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.06em",
+                  }}
+                >
+                  Stock
+                </TableCell>
+                <TableCell
+                  align="center"
+                  sx={{
+                    fontWeight: 700,
+                    fontSize: 12,
+                    color: "#8a8a8a",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.06em",
+                  }}
+                >
+                  Status
+                </TableCell>
+                <TableCell
+                  align="right"
+                  sx={{
+                    fontWeight: 700,
+                    fontSize: 12,
+                    color: "#8a8a8a",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.06em",
+                  }}
+                >
+                  Actions
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {filtered.length === 0 ? (
                 <TableRow>
-                  <TableCell colSpan={7} align="center" sx={{ py: 6, color: "text.secondary" }}>
-                    <InventoryIcon sx={{ fontSize: 40, color: "#d0ccc4", mb: 1 }} />
+                  <TableCell
+                    colSpan={7}
+                    align="center"
+                    sx={{ py: 6, color: "text.secondary" }}
+                  >
+                    <InventoryIcon
+                      sx={{ fontSize: 40, color: "#d0ccc4", mb: 1 }}
+                    />
                     <Typography sx={{ color: "text.secondary", fontSize: 14 }}>
                       No products found
                     </Typography>
@@ -385,7 +485,8 @@ export default function ProductsPage() {
               ) : (
                 filtered.map((p) => {
                   const inv = inventories[p.id];
-                  const isLowStock = inv && inv.quantity <= inv.lowStockThreshold;
+                  const isLowStock =
+                    inv && inv.quantity <= inv.lowStockThreshold;
                   const isOutOfStock = inv && inv.quantity === 0;
                   return (
                     <TableRow
@@ -415,10 +516,22 @@ export default function ProductsPage() {
 
                       {/* Name */}
                       <TableCell>
-                        <Typography sx={{ fontWeight: 600, fontSize: 14, color: "#1d1d1f" }}>
+                        <Typography
+                          sx={{
+                            fontWeight: 600,
+                            fontSize: 14,
+                            color: "#1d1d1f",
+                          }}
+                        >
                           {p.name}
                         </Typography>
-                        <Typography sx={{ fontSize: 12, color: "text.secondary", mt: 0.2 }}>
+                        <Typography
+                          sx={{
+                            fontSize: 12,
+                            color: "text.secondary",
+                            mt: 0.2,
+                          }}
+                        >
                           #{p.id} · {p.packaging}
                         </Typography>
                       </TableCell>
@@ -461,7 +574,13 @@ export default function ProductsPage() {
 
                       {/* Price */}
                       <TableCell align="right">
-                        <Typography sx={{ fontWeight: 700, fontSize: 15, color: "#1d1d1f" }}>
+                        <Typography
+                          sx={{
+                            fontWeight: 700,
+                            fontSize: 15,
+                            color: "#1d1d1f",
+                          }}
+                        >
                           ₹{p.price.toFixed(2)}
                         </Typography>
                       </TableCell>
@@ -472,7 +591,11 @@ export default function ProductsPage() {
                           sx={{
                             fontWeight: 700,
                             fontSize: 15,
-                            color: isOutOfStock ? "#d32f2f" : isLowStock ? "#e65100" : "#1d1d1f",
+                            color: isOutOfStock
+                              ? "#d32f2f"
+                              : isLowStock
+                                ? "#e65100"
+                                : "#1d1d1f",
                           }}
                         >
                           {inv?.quantity ?? "—"}
@@ -485,21 +608,47 @@ export default function ProductsPage() {
                           <Chip
                             label="Out of Stock"
                             size="small"
-                            sx={{ background: "#fdecea", color: "#d32f2f", fontWeight: 600, fontSize: 11, borderRadius: "8px" }}
+                            sx={{
+                              background: "#fdecea",
+                              color: "#d32f2f",
+                              fontWeight: 600,
+                              fontSize: 11,
+                              borderRadius: "8px",
+                            }}
                           />
                         ) : isLowStock ? (
                           <Chip
-                            icon={<WarningAmberIcon sx={{ fontSize: "14px !important" }} />}
+                            icon={
+                              <WarningAmberIcon
+                                sx={{ fontSize: "14px !important" }}
+                              />
+                            }
                             label="Low Stock"
                             size="small"
-                            sx={{ background: "#fff3e0", color: "#e65100", fontWeight: 600, fontSize: 11, borderRadius: "8px" }}
+                            sx={{
+                              background: "#fff3e0",
+                              color: "#e65100",
+                              fontWeight: 600,
+                              fontSize: 11,
+                              borderRadius: "8px",
+                            }}
                           />
                         ) : (
                           <Chip
-                            icon={<CheckCircleIcon sx={{ fontSize: "14px !important" }} />}
+                            icon={
+                              <CheckCircleIcon
+                                sx={{ fontSize: "14px !important" }}
+                              />
+                            }
                             label="In Stock"
                             size="small"
-                            sx={{ background: "#e8f5e9", color: "#2e7d32", fontWeight: 600, fontSize: 11, borderRadius: "8px" }}
+                            sx={{
+                              background: "#e8f5e9",
+                              color: "#2e7d32",
+                              fontWeight: 600,
+                              fontSize: 11,
+                              borderRadius: "8px",
+                            }}
                           />
                         )}
                       </TableCell>
@@ -513,7 +662,10 @@ export default function ProductsPage() {
                             sx={{
                               mr: 0.5,
                               background: "#f5f3ee",
-                              "&:hover": { background: "#1d1d1f", color: "#fff" },
+                              "&:hover": {
+                                background: "#1d1d1f",
+                                color: "#fff",
+                              },
                               transition: "all 0.2s",
                               borderRadius: "8px",
                             }}
@@ -528,7 +680,10 @@ export default function ProductsPage() {
                             sx={{
                               background: "#fdecea",
                               color: "#d32f2f",
-                              "&:hover": { background: "#d32f2f", color: "#fff" },
+                              "&:hover": {
+                                background: "#d32f2f",
+                                color: "#fff",
+                              },
                               transition: "all 0.2s",
                               borderRadius: "8px",
                             }}
@@ -560,16 +715,35 @@ export default function ProductsPage() {
         }}
       >
         <DialogTitle sx={{ px: 3, pt: 3, pb: 0 }}>
-          <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-            <Typography sx={{ fontSize: 20, fontWeight: 700, color: "#1d1d1f", letterSpacing: "-0.02em" }}>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <Typography
+              sx={{
+                fontSize: 20,
+                fontWeight: 700,
+                color: "#1d1d1f",
+                letterSpacing: "-0.02em",
+              }}
+            >
               {editProduct ? "Edit Product" : "New Product"}
             </Typography>
-            <IconButton size="small" onClick={() => !saving && setDialogOpen(false)} sx={{ color: "text.secondary" }}>
+            <IconButton
+              size="small"
+              onClick={() => !saving && setDialogOpen(false)}
+              sx={{ color: "text.secondary" }}
+            >
               <CloseIcon fontSize="small" />
             </IconButton>
           </Box>
           <Typography sx={{ fontSize: 13, color: "text.secondary", mt: 0.5 }}>
-            {editProduct ? `Editing: ${editProduct.name}` : "Add a new product to your catalogue"}
+            {editProduct
+              ? `Editing: ${editProduct.name}`
+              : "Add a new product to your catalogue"}
           </Typography>
         </DialogTitle>
 
@@ -577,7 +751,16 @@ export default function ProductsPage() {
           <Stack spacing={2.5}>
             {/* ── Image Upload Zone ── */}
             <Box>
-              <Typography sx={{ fontSize: 12, fontWeight: 600, color: "text.secondary", mb: 1, textTransform: "uppercase", letterSpacing: "0.06em" }}>
+              <Typography
+                sx={{
+                  fontSize: 12,
+                  fontWeight: 600,
+                  color: "text.secondary",
+                  mb: 1,
+                  textTransform: "uppercase",
+                  letterSpacing: "0.06em",
+                }}
+              >
                 Product Image
               </Typography>
 
@@ -629,14 +812,27 @@ export default function ProductsPage() {
                       variant="contained"
                       startIcon={<CloudUploadIcon />}
                       onClick={() => fileInputRef.current?.click()}
-                      sx={{ borderRadius: "999px", background: "#fff", color: "#1d1d1f", fontWeight: 600, "&:hover": { background: "#f5f5f5" } }}
+                      sx={{
+                        borderRadius: "999px",
+                        background: "#fff",
+                        color: "#1d1d1f",
+                        fontWeight: 600,
+                        "&:hover": { background: "#f5f5f5" },
+                      }}
                     >
                       Replace Image
                     </Button>
                     <IconButton
                       size="small"
-                      onClick={() => { setImagePreview(""); setImageFile(null); setForm(f => ({ ...f, imageUrl: "" })); }}
-                      sx={{ background: "rgba(255,255,255,0.9)", color: "#d32f2f" }}
+                      onClick={() => {
+                        setImagePreview("");
+                        setImageFile(null);
+                        setForm((f) => ({ ...f, imageUrl: "" }));
+                      }}
+                      sx={{
+                        background: "rgba(255,255,255,0.9)",
+                        color: "#d32f2f",
+                      }}
                     >
                       <CloseIcon fontSize="small" />
                     </IconButton>
@@ -646,7 +842,10 @@ export default function ProductsPage() {
                 // Drag & drop zone
                 <Box
                   onDrop={handleDrop}
-                  onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
+                  onDragOver={(e) => {
+                    e.preventDefault();
+                    setDragOver(true);
+                  }}
                   onDragLeave={() => setDragOver(false)}
                   onClick={() => fileInputRef.current?.click()}
                   sx={{
@@ -680,7 +879,9 @@ export default function ProductsPage() {
                   >
                     <CloudUploadIcon sx={{ color: "#8a7f6d", fontSize: 22 }} />
                   </Box>
-                  <Typography sx={{ fontSize: 13, fontWeight: 600, color: "#1d1d1f" }}>
+                  <Typography
+                    sx={{ fontSize: 13, fontWeight: 600, color: "#1d1d1f" }}
+                  >
                     Drop image here or click to browse
                   </Typography>
                   <Typography sx={{ fontSize: 11, color: "text.secondary" }}>
@@ -730,25 +931,33 @@ export default function ProductsPage() {
             />
 
             {/* ── Brand + Category ── */}
-            <Box sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2 }}>
+            <Box
+              sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2 }}
+            >
               <FormControl fullWidth disabled={dialogLoading}>
                 <InputLabel>Brand</InputLabel>
                 <Select
-                  value={dialogLoading ? "" : (form.brandId || "")}
+                  value={dialogLoading ? "" : form.brandId || ""}
                   label="Brand"
-                  onChange={(e) => setForm((f) => ({ ...f, brandId: Number(e.target.value) }))}
+                  onChange={(e) =>
+                    setForm((f) => ({ ...f, brandId: Number(e.target.value) }))
+                  }
                   sx={{ borderRadius: "12px" }}
                   displayEmpty
                 >
                   {dialogLoading ? (
                     <MenuItem value="" disabled>
-                      <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                      <Box
+                        sx={{ display: "flex", alignItems: "center", gap: 1 }}
+                      >
                         <CircularProgress size={14} />
                         <span>Loading…</span>
                       </Box>
                     </MenuItem>
                   ) : brands.length === 0 ? (
-                    <MenuItem value="" disabled>No brands found</MenuItem>
+                    <MenuItem value="" disabled>
+                      No brands found
+                    </MenuItem>
                   ) : (
                     brands.map((b) => (
                       <MenuItem key={b.id} value={b.id}>
@@ -762,21 +971,30 @@ export default function ProductsPage() {
               <FormControl fullWidth disabled={dialogLoading}>
                 <InputLabel>Category</InputLabel>
                 <Select
-                  value={dialogLoading ? "" : (form.categoryId || "")}
+                  value={dialogLoading ? "" : form.categoryId || ""}
                   label="Category"
-                  onChange={(e) => setForm((f) => ({ ...f, categoryId: Number(e.target.value) }))}
+                  onChange={(e) =>
+                    setForm((f) => ({
+                      ...f,
+                      categoryId: Number(e.target.value),
+                    }))
+                  }
                   sx={{ borderRadius: "12px" }}
                   displayEmpty
                 >
                   {dialogLoading ? (
                     <MenuItem value="" disabled>
-                      <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                      <Box
+                        sx={{ display: "flex", alignItems: "center", gap: 1 }}
+                      >
                         <CircularProgress size={14} />
                         <span>Loading…</span>
                       </Box>
                     </MenuItem>
                   ) : categories.length === 0 ? (
-                    <MenuItem value="" disabled>No categories found</MenuItem>
+                    <MenuItem value="" disabled>
+                      No categories found
+                    </MenuItem>
                   ) : (
                     categories.map((c) => (
                       <MenuItem key={c.id} value={c.id}>
@@ -794,7 +1012,9 @@ export default function ProductsPage() {
               <Select
                 value={form.packaging}
                 label="Packaging"
-                onChange={(e) => setForm((f) => ({ ...f, packaging: e.target.value }))}
+                onChange={(e) =>
+                  setForm((f) => ({ ...f, packaging: e.target.value }))
+                }
                 sx={{ borderRadius: "12px" }}
               >
                 {PACKAGING_OPTIONS.map((opt) => (
@@ -807,10 +1027,21 @@ export default function ProductsPage() {
 
             {/* ── Inventory ── */}
             <Box>
-              <Typography sx={{ fontSize: 12, fontWeight: 600, color: "text.secondary", mb: 1.5, textTransform: "uppercase", letterSpacing: "0.06em" }}>
+              <Typography
+                sx={{
+                  fontSize: 12,
+                  fontWeight: 600,
+                  color: "text.secondary",
+                  mb: 1.5,
+                  textTransform: "uppercase",
+                  letterSpacing: "0.06em",
+                }}
+              >
                 Inventory
               </Typography>
-              <Box sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2 }}>
+              <Box
+                sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2 }}
+              >
                 <TextField
                   label="Current Stock"
                   type="number"
@@ -862,7 +1093,11 @@ export default function ProductsPage() {
             variant="contained"
             onClick={handleSave}
             disabled={saving || uploading}
-            startIcon={uploading ? <CircularProgress size={14} color="inherit" /> : undefined}
+            startIcon={
+              uploading ? (
+                <CircularProgress size={14} color="inherit" />
+              ) : undefined
+            }
             sx={{
               fontWeight: 600,
               borderRadius: "999px",
@@ -872,7 +1107,13 @@ export default function ProductsPage() {
               "&:disabled": { background: "#a0a0a0" },
             }}
           >
-            {uploading ? "Uploading…" : saving ? "Saving…" : editProduct ? "Save Changes" : "Create Product"}
+            {uploading
+              ? "Uploading…"
+              : saving
+                ? "Saving…"
+                : editProduct
+                  ? "Save Changes"
+                  : "Create Product"}
           </Button>
         </DialogActions>
       </Dialog>

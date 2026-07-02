@@ -63,13 +63,13 @@ export default function AdminLoginPage() {
           display: { xs: "none", md: "flex" },
           flex: "1 1 42%",
           bgcolor: "#1d1d1f",
-          backgroundImage: 
+          backgroundImage:
             "radial-gradient(circle at 80% 20%, rgba(206,172,114,0.15) 0%, transparent 60%), radial-gradient(circle at 20% 80%, rgba(185,28,28,0.04) 0%, transparent 50%)",
           color: "#fff",
           flexDirection: "column",
           justifyContent: "space-between",
           p: 6,
-          borderRight: "1px solid rgba(255,255,255,0.05)"
+          borderRight: "1px solid rgba(255,255,255,0.05)",
         }}
       >
         <Box sx={{ display: "flex", alignItems: "center", gap: 1.25 }}>
@@ -89,18 +89,38 @@ export default function AdminLoginPage() {
           >
             R
           </Box>
-          <Typography sx={{ fontSize: 16, fontWeight: 600, letterSpacing: "-0.01em" }}>
+          <Typography
+            sx={{ fontSize: 16, fontWeight: 600, letterSpacing: "-0.01em" }}
+          >
             RetailOS
           </Typography>
         </Box>
 
         <Box>
-          <Typography variant="h3" sx={{ fontWeight: 500, mb: 3, letterSpacing: "-0.03em", lineHeight: 1.15 }}>
+          <Typography
+            variant="h3"
+            sx={{
+              fontWeight: 500,
+              mb: 3,
+              letterSpacing: "-0.03em",
+              lineHeight: 1.15,
+            }}
+          >
             Administrative console <br />
             <span style={{ color: "#D4BE99" }}>high-fidelity core.</span>
           </Typography>
-          <Typography sx={{ color: "rgba(255,255,255,0.6)", fontSize: 15, lineHeight: 1.6, maxWidth: 440, fontWeight: 400 }}>
-            Access secure controls to adjust operational thresholds, manage coupons, review transactions, and audit backend databases with maximum efficiency.
+          <Typography
+            sx={{
+              color: "rgba(255,255,255,0.6)",
+              fontSize: 15,
+              lineHeight: 1.6,
+              maxWidth: 440,
+              fontWeight: 400,
+            }}
+          >
+            Access secure controls to adjust operational thresholds, manage
+            coupons, review transactions, and audit backend databases with
+            maximum efficiency.
           </Typography>
         </Box>
 
@@ -119,12 +139,20 @@ export default function AdminLoginPage() {
           alignItems: "center",
           justifyContent: "center",
           p: { xs: 3, md: 6 },
-          backgroundImage: "radial-gradient(at 0% 0%, rgba(206,172,114,0.06) 0%, transparent 50%)",
+          backgroundImage:
+            "radial-gradient(at 0% 0%, rgba(206,172,114,0.06) 0%, transparent 50%)",
         }}
       >
         <Box sx={{ width: "100%", maxWidth: 380 }}>
           {/* Logo for mobile view */}
-          <Box sx={{ display: { xs: "flex", md: "none" }, alignItems: "center", gap: 1, mb: 5 }}>
+          <Box
+            sx={{
+              display: { xs: "flex", md: "none" },
+              alignItems: "center",
+              gap: 1,
+              mb: 5,
+            }}
+          >
             <Box
               sx={{
                 width: 28,
@@ -141,13 +169,22 @@ export default function AdminLoginPage() {
             >
               R
             </Box>
-            <Typography sx={{ fontSize: 16, fontWeight: 600, color: "#1d1d1f" }}>
+            <Typography
+              sx={{ fontSize: 16, fontWeight: 600, color: "#1d1d1f" }}
+            >
               RetailOS
             </Typography>
           </Box>
 
           <Box sx={{ mb: 4 }}>
-            <Typography variant="h4" sx={{ fontWeight: 600, color: "#1d1d1f", letterSpacing: "-0.03em" }}>
+            <Typography
+              variant="h4"
+              sx={{
+                fontWeight: 600,
+                color: "#1d1d1f",
+                letterSpacing: "-0.03em",
+              }}
+            >
               Admin Portal
             </Typography>
             <Typography sx={{ mt: 1, fontSize: 14, color: "text.secondary" }}>
@@ -156,7 +193,11 @@ export default function AdminLoginPage() {
           </Box>
 
           <Collapse in={!!loginError} unmountOnExit sx={{ mb: 3 }}>
-            <Alert severity="error" onClose={() => setLoginError("")} sx={{ borderRadius: "8px" }}>
+            <Alert
+              severity="error"
+              onClose={() => setLoginError("")}
+              sx={{ borderRadius: "8px" }}
+            >
               {loginError}
             </Alert>
           </Collapse>

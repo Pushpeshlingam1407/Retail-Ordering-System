@@ -256,7 +256,10 @@ export default function ShopPage() {
         }}
       >
         <Box>
-          <Typography variant="h5" sx={{ fontWeight: 600, color: "#1d1d1f", letterSpacing: "-0.02em" }}>
+          <Typography
+            variant="h5"
+            sx={{ fontWeight: 600, color: "#1d1d1f", letterSpacing: "-0.02em" }}
+          >
             Shop
           </Typography>
           <Typography sx={{ color: "text.secondary", mt: 0.5, fontSize: 14 }}>
@@ -287,7 +290,7 @@ export default function ShopPage() {
                 fontWeight: 700,
                 bgcolor: "#ffffff",
                 color: "#1d1d1f",
-                border: "1px solid rgba(0,0,0,0.02)"
+                border: "1px solid rgba(0,0,0,0.02)",
               }}
             />
           )}
@@ -306,7 +309,10 @@ export default function ShopPage() {
               input: {
                 startAdornment: (
                   <InputAdornment position="start">
-                    <SearchIcon fontSize="small" sx={{ color: "text.secondary" }} />
+                    <SearchIcon
+                      fontSize="small"
+                      sx={{ color: "text.secondary" }}
+                    />
                   </InputAdornment>
                 ),
               },
@@ -350,11 +356,18 @@ export default function ShopPage() {
                       "&:hover": {
                         transform: "translateY(-3px)",
                         borderColor: "#c8c6be",
-                        boxShadow: "0 12px 24px -10px rgba(25, 25, 25, 0.04), 0 4px 8px -2px rgba(25, 25, 25, 0.02)",
+                        boxShadow:
+                          "0 12px 24px -10px rgba(25, 25, 25, 0.04), 0 4px 8px -2px rgba(25, 25, 25, 0.02)",
                       },
                     }}
                   >
-                    <Box sx={{ position: "relative", overflow: "hidden", bgcolor: "#f3f1eb" }}>
+                    <Box
+                      sx={{
+                        position: "relative",
+                        overflow: "hidden",
+                        bgcolor: "#f3f1eb",
+                      }}
+                    >
                       <CardMedia
                         component="img"
                         height="180"
@@ -363,7 +376,8 @@ export default function ShopPage() {
                         sx={{
                           objectFit: "cover",
                           mixBlendMode: "multiply",
-                          transition: "transform 400ms cubic-bezier(0.16, 1, 0.3, 1)",
+                          transition:
+                            "transform 400ms cubic-bezier(0.16, 1, 0.3, 1)",
                           "&:hover": { transform: "scale(1.03)" },
                         }}
                       />
@@ -422,8 +436,11 @@ export default function ShopPage() {
                       >
                         {product.name}
                       </Typography>
-                      <Typography sx={{ fontSize: 12, color: "text.secondary", mb: 2 }}>
-                        {product.brand?.name} · {product.category?.name} · {product.packaging}
+                      <Typography
+                        sx={{ fontSize: 12, color: "text.secondary", mb: 2 }}
+                      >
+                        {product.brand?.name} · {product.category?.name} ·{" "}
+                        {product.packaging}
                       </Typography>
                       <Box
                         sx={{
@@ -464,7 +481,10 @@ export default function ShopPage() {
                               "&:hover": { bgcolor: "#f3f1eb" },
                             }}
                           >
-                            <RemoveIcon fontSize="small" sx={{ fontSize: 16 }} />
+                            <RemoveIcon
+                              fontSize="small"
+                              sx={{ fontSize: 16 }}
+                            />
                           </IconButton>
                           <Typography
                             sx={{
@@ -472,7 +492,7 @@ export default function ShopPage() {
                               flex: 1,
                               textAlign: "center",
                               fontSize: 14,
-                              color: "#1d1d1f"
+                              color: "#1d1d1f",
                             }}
                           >
                             {inCart}
@@ -495,7 +515,12 @@ export default function ShopPage() {
                           fullWidth
                           disabled={isOut}
                           startIcon={
-                            !isOut && <ShoppingCartIcon fontSize="small" sx={{ fontSize: 16 }} />
+                            !isOut && (
+                              <ShoppingCartIcon
+                                fontSize="small"
+                                sx={{ fontSize: 16 }}
+                              />
+                            )
                           }
                           onClick={() => addToCart(product.id)}
                           sx={{

@@ -156,13 +156,13 @@ export default function SignUpPage() {
           display: { xs: "none", lg: "flex" },
           flex: "1 1 35%",
           bgcolor: "#1d1d1f",
-          backgroundImage: 
+          backgroundImage:
             "radial-gradient(circle at 80% 20%, rgba(206,172,114,0.15) 0%, transparent 60%), radial-gradient(circle at 20% 80%, rgba(21,128,61,0.05) 0%, transparent 50%)",
           color: "#fff",
           flexDirection: "column",
           justifyContent: "space-between",
           p: 6,
-          borderRight: "1px solid rgba(255,255,255,0.05)"
+          borderRight: "1px solid rgba(255,255,255,0.05)",
         }}
       >
         <Box sx={{ display: "flex", alignItems: "center", gap: 1.25 }}>
@@ -182,18 +182,38 @@ export default function SignUpPage() {
           >
             R
           </Box>
-          <Typography sx={{ fontSize: 16, fontWeight: 600, letterSpacing: "-0.01em" }}>
+          <Typography
+            sx={{ fontSize: 16, fontWeight: 600, letterSpacing: "-0.01em" }}
+          >
             RetailOS
           </Typography>
         </Box>
 
         <Box>
-          <Typography variant="h3" sx={{ fontWeight: 500, mb: 3, letterSpacing: "-0.03em", lineHeight: 1.15 }}>
+          <Typography
+            variant="h3"
+            sx={{
+              fontWeight: 500,
+              mb: 3,
+              letterSpacing: "-0.03em",
+              lineHeight: 1.15,
+            }}
+          >
             Create your <br />
             <span style={{ color: "#D4BE99" }}>operator profile.</span>
           </Typography>
-          <Typography sx={{ color: "rgba(255,255,255,0.6)", fontSize: 15, lineHeight: 1.6, maxWidth: 360, fontWeight: 400 }}>
-            Establish your identity in the console. Gain access to checkout flows, track your previous purchases, and receive automated delivery confirmations.
+          <Typography
+            sx={{
+              color: "rgba(255,255,255,0.6)",
+              fontSize: 15,
+              lineHeight: 1.6,
+              maxWidth: 360,
+              fontWeight: 400,
+            }}
+          >
+            Establish your identity in the console. Gain access to checkout
+            flows, track your previous purchases, and receive automated delivery
+            confirmations.
           </Typography>
         </Box>
 
@@ -212,13 +232,21 @@ export default function SignUpPage() {
           alignItems: "center",
           justifyContent: "center",
           p: { xs: 3, md: 6 },
-          backgroundImage: "radial-gradient(at 0% 0%, rgba(206,172,114,0.06) 0%, transparent 50%)",
-          overflowY: "auto"
+          backgroundImage:
+            "radial-gradient(at 0% 0%, rgba(206,172,114,0.06) 0%, transparent 50%)",
+          overflowY: "auto",
         }}
       >
         <Box sx={{ width: "100%", maxWidth: 520, py: 4 }}>
           {/* Logo for mobile view */}
-          <Box sx={{ display: { xs: "flex", lg: "none" }, alignItems: "center", gap: 1, mb: 4 }}>
+          <Box
+            sx={{
+              display: { xs: "flex", lg: "none" },
+              alignItems: "center",
+              gap: 1,
+              mb: 4,
+            }}
+          >
             <Box
               sx={{
                 width: 28,
@@ -235,13 +263,22 @@ export default function SignUpPage() {
             >
               R
             </Box>
-            <Typography sx={{ fontSize: 16, fontWeight: 600, color: "#1d1d1f" }}>
+            <Typography
+              sx={{ fontSize: 16, fontWeight: 600, color: "#1d1d1f" }}
+            >
               RetailOS
             </Typography>
           </Box>
 
           <Box sx={{ mb: 4 }}>
-            <Typography variant="h4" sx={{ fontWeight: 600, color: "#1d1d1f", letterSpacing: "-0.03em" }}>
+            <Typography
+              variant="h4"
+              sx={{
+                fontWeight: 600,
+                color: "#1d1d1f",
+                letterSpacing: "-0.03em",
+              }}
+            >
               Create your account
             </Typography>
             <Typography sx={{ mt: 1, fontSize: 14, color: "text.secondary" }}>
@@ -270,7 +307,11 @@ export default function SignUpPage() {
                 fullWidth
               />
               <Box
-                sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr" }, gap: 2.5 }}
+                sx={{
+                  display: "grid",
+                  gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr" },
+                  gap: 2.5,
+                }}
               >
                 <TextField
                   label="Email"
@@ -354,8 +395,7 @@ export default function SignUpPage() {
                             <VisibilityOffIcon fontSize="small" />
                           ) : (
                             <VisibilityIcon fontSize="small" />
-                          )
-                          }
+                          )}
                         </IconButton>
                       </InputAdornment>
                     }
@@ -399,10 +439,13 @@ export default function SignUpPage() {
                             color: r.met ? "#15803d" : "text.secondary",
                             display: "flex",
                             alignItems: "center",
-                            gap: 0.5
+                            gap: 0.5,
                           }}
                         >
-                          <span style={{ fontSize: 12, fontWeight: 700 }}>{r.met ? "✓" : "○"}</span> {r.label}
+                          <span style={{ fontSize: 12, fontWeight: 700 }}>
+                            {r.met ? "✓" : "○"}
+                          </span>{" "}
+                          {r.label}
                         </Typography>
                       ))}
                     </Stack>
@@ -434,7 +477,9 @@ export default function SignUpPage() {
                   }
                 />
                 {fieldError("confirmPassword") && (
-                  <FormHelperText>{fieldError("confirmPassword")}</FormHelperText>
+                  <FormHelperText>
+                    {fieldError("confirmPassword")}
+                  </FormHelperText>
                 )}
               </FormControl>
               <Button
@@ -474,7 +519,7 @@ export default function SignUpPage() {
                 fontWeight: 600,
                 color: "#1d1d1f",
                 textDecoration: "none",
-                "&:hover": { textDecoration: "underline" }
+                "&:hover": { textDecoration: "underline" },
               }}
             >
               Sign in

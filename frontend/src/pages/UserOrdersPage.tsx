@@ -56,7 +56,10 @@ export default function UserOrdersPage() {
   return (
     <Box sx={{ maxWidth: 800, mx: "auto" }}>
       <Box sx={{ mb: 4 }}>
-        <Typography variant="h5" sx={{ fontWeight: 600, color: "#1d1d1f", letterSpacing: "-0.02em" }}>
+        <Typography
+          variant="h5"
+          sx={{ fontWeight: 600, color: "#1d1d1f", letterSpacing: "-0.02em" }}
+        >
           My Orders
         </Typography>
         <Typography sx={{ color: "text.secondary", mt: 0.5, fontSize: 14 }}>
@@ -74,7 +77,9 @@ export default function UserOrdersPage() {
             borderRadius: "12px",
           }}
         >
-          <SearchIcon sx={{ fontSize: 44, color: "text.secondary", mb: 2, opacity: 0.6 }} />
+          <SearchIcon
+            sx={{ fontSize: 44, color: "text.secondary", mb: 2, opacity: 0.6 }}
+          />
           <Typography
             sx={{ fontSize: 18, fontWeight: 600, color: "#1d1d1f", mb: 1 }}
           >
@@ -108,7 +113,8 @@ export default function UserOrdersPage() {
                 transition: "all var(--t-base)",
                 "&:hover": {
                   borderColor: "#c8c6be",
-                  boxShadow: "0 12px 24px -10px rgba(25, 25, 25, 0.04), 0 4px 8px -2px rgba(25, 25, 25, 0.02)",
+                  boxShadow:
+                    "0 12px 24px -10px rgba(25, 25, 25, 0.04), 0 4px 8px -2px rgba(25, 25, 25, 0.02)",
                 },
               }}
             >
@@ -182,7 +188,13 @@ export default function UserOrdersPage() {
                           </Typography>{" "}
                           Product #{item.productId}
                         </Typography>
-                        <Typography sx={{ fontSize: 14, fontWeight: 500, color: "#1d1d1f" }}>
+                        <Typography
+                          sx={{
+                            fontSize: 14,
+                            fontWeight: 500,
+                            color: "#1d1d1f",
+                          }}
+                        >
                           {formatINR(Number(item.priceAtTime) * item.quantity)}
                         </Typography>
                       </Box>

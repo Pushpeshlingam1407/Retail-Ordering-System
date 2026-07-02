@@ -51,25 +51,29 @@ Here is a high-level look at how requests move through the system:
 ## ⚡ Core Features
 
 ### 🔐 User & Admin Auth
-*   **JWT Security**: The client stores the JWT token and attaches it to outgoing requests.
-*   **Protected Access Roles**: The backend validates roles (`USER` vs. `ADMIN`) for each endpoint.
-*   **Clean Login/Signup Forms**: Error inputs collapse automatically, showing inline feedback and clean visual alerts.
+
+- **JWT Security**: The client stores the JWT token and attaches it to outgoing requests.
+- **Protected Access Roles**: The backend validates roles (`USER` vs. `ADMIN`) for each endpoint.
+- **Clean Login/Signup Forms**: Error inputs collapse automatically, showing inline feedback and clean visual alerts.
 
 ### 🛍️ Customer Flow
-*   **Product Catalog**: Real-time product lists showing stock levels, search inputs, and visual states.
-*   **Shopping Cart**: Add, remove, or modify items directly with immediate subtotal recalculations.
-*   **Promo Application**: Enter active coupons before checkout. The backend checks expiration dates and usage counts on the fly.
-*   **One-Click Reorder**: Users can clone previous order setups instantly using "Order Again."
+
+- **Product Catalog**: Real-time product lists showing stock levels, search inputs, and visual states.
+- **Shopping Cart**: Add, remove, or modify items directly with immediate subtotal recalculations.
+- **Promo Application**: Enter active coupons before checkout. The backend checks expiration dates and usage counts on the fly.
+- **One-Click Reorder**: Users can clone previous order setups instantly using "Order Again."
 
 ### 📊 Admin Control Center
-*   **Operations Console**: View and track all customer orders placed on the system.
-*   **Order Confirmation/Cancellation**: Admins can approve (`CONFIRM`) or reject (`CANCEL`) orders. This triggers automated notification emails to the customer.
-*   **Product Manager**: Complete CRUD operations for building out the store catalog.
-*   **Coupon Manager**: Adjust parameters, toggle active state, or add promo code rules.
+
+- **Operations Console**: View and track all customer orders placed on the system.
+- **Order Confirmation/Cancellation**: Admins can approve (`CONFIRM`) or reject (`CANCEL`) orders. This triggers automated notification emails to the customer.
+- **Product Manager**: Complete CRUD operations for building out the store catalog.
+- **Coupon Manager**: Adjust parameters, toggle active state, or add promo code rules.
 
 ### ✉️ Automated Notifications
-*   **Receipt Emails**: Sends HTML order details, delivery location logs, and status updates directly to users.
-*   **Promo Blasts**: Automatically emails all registered users when a new coupon is announced.
+
+- **Receipt Emails**: Sends HTML order details, delivery location logs, and status updates directly to users.
+- **Promo Blasts**: Automatically emails all registered users when a new coupon is announced.
 
 ---
 
@@ -77,25 +81,28 @@ Here is a high-level look at how requests move through the system:
 
 We did away with standard grid frameworks and built a premium, editorial design system focused on micro-interactions:
 
-*   **CDN Typography (No Local Font Files)**: Zero local `.ttf` clutter. All headings and body components use direct `@font-face` links to Google Font servers to load **CohereText** (Plus Jakarta Sans) and **Anthropic Sans** (Instrument Sans) dynamically.
-*   **Springy Capsule Buttons**: Standardized button slots use a pill shape (`borderRadius: 99px`), cubic Bezier curves for transition timings, subtle lifts (`translateY(-1.5px)`) on hover, and tactile scaling down (`scale(0.96)`) on click.
-*   **iOS-Style Toggles**: Custom styled switches matching iOS specifications with a smooth thumb transition, clean shadow depth, and green checked tracks (`#34c759`).
-*   **One UI Glassmorphic Toasts**: Capsule toast banners (`borderRadius: 99px`) utilizing light background tints and borders matching warning, success, error, or info statuses.
-*   **Warm Mesh Backdrop**: An editorial glass background with warm cream panel sheets (`#F6F5EF` and translucent overlays).
+- **CDN Typography (No Local Font Files)**: Zero local `.ttf` clutter. All headings and body components use direct `@font-face` links to Google Font servers to load **CohereText** (Plus Jakarta Sans) and **Anthropic Sans** (Instrument Sans) dynamically.
+- **Springy Capsule Buttons**: Standardized button slots use a pill shape (`borderRadius: 99px`), cubic Bezier curves for transition timings, subtle lifts (`translateY(-1.5px)`) on hover, and tactile scaling down (`scale(0.96)`) on click.
+- **iOS-Style Toggles**: Custom styled switches matching iOS specifications with a smooth thumb transition, clean shadow depth, and green checked tracks (`#34c759`).
+- **One UI Glassmorphic Toasts**: Capsule toast banners (`borderRadius: 99px`) utilizing light background tints and borders matching warning, success, error, or info statuses.
+- **Warm Mesh Backdrop**: An editorial glass background with warm cream panel sheets (`#F6F5EF` and translucent overlays).
 
 ---
 
 ## 🛠️ Quick Start (Up in 2 Minutes)
 
 ### Requirements
-*   **Java SDK 23** or newer
-*   **Node.js v18** or newer
-*   **MySQL Server** (running locally on port 3306)
+
+- **Java SDK 23** or newer
+- **Node.js v18** or newer
+- **MySQL Server** (running locally on port 3306)
 
 ---
 
 ### 1. Database Setup
+
 Log in to your local MySQL client and run:
+
 ```sql
 CREATE DATABASE IF NOT EXISTS retail_db;
 ```
@@ -103,6 +110,7 @@ CREATE DATABASE IF NOT EXISTS retail_db;
 ---
 
 ### 2. Run the Spring Boot Backend
+
 1.  Navigate into the backend project folder:
     ```bash
     cd retail
@@ -112,11 +120,12 @@ CREATE DATABASE IF NOT EXISTS retail_db;
     ```bash
     ./mvnw spring-boot:run
     ```
-4.  *Note:* The system automatically seeds demo products and a default admin login (`admin@retailos.com` / `admin123`) on startup.
+4.  _Note:_ The system automatically seeds demo products and a default admin login (`admin@retailos.com` / `admin123`) on startup.
 
 ---
 
 ### 3. Run the React Frontend
+
 1.  Go into the frontend folder:
     ```bash
     cd ../frontend
@@ -136,27 +145,29 @@ CREATE DATABASE IF NOT EXISTS retail_db;
 ## 📖 API Documentation
 
 With the backend running, the full Swagger API console is available here:
+
 ```text
 http://localhost:8080/swagger-ui/index.html
 ```
 
 ### Key API Mappings
 
-| Resource | Method | Path | Authentication Required? | Role Scope |
-| :--- | :--- | :--- | :--- | :--- |
-| **Auth** | `POST` | `/api/auth/register` | No | Anonymous |
-| **Auth** | `POST` | `/api/auth/login` | No | Anonymous |
-| **Products**| `GET` | `/api/products` | Yes | `USER` / `ADMIN`|
-| **Products**| `POST` | `/api/products` | Yes | `ADMIN` |
-| **Orders** | `GET` | `/api/orders` | Yes | `USER` / `ADMIN`|
-| **Orders** | `POST` | `/api/orders` | Yes | `USER` |
-| **Orders** | `PUT` | `/api/orders/{id}/status`| Yes | `ADMIN` |
-| **Coupons** | `GET` | `/api/coupons` | Yes | `USER` / `ADMIN`|
-| **Coupons** | `POST` | `/api/coupons` | Yes | `ADMIN` |
+| Resource     | Method | Path                      | Authentication Required? | Role Scope       |
+| :----------- | :----- | :------------------------ | :----------------------- | :--------------- |
+| **Auth**     | `POST` | `/api/auth/register`      | No                       | Anonymous        |
+| **Auth**     | `POST` | `/api/auth/login`         | No                       | Anonymous        |
+| **Products** | `GET`  | `/api/products`           | Yes                      | `USER` / `ADMIN` |
+| **Products** | `POST` | `/api/products`           | Yes                      | `ADMIN`          |
+| **Orders**   | `GET`  | `/api/orders`             | Yes                      | `USER` / `ADMIN` |
+| **Orders**   | `POST` | `/api/orders`             | Yes                      | `USER`           |
+| **Orders**   | `PUT`  | `/api/orders/{id}/status` | Yes                      | `ADMIN`          |
+| **Coupons**  | `GET`  | `/api/coupons`            | Yes                      | `USER` / `ADMIN` |
+| **Coupons**  | `POST` | `/api/coupons`            | Yes                      | `ADMIN`          |
 
 ---
 
 ## 🔒 Configuration & Development Notes
-*   **Client Session Storage**: The React client uses `sessionStorage` to hold cart configurations and user JWT sessions.
-*   **Fast Checkout**: The checkout screen automatically pulls details from the user's signup profile for a seamless checkout experience.
-*   **Global Exception Handling**: Custom errors (such as `InsufficientStockException`) are intercepted by a backend `@ControllerAdvice` to format matching error responses.
+
+- **Client Session Storage**: The React client uses `sessionStorage` to hold cart configurations and user JWT sessions.
+- **Fast Checkout**: The checkout screen automatically pulls details from the user's signup profile for a seamless checkout experience.
+- **Global Exception Handling**: Custom errors (such as `InsufficientStockException`) are intercepted by a backend `@ControllerAdvice` to format matching error responses.

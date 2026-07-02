@@ -279,7 +279,10 @@ export default function CartPage() {
   return (
     <Box sx={{ maxWidth: 1000, mx: "auto" }}>
       <Box sx={{ mb: 4 }}>
-        <Typography variant="h5" sx={{ fontWeight: 600, color: "#191919", letterSpacing: "-0.02em" }}>
+        <Typography
+          variant="h5"
+          sx={{ fontWeight: 600, color: "#191919", letterSpacing: "-0.02em" }}
+        >
           Shopping Cart
         </Typography>
       </Box>
@@ -294,7 +297,9 @@ export default function CartPage() {
             borderRadius: "12px",
           }}
         >
-          <ShoppingBagIcon sx={{ fontSize: 44, color: "text.secondary", mb: 2, opacity: 0.6 }} />
+          <ShoppingBagIcon
+            sx={{ fontSize: 44, color: "text.secondary", mb: 2, opacity: 0.6 }}
+          />
           <Typography
             sx={{ fontSize: 18, fontWeight: 600, color: "#191919", mb: 1 }}
           >
@@ -368,8 +373,16 @@ export default function CartPage() {
                       >
                         {product.name}
                       </Typography>
-                      <Typography sx={{ fontSize: 12, color: "text.secondary", mt: 0.5, mb: 0.5 }}>
-                        {product.brand?.name} · {product.category?.name} · {product.packaging}
+                      <Typography
+                        sx={{
+                          fontSize: 12,
+                          color: "text.secondary",
+                          mt: 0.5,
+                          mb: 0.5,
+                        }}
+                      >
+                        {product.brand?.name} · {product.category?.name} ·{" "}
+                        {product.packaging}
                       </Typography>
                       <Typography
                         sx={{ color: "text.secondary", fontSize: 13 }}
@@ -394,7 +407,10 @@ export default function CartPage() {
                           onClick={() =>
                             updateQty(product.id, line.quantity - 1)
                           }
-                          sx={{ color: "#5e5e5e", "&:hover": { bgcolor: "#f3f1eb" } }}
+                          sx={{
+                            color: "#5e5e5e",
+                            "&:hover": { bgcolor: "#f3f1eb" },
+                          }}
                         >
                           <RemoveIcon fontSize="small" sx={{ fontSize: 16 }} />
                         </IconButton>
@@ -404,7 +420,7 @@ export default function CartPage() {
                             minWidth: 20,
                             textAlign: "center",
                             fontSize: 14,
-                            color: "#191919"
+                            color: "#191919",
                           }}
                         >
                           {line.quantity}
@@ -414,7 +430,10 @@ export default function CartPage() {
                           onClick={() =>
                             updateQty(product.id, line.quantity + 1)
                           }
-                          sx={{ color: "#191919", "&:hover": { bgcolor: "#f3f1eb" } }}
+                          sx={{
+                            color: "#191919",
+                            "&:hover": { bgcolor: "#f3f1eb" },
+                          }}
                         >
                           <AddIcon fontSize="small" sx={{ fontSize: 16 }} />
                         </IconButton>
@@ -425,7 +444,7 @@ export default function CartPage() {
                           fontSize: 15,
                           minWidth: 80,
                           textAlign: "right",
-                          color: "#191919"
+                          color: "#191919",
                         }}
                       >
                         {formatINR(product.price * line.quantity)}
@@ -459,7 +478,14 @@ export default function CartPage() {
                 top: 24,
               }}
             >
-              <Typography sx={{ fontWeight: 600, mb: 2.5, fontSize: 16, color: "#191919" }}>
+              <Typography
+                sx={{
+                  fontWeight: 600,
+                  mb: 2.5,
+                  fontSize: 16,
+                  color: "#191919",
+                }}
+              >
                 Order Summary
               </Typography>
 
@@ -544,15 +570,18 @@ export default function CartPage() {
                     }}
                   >
                     <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                      <SellIcon
-                        fontSize="small"
-                        sx={{ color: "#191919" }}
-                      />
-                      <Typography sx={{ fontSize: 14, fontWeight: 700, color: "#191919" }}>
+                      <SellIcon fontSize="small" sx={{ color: "#191919" }} />
+                      <Typography
+                        sx={{ fontSize: 14, fontWeight: 700, color: "#191919" }}
+                      >
                         {appliedCoupon.code}
                       </Typography>
                     </Box>
-                    <IconButton size="small" onClick={removeCoupon} sx={{ color: "#5e5e5e" }}>
+                    <IconButton
+                      size="small"
+                      onClick={removeCoupon}
+                      sx={{ color: "#5e5e5e" }}
+                    >
                       <CloseIcon fontSize="small" />
                     </IconButton>
                   </Box>

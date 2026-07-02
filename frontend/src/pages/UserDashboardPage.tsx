@@ -76,14 +76,39 @@ export default function UserDashboardPage() {
           mb: 4,
         }}
       >
-        <Typography variant="overline" sx={{ letterSpacing: 2, color: "text.secondary", fontSize: 11, fontWeight: 700 }}>
+        <Typography
+          variant="overline"
+          sx={{
+            letterSpacing: 2,
+            color: "text.secondary",
+            fontSize: 11,
+            fontWeight: 700,
+          }}
+        >
           CUSTOMER OVERVIEW
         </Typography>
-        <Typography variant="h4" sx={{ fontWeight: 600, mt: 1, color: "#1d1d1f", letterSpacing: "-0.03em" }}>
+        <Typography
+          variant="h4"
+          sx={{
+            fontWeight: 600,
+            mt: 1,
+            color: "#1d1d1f",
+            letterSpacing: "-0.03em",
+          }}
+        >
           Welcome, {user?.name ?? "User"}
         </Typography>
-        <Typography sx={{ mt: 1.5, color: "text.secondary", fontSize: 14, maxWidth: 520, lineHeight: 1.5 }}>
-          Track your active operator requests, apply promo entries, and audit previous purchases in the console.
+        <Typography
+          sx={{
+            mt: 1.5,
+            color: "text.secondary",
+            fontSize: 14,
+            maxWidth: 520,
+            lineHeight: 1.5,
+          }}
+        >
+          Track your active operator requests, apply promo entries, and audit
+          previous purchases in the console.
         </Typography>
       </Paper>
 
@@ -107,8 +132,8 @@ export default function UserDashboardPage() {
             "&:hover": {
               transform: "translateY(-2px)",
               borderColor: "#c8c6be",
-              boxShadow: "0 8px 20px -6px rgba(25,25,25,0.04)"
-            }
+              boxShadow: "0 8px 20px -6px rgba(25,25,25,0.04)",
+            },
           }}
         >
           <CardContent sx={{ p: 3 }}>
@@ -117,17 +142,48 @@ export default function UserDashboardPage() {
               sx={{ justifyContent: "space-between", alignItems: "center" }}
             >
               <Box>
-                <Typography variant="caption" sx={{ color: "text.secondary", fontWeight: 600, textTransform: "uppercase", fontSize: 11, letterSpacing: "0.05em" }}>
+                <Typography
+                  variant="caption"
+                  sx={{
+                    color: "text.secondary",
+                    fontWeight: 600,
+                    textTransform: "uppercase",
+                    fontSize: 11,
+                    letterSpacing: "0.05em",
+                  }}
+                >
                   Orders placed
                 </Typography>
-                <Typography variant="h4" sx={{ fontWeight: 700, color: "#1d1d1f", mt: 0.75, letterSpacing: "-0.02em" }}>
+                <Typography
+                  variant="h4"
+                  sx={{
+                    fontWeight: 700,
+                    color: "#1d1d1f",
+                    mt: 0.75,
+                    letterSpacing: "-0.02em",
+                  }}
+                >
                   {orders.length}
                 </Typography>
-                <Typography variant="caption" sx={{ color: "text.secondary", display: "block", mt: 0.5 }}>
+                <Typography
+                  variant="caption"
+                  sx={{ color: "text.secondary", display: "block", mt: 0.5 }}
+                >
                   {pendingOrders} pending confirmation
                 </Typography>
               </Box>
-              <Box sx={{ width: 40, height: 40, borderRadius: "8px", bgcolor: "#f5f5f7", color: "#1d1d1f", display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <Box
+                sx={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: "8px",
+                  bgcolor: "#f5f5f7",
+                  color: "#1d1d1f",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
                 <ShoppingCartIcon fontSize="small" />
               </Box>
             </Stack>
@@ -141,8 +197,8 @@ export default function UserDashboardPage() {
             "&:hover": {
               transform: "translateY(-2px)",
               borderColor: "#c8c6be",
-              boxShadow: "0 8px 20px -6px rgba(25,25,25,0.04)"
-            }
+              boxShadow: "0 8px 20px -6px rgba(25,25,25,0.04)",
+            },
           }}
         >
           <CardContent sx={{ p: 3 }}>
@@ -151,17 +207,48 @@ export default function UserDashboardPage() {
               sx={{ justifyContent: "space-between", alignItems: "center" }}
             >
               <Box>
-                <Typography variant="caption" sx={{ color: "text.secondary", fontWeight: 600, textTransform: "uppercase", fontSize: 11, letterSpacing: "0.05em" }}>
+                <Typography
+                  variant="caption"
+                  sx={{
+                    color: "text.secondary",
+                    fontWeight: 600,
+                    textTransform: "uppercase",
+                    fontSize: 11,
+                    letterSpacing: "0.05em",
+                  }}
+                >
                   Total Spent
                 </Typography>
-                <Typography variant="h4" sx={{ fontWeight: 700, color: "#34c759", mt: 0.75, letterSpacing: "-0.02em" }}>
+                <Typography
+                  variant="h4"
+                  sx={{
+                    fontWeight: 700,
+                    color: "#34c759",
+                    mt: 0.75,
+                    letterSpacing: "-0.02em",
+                  }}
+                >
                   {currency(deliveredTotal)}
                 </Typography>
-                <Typography variant="caption" sx={{ color: "text.secondary", display: "block", mt: 0.5 }}>
+                <Typography
+                  variant="caption"
+                  sx={{ color: "text.secondary", display: "block", mt: 0.5 }}
+                >
                   From delivered orders
                 </Typography>
               </Box>
-              <Box sx={{ width: 40, height: 40, borderRadius: "8px", bgcolor: "rgba(52, 199, 89, 0.08)", color: "#34c759", display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <Box
+                sx={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: "8px",
+                  bgcolor: "rgba(52, 199, 89, 0.08)",
+                  color: "#34c759",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
                 <AccountCircleIcon fontSize="small" />
               </Box>
             </Stack>
@@ -175,8 +262,8 @@ export default function UserDashboardPage() {
             "&:hover": {
               transform: "translateY(-2px)",
               borderColor: "#c8c6be",
-              boxShadow: "0 8px 20px -6px rgba(25,25,25,0.04)"
-            }
+              boxShadow: "0 8px 20px -6px rgba(25,25,25,0.04)",
+            },
           }}
         >
           <CardContent sx={{ p: 3 }}>
@@ -185,17 +272,48 @@ export default function UserDashboardPage() {
               sx={{ justifyContent: "space-between", alignItems: "center" }}
             >
               <Box>
-                <Typography variant="caption" sx={{ color: "text.secondary", fontWeight: 600, textTransform: "uppercase", fontSize: 11, letterSpacing: "0.05em" }}>
+                <Typography
+                  variant="caption"
+                  sx={{
+                    color: "text.secondary",
+                    fontWeight: 600,
+                    textTransform: "uppercase",
+                    fontSize: 11,
+                    letterSpacing: "0.05em",
+                  }}
+                >
                   Active Coupons
                 </Typography>
-                <Typography variant="h4" sx={{ fontWeight: 700, color: "#0071e3", mt: 0.75, letterSpacing: "-0.02em" }}>
+                <Typography
+                  variant="h4"
+                  sx={{
+                    fontWeight: 700,
+                    color: "#0071e3",
+                    mt: 0.75,
+                    letterSpacing: "-0.02em",
+                  }}
+                >
                   {activeCoupons}
                 </Typography>
-                <Typography variant="caption" sx={{ color: "text.secondary", display: "block", mt: 0.5 }}>
+                <Typography
+                  variant="caption"
+                  sx={{ color: "text.secondary", display: "block", mt: 0.5 }}
+                >
                   Apply code at checkout
                 </Typography>
               </Box>
-              <Box sx={{ width: 40, height: 40, borderRadius: "8px", bgcolor: "rgba(0, 113, 227, 0.08)", color: "#0071e3", display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <Box
+                sx={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: "8px",
+                  bgcolor: "rgba(0, 113, 227, 0.08)",
+                  color: "#0071e3",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
                 <LocalOfferIcon fontSize="small" />
               </Box>
             </Stack>
@@ -216,7 +334,10 @@ export default function UserDashboardPage() {
         </Box>
         <Box sx={{ p: 3 }}>
           {orders.length === 0 ? (
-            <Typography variant="body2" sx={{ color: "text.secondary", textAlign: "center", py: 4 }}>
+            <Typography
+              variant="body2"
+              sx={{ color: "text.secondary", textAlign: "center", py: 4 }}
+            >
               No orders yet.
             </Typography>
           ) : (
@@ -234,24 +355,41 @@ export default function UserDashboardPage() {
                       bgcolor: "rgba(255, 255, 255, 0.75)",
                       transform: "translateY(-1px)",
                       borderColor: "#cbd5e1",
-                      boxShadow: "0 4px 12px -4px rgba(25, 25, 25, 0.02)"
-                    }
+                      boxShadow: "0 4px 12px -4px rgba(25, 25, 25, 0.02)",
+                    },
                   }}
                 >
                   <Stack
                     direction="row"
-                    sx={{ justifyContent: "space-between", alignItems: "center" }}
+                    sx={{
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                    }}
                   >
                     <Box>
-                      <Typography variant="body2" sx={{ fontWeight: 600, color: "#1d1d1f" }}>
+                      <Typography
+                        variant="body2"
+                        sx={{ fontWeight: 600, color: "#1d1d1f" }}
+                      >
                         Order #{order.id}
                       </Typography>
-                      <Typography sx={{ fontSize: 12, color: "text.secondary", mt: 0.5 }}>
-                        {new Date(order.placedAt).toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" })}
+                      <Typography
+                        sx={{ fontSize: 12, color: "text.secondary", mt: 0.5 }}
+                      >
+                        {new Date(order.placedAt).toLocaleString("en-IN", {
+                          dateStyle: "medium",
+                          timeStyle: "short",
+                        })}
                       </Typography>
                     </Box>
-                    <Stack direction="row" spacing={3} sx={{ alignItems: "center" }}>
-                      <Typography sx={{ fontWeight: 700, color: "#1d1d1f", fontSize: 15 }}>
+                    <Stack
+                      direction="row"
+                      spacing={3}
+                      sx={{ alignItems: "center" }}
+                    >
+                      <Typography
+                        sx={{ fontWeight: 700, color: "#1d1d1f", fontSize: 15 }}
+                      >
                         {currency(Number(order.totalAmount ?? 0))}
                       </Typography>
                       <StatusBadge status={order.status} size="sm" />

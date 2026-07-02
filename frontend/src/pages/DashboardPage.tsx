@@ -53,7 +53,7 @@ function StatCard({
           transform: "translateY(-2.5px) scale(1.01)",
           borderColor: "#c8c6be",
           boxShadow: "0 12px 28px -6px rgba(25, 25, 25, 0.05)",
-        }
+        },
       }}
     >
       <Box
@@ -75,7 +75,15 @@ function StatCard({
           >
             {title}
           </Typography>
-          <Typography sx={{ fontSize: 28, fontWeight: 700, mt: 0.75, color: "#1d1d1f", letterSpacing: "-0.02em" }}>
+          <Typography
+            sx={{
+              fontSize: 28,
+              fontWeight: 700,
+              mt: 0.75,
+              color: "#1d1d1f",
+              letterSpacing: "-0.02em",
+            }}
+          >
             {value}
           </Typography>
         </Box>
@@ -89,7 +97,7 @@ function StatCard({
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            border: "1px solid rgba(25, 25, 25, 0.04)"
+            border: "1px solid rgba(25, 25, 25, 0.04)",
           }}
         >
           {icon}
@@ -188,14 +196,39 @@ export default function DashboardPage() {
         }}
       >
         <Box>
-          <Typography variant="overline" sx={{ letterSpacing: 2, color: "text.secondary", fontSize: 11, fontWeight: 700 }}>
+          <Typography
+            variant="overline"
+            sx={{
+              letterSpacing: 2,
+              color: "text.secondary",
+              fontSize: 11,
+              fontWeight: 700,
+            }}
+          >
             ADMIN CONSOLE
           </Typography>
-          <Typography variant="h4" sx={{ fontWeight: 600, mt: 1, color: "#1d1d1f", letterSpacing: "-0.03em" }}>
+          <Typography
+            variant="h4"
+            sx={{
+              fontWeight: 600,
+              mt: 1,
+              color: "#1d1d1f",
+              letterSpacing: "-0.03em",
+            }}
+          >
             Operations Dashboard
           </Typography>
-          <Typography sx={{ mt: 1.5, color: "text.secondary", fontSize: 14, maxWidth: 520, lineHeight: 1.5 }}>
-            Overview of real-time store performance, system revenue tracking, coupon activations, and order fulfillment controls.
+          <Typography
+            sx={{
+              mt: 1.5,
+              color: "text.secondary",
+              fontSize: 14,
+              maxWidth: 520,
+              lineHeight: 1.5,
+            }}
+          >
+            Overview of real-time store performance, system revenue tracking,
+            coupon activations, and order fulfillment controls.
           </Typography>
         </Box>
         <Tooltip title="Refresh console data">
@@ -204,7 +237,7 @@ export default function DashboardPage() {
             sx={{
               color: "text.secondary",
               bgcolor: "rgba(25, 25, 25, 0.04)",
-              "&:hover": { bgcolor: "rgba(25, 25, 25, 0.08)" }
+              "&:hover": { bgcolor: "rgba(25, 25, 25, 0.08)" },
             }}
           >
             <RefreshIcon />
@@ -268,7 +301,9 @@ export default function DashboardPage() {
               alignItems: "center",
             }}
           >
-            <Typography sx={{ fontWeight: 600, color: "#1d1d1f" }}>Recent Orders</Typography>
+            <Typography sx={{ fontWeight: 600, color: "#1d1d1f" }}>
+              Recent Orders
+            </Typography>
             <Button
               component={Link}
               to="/orders"
@@ -298,15 +333,19 @@ export default function DashboardPage() {
                         : "none",
                     transition: "background var(--t-fast)",
                     "&:hover": {
-                      bgcolor: "var(--bg-hover)"
-                    }
+                      bgcolor: "var(--bg-hover)",
+                    },
                   }}
                 >
                   <Box sx={{ flex: 1 }}>
-                    <Typography sx={{ fontWeight: 600, fontSize: 14, color: "#1d1d1f" }}>
+                    <Typography
+                      sx={{ fontWeight: 600, fontSize: 14, color: "#1d1d1f" }}
+                    >
                       Order #{o.id}
                     </Typography>
-                    <Typography sx={{ fontSize: 13, color: "text.secondary", mt: 0.5 }}>
+                    <Typography
+                      sx={{ fontSize: 13, color: "text.secondary", mt: 0.5 }}
+                    >
                       User #{o.userId} ·{" "}
                       {new Date(o.placedAt).toLocaleDateString("en-IN")}
                     </Typography>
@@ -354,7 +393,7 @@ export default function DashboardPage() {
                         bgcolor: `${s.color}10`,
                         color: s.color,
                         fontWeight: 600,
-                        border: "1px solid rgba(0,0,0,0.01)"
+                        border: "1px solid rgba(0,0,0,0.01)",
                       }}
                     />
                   </Box>

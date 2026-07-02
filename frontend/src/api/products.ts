@@ -1,5 +1,11 @@
 import api from "./axios";
-import type { Brand, Category, Product, ProductRequest, UploadResponse } from "../types";
+import type {
+  Brand,
+  Category,
+  Product,
+  ProductRequest,
+  UploadResponse,
+} from "../types";
 
 export const getProducts = () =>
   api.get<Product[]>("/api/products").then((r) => r.data);

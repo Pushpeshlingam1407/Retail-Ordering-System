@@ -40,22 +40,25 @@ export default function CouponSuccessPopup({
   };
 
   return (
-    <Dialog 
-      open={open} 
-      onClose={onClose} 
-      maxWidth="xs" 
-      fullWidth
-    >
+    <Dialog open={open} onClose={onClose} maxWidth="xs" fullWidth>
       <DialogContent sx={{ p: 4, position: "relative" }}>
         <IconButton
           size="small"
           onClick={onClose}
-          sx={{ position: "absolute", top: 16, right: 16, color: "text.secondary" }}
+          sx={{
+            position: "absolute",
+            top: 16,
+            right: 16,
+            color: "text.secondary",
+          }}
         >
           <CloseIcon fontSize="small" />
         </IconButton>
 
-        <Stack spacing={3} sx={{ alignItems: "center", textAlign: "center", mt: 1 }}>
+        <Stack
+          spacing={3}
+          sx={{ alignItems: "center", textAlign: "center", mt: 1 }}
+        >
           <Box
             sx={{
               width: 56,
@@ -66,16 +69,20 @@ export default function CouponSuccessPopup({
               alignItems: "center",
               justifyContent: "center",
               fontSize: 26,
-              border: "1px solid rgba(0,0,0,0.02)"
+              border: "1px solid rgba(0,0,0,0.02)",
             }}
           >
             🎉
           </Box>
           <Box>
-            <Typography sx={{ fontSize: 18, fontWeight: 600, mb: 1, color: "#191919" }}>
+            <Typography
+              sx={{ fontSize: 18, fontWeight: 600, mb: 1, color: "#191919" }}
+            >
               {title}
             </Typography>
-            <Typography sx={{ fontSize: 14, color: "text.secondary", lineHeight: 1.5 }}>
+            <Typography
+              sx={{ fontSize: 14, color: "text.secondary", lineHeight: 1.5 }}
+            >
               {description}
             </Typography>
           </Box>
@@ -94,7 +101,7 @@ export default function CouponSuccessPopup({
                 cursor: "pointer",
                 transition: "all var(--t-fast)",
                 "&:hover": { bgcolor: "#f3f1eb", borderColor: "#1d1d1f" },
-                "&:active": { transform: "scale(0.98)" }
+                "&:active": { transform: "scale(0.98)" },
               }}
             >
               <Typography

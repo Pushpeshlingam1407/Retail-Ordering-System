@@ -184,7 +184,7 @@ export function Sidebar({
           sx={{
             display: { xs: "none", md: "flex" },
             ml: collapsed ? "auto" : 0,
-            color: "#5e5e5e"
+            color: "#5e5e5e",
           }}
         >
           {collapsed ? (

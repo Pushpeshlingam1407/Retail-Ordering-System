@@ -11,11 +11,31 @@ export default function StatusBadge({
 }) {
   const cfg: Record<string, { label: string; color: string; bgcolor: string }> =
     {
-      PENDING: { label: "Pending", color: "#ff9500", bgcolor: "rgba(255, 149, 0, 0.08)" },
-      CONFIRMED: { label: "Confirmed", color: "#0071e3", bgcolor: "rgba(0, 113, 227, 0.08)" },
-      SHIPPED: { label: "Shipped", color: "#af52de", bgcolor: "rgba(175, 82, 222, 0.08)" },
-      DELIVERED: { label: "Delivered", color: "#34c759", bgcolor: "rgba(52, 199, 89, 0.08)" },
-      CANCELLED: { label: "Cancelled", color: "#ff3b30", bgcolor: "rgba(255, 59, 48, 0.08)" },
+      PENDING: {
+        label: "Pending",
+        color: "#ff9500",
+        bgcolor: "rgba(255, 149, 0, 0.08)",
+      },
+      CONFIRMED: {
+        label: "Confirmed",
+        color: "#0071e3",
+        bgcolor: "rgba(0, 113, 227, 0.08)",
+      },
+      SHIPPED: {
+        label: "Shipped",
+        color: "#af52de",
+        bgcolor: "rgba(175, 82, 222, 0.08)",
+      },
+      DELIVERED: {
+        label: "Delivered",
+        color: "#34c759",
+        bgcolor: "rgba(52, 199, 89, 0.08)",
+      },
+      CANCELLED: {
+        label: "Cancelled",
+        color: "#ff3b30",
+        bgcolor: "rgba(255, 59, 48, 0.08)",
+      },
     };
 
   const current = cfg[status] || {
@@ -43,13 +63,17 @@ export default function StatusBadge({
         cursor: onClick ? "pointer" : "default",
         userSelect: "none",
         transition: "all var(--t-fast)",
-        "&:hover": onClick ? { 
-          filter: "brightness(0.96)",
-          transform: "scale(0.97)"
-        } : undefined,
-        "&:active": onClick ? {
-          transform: "scale(0.94)"
-        } : undefined
+        "&:hover": onClick
+          ? {
+              filter: "brightness(0.96)",
+              transform: "scale(0.97)",
+            }
+          : undefined,
+        "&:active": onClick
+          ? {
+              transform: "scale(0.94)",
+            }
+          : undefined,
       }}
     >
       <Box
@@ -59,7 +83,7 @@ export default function StatusBadge({
           borderRadius: "50%",
           bgcolor: current.color,
           mr: 1,
-          flexShrink: 0
+          flexShrink: 0,
         }}
       />
       {current.label}

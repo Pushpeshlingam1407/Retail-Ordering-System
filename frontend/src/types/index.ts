@@ -15,11 +15,7 @@ export interface AuthUser {
 
 // ─── Enums ────────────────────────────────────────────────────────────────────
 export type OrderStatus =
-  | "PENDING"
-  | "CONFIRMED"
-  | "SHIPPED"
-  | "DELIVERED"
-  | "CANCELLED";
+  "PENDING" | "CONFIRMED" | "SHIPPED" | "DELIVERED" | "CANCELLED";
 export type DiscountType = "PERCENTAGE" | "FLAT";
 
 export interface Category {

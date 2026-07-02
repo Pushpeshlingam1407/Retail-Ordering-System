@@ -29,13 +29,42 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: '"Anthropic", "Cohere", "Apple"',
-    h1: { fontFamily: '"Anthropic", "Cohere", "Apple"', fontWeight: 600, letterSpacing: "-0.01em" },
-    h2: { fontFamily: '"Anthropic", "Cohere", "Apple"', fontWeight: 600, letterSpacing: "-0.01em" },
-    h3: { fontFamily: '"Anthropic", "Cohere", "Apple"', fontWeight: 500, letterSpacing: "-0.01em" },
-    h4: { fontFamily: '"Anthropic", "Cohere", "Apple"', fontWeight: 500, letterSpacing: "-0.01em" },
-    h5: { fontFamily: '"Anthropic", "Cohere", "Apple"', fontWeight: 500, letterSpacing: "-0.01em" },
-    h6: { fontFamily: '"Anthropic", "Cohere", "Apple"', fontWeight: 500, letterSpacing: "-0.01em" },
-    button: { fontFamily: '"Anthropic", "Cohere", "Apple"', fontWeight: 600, textTransform: "none", letterSpacing: "-0.01em" },
+    h1: {
+      fontFamily: '"Anthropic", "Cohere", "Apple"',
+      fontWeight: 600,
+      letterSpacing: "-0.01em",
+    },
+    h2: {
+      fontFamily: '"Anthropic", "Cohere", "Apple"',
+      fontWeight: 600,
+      letterSpacing: "-0.01em",
+    },
+    h3: {
+      fontFamily: '"Anthropic", "Cohere", "Apple"',
+      fontWeight: 500,
+      letterSpacing: "-0.01em",
+    },
+    h4: {
+      fontFamily: '"Anthropic", "Cohere", "Apple"',
+      fontWeight: 500,
+      letterSpacing: "-0.01em",
+    },
+    h5: {
+      fontFamily: '"Anthropic", "Cohere", "Apple"',
+      fontWeight: 500,
+      letterSpacing: "-0.01em",
+    },
+    h6: {
+      fontFamily: '"Anthropic", "Cohere", "Apple"',
+      fontWeight: 500,
+      letterSpacing: "-0.01em",
+    },
+    button: {
+      fontFamily: '"Anthropic", "Cohere", "Apple"',
+      fontWeight: 600,
+      textTransform: "none",
+      letterSpacing: "-0.01em",
+    },
     body1: { letterSpacing: "-0.01em" },
     body2: { letterSpacing: "-0.01em" },
   },
@@ -55,8 +84,8 @@ const theme = createTheme({
           backgroundAttachment: "fixed",
           backgroundRepeat: "no-repeat",
           minHeight: "100vh",
-        }
-      }
+        },
+      },
     },
     MuiButton: {
       defaultProps: { disableElevation: true },
@@ -66,7 +95,8 @@ const theme = createTheme({
           padding: "10px 24px",
           fontWeight: 600,
           letterSpacing: "-0.015em",
-          transition: "background-color 250ms cubic-bezier(0.4, 0, 0.2, 1), transform 180ms cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1)",
+          transition:
+            "background-color 250ms cubic-bezier(0.4, 0, 0.2, 1), transform 180ms cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1)",
           textTransform: "none",
           border: "1px solid transparent",
           "&:hover": {
@@ -85,7 +115,7 @@ const theme = createTheme({
             borderColor: "#1d1d1f",
             backgroundColor: "rgba(25, 25, 25, 0.03)",
             color: "#1d1d1f",
-          }
+          },
         },
         contained: {
           backgroundColor: "#1d1d1f",
@@ -102,7 +132,7 @@ const theme = createTheme({
               backgroundColor: "#e8e8ed",
               color: "#000000",
               boxShadow: "0 6px 16px rgba(0, 0, 0, 0.03)",
-            }
+            },
           },
           "&.MuiButton-containedInfo": {
             backgroundColor: "#0071e3",
@@ -110,7 +140,7 @@ const theme = createTheme({
             "&:hover": {
               backgroundColor: "#005bbf",
               boxShadow: "0 8px 20px rgba(0, 113, 227, 0.24)",
-            }
+            },
           },
           "&.MuiButton-containedSuccess": {
             backgroundColor: "#34c759",
@@ -118,7 +148,7 @@ const theme = createTheme({
             "&:hover": {
               backgroundColor: "#28a745",
               boxShadow: "0 8px 20px rgba(52, 199, 89, 0.24)",
-            }
+            },
           },
           "&.MuiButton-containedError": {
             backgroundColor: "#ff3b30",
@@ -126,9 +156,9 @@ const theme = createTheme({
             "&:hover": {
               backgroundColor: "#d6251b",
               boxShadow: "0 8px 20px rgba(255, 59, 48, 0.24)",
-            }
-          }
-        }
+            },
+          },
+        },
       },
     },
     MuiPaper: {
@@ -172,13 +202,13 @@ const theme = createTheme({
           transition: "all 150ms cubic-bezier(0.16, 1, 0.3, 1)",
           "& fieldset": { borderColor: "#e6e4dd" },
           "&:hover fieldset": { borderColor: "#cbd5e1" },
-          "&.Mui-focused fieldset": { 
+          "&.Mui-focused fieldset": {
             borderColor: "#1d1d1f",
-            borderWidth: "1.5px"
+            borderWidth: "1.5px",
           },
           "&.Mui-focused": {
-            boxShadow: "0 0 0 3px rgba(29, 78, 216, 0.04)"
-          }
+            boxShadow: "0 0 0 3px rgba(29, 78, 216, 0.04)",
+          },
         },
       },
     },
@@ -188,14 +218,14 @@ const theme = createTheme({
           borderBottom: "1px solid #e6e4dd",
           padding: "14px 20px",
           fontSize: "14px",
-          color: "#1d1d1f"
+          color: "#1d1d1f",
         },
         head: {
           backgroundColor: "#f3f1eb",
           color: "#5e5e5e",
           fontWeight: 600,
           fontSize: "13px",
-          letterSpacing: "0.02em"
+          letterSpacing: "0.02em",
         },
       },
     },
@@ -205,45 +235,45 @@ const theme = createTheme({
           width: 42,
           height: 26,
           padding: 0,
-          display: 'inline-flex',
-          '& .MuiSwitch-switchBase': {
+          display: "inline-flex",
+          "& .MuiSwitch-switchBase": {
             padding: 0,
             margin: 2,
-            transitionDuration: '300ms',
-            '&.Mui-checked': {
-              transform: 'translateX(16px)',
-              color: '#fff',
-              '& + .MuiSwitch-track': {
-                backgroundColor: '#34c759', // Apple success green
+            transitionDuration: "300ms",
+            "&.Mui-checked": {
+              transform: "translateX(16px)",
+              color: "#fff",
+              "& + .MuiSwitch-track": {
+                backgroundColor: "#34c759", // Apple success green
                 opacity: 1,
                 border: 0,
               },
-              '&.Mui-disabled + .MuiSwitch-track': {
+              "&.Mui-disabled + .MuiSwitch-track": {
                 opacity: 0.5,
               },
             },
-            '&.Mui-focusVisible .MuiSwitch-thumb': {
-              color: '#34c759',
-              border: '6px solid #fff',
+            "&.Mui-focusVisible .MuiSwitch-thumb": {
+              color: "#34c759",
+              border: "6px solid #fff",
             },
-            '&.Mui-disabled .MuiSwitch-thumb': {
-              color: '#f4f3ef',
+            "&.Mui-disabled .MuiSwitch-thumb": {
+              color: "#f4f3ef",
             },
-            '&.Mui-disabled + .MuiSwitch-track': {
+            "&.Mui-disabled + .MuiSwitch-track": {
               opacity: 0.7,
             },
           },
-          '& .MuiSwitch-thumb': {
-            boxSizing: 'border-box',
+          "& .MuiSwitch-thumb": {
+            boxSizing: "border-box",
             width: 22,
             height: 22,
-            boxShadow: '0 2px 4px 0 rgba(0, 35, 11, 0.15)',
+            boxShadow: "0 2px 4px 0 rgba(0, 35, 11, 0.15)",
           },
-          '& .MuiSwitch-track': {
+          "& .MuiSwitch-track": {
             borderRadius: 13,
-            backgroundColor: '#e6e4dd',
+            backgroundColor: "#e6e4dd",
             opacity: 1,
-            transition: 'background-color 500ms',
+            transition: "background-color 500ms",
           },
         },
       },

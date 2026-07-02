@@ -52,15 +52,17 @@ export default function ConfirmDialog({
         </Box>
       </DialogTitle>
       <DialogContent sx={{ px: 3, pb: 2 }}>
-        <Typography sx={{ fontSize: 14, color: "text.secondary", lineHeight: 1.5 }}>
+        <Typography
+          sx={{ fontSize: 14, color: "text.secondary", lineHeight: 1.5 }}
+        >
           {message}
         </Typography>
       </DialogContent>
       <DialogActions sx={{ px: 3, pb: 3, pt: 1.5, gap: 1 }}>
-        <Button 
-          onClick={onCancel} 
-          disabled={loading} 
-          variant="text" 
+        <Button
+          onClick={onCancel}
+          disabled={loading}
+          variant="text"
           color="secondary"
           sx={{ fontWeight: 500, color: "text.secondary" }}
         >

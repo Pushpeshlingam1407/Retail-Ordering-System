@@ -56,18 +56,20 @@ export default function OrderNotificationPage() {
 
   return (
     <Box sx={{ maxWidth: 600, mx: "auto" }}>
-      <Paper 
-        sx={{ 
-          overflow: "hidden", 
+      <Paper
+        sx={{
+          overflow: "hidden",
           borderRadius: "12px",
           border: "1px solid #e6e4dd",
-          boxShadow: "0 12px 24px -10px rgba(25, 25, 25, 0.04)"
+          boxShadow: "0 12px 24px -10px rgba(25, 25, 25, 0.04)",
         }}
       >
         <Box
           sx={{
             p: 4,
-            bgcolor: isCancelled ? "rgba(185, 28, 28, 0.05)" : "rgba(21, 128, 61, 0.05)",
+            bgcolor: isCancelled
+              ? "rgba(185, 28, 28, 0.05)"
+              : "rgba(21, 128, 61, 0.05)",
             display: "flex",
             alignItems: "center",
             gap: 2,
@@ -82,7 +84,12 @@ export default function OrderNotificationPage() {
           <Box>
             <Typography
               variant="h5"
-              sx={{ color: isCancelled ? "#b91c1c" : "#15803d", mb: 0.5, fontWeight: 600, letterSpacing: "-0.02em" }}
+              sx={{
+                color: isCancelled ? "#b91c1c" : "#15803d",
+                mb: 0.5,
+                fontWeight: 600,
+                letterSpacing: "-0.02em",
+              }}
             >
               Order {isCancelled ? "Cancelled" : "Confirmed"}
             </Typography>
@@ -100,28 +107,43 @@ export default function OrderNotificationPage() {
           {order && (
             <Stack spacing={3}>
               <Stack direction="row" spacing={1.5}>
-                <Chip 
-                  label={`Order #${order.id}`} 
-                  size="small" 
-                  sx={{ bgcolor: "rgba(25, 25, 25, 0.03)", color: "#191919", border: "1px solid #e6e4dd", fontWeight: 600 }} 
+                <Chip
+                  label={`Order #${order.id}`}
+                  size="small"
+                  sx={{
+                    bgcolor: "rgba(25, 25, 25, 0.03)",
+                    color: "#191919",
+                    border: "1px solid #e6e4dd",
+                    fontWeight: 600,
+                  }}
                 />
                 <Chip
                   label={outcome}
                   size="small"
                   sx={{
-                    bgcolor: isCancelled ? "rgba(185, 28, 28, 0.05)" : "rgba(21, 128, 61, 0.05)",
+                    bgcolor: isCancelled
+                      ? "rgba(185, 28, 28, 0.05)"
+                      : "rgba(21, 128, 61, 0.05)",
                     color: isCancelled ? "#b91c1c" : "#15803d",
                     border: "1px solid rgba(0,0,0,0.02)",
-                    fontWeight: 600
+                    fontWeight: 600,
                   }}
                 />
               </Stack>
               <Divider sx={{ borderColor: "#e6e4dd" }} />
               <Box
-                sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2.5 }}
+                sx={{
+                  display: "grid",
+                  gridTemplateColumns: "1fr 1fr",
+                  gap: 2.5,
+                }}
               >
                 <Box>
-                  <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 500 }}>
+                  <Typography
+                    variant="caption"
+                    color="text.secondary"
+                    sx={{ fontWeight: 500 }}
+                  >
                     Placed
                   </Typography>
                   <Typography sx={{ fontSize: 14, color: "#191919", mt: 0.5 }}>
@@ -129,28 +151,56 @@ export default function OrderNotificationPage() {
                   </Typography>
                 </Box>
                 <Box>
-                  <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 500 }}>
+                  <Typography
+                    variant="caption"
+                    color="text.secondary"
+                    sx={{ fontWeight: 500 }}
+                  >
                     Total
                   </Typography>
-                  <Typography sx={{ fontWeight: 600, fontSize: 14, color: "#191919", mt: 0.5 }}>
+                  <Typography
+                    sx={{
+                      fontWeight: 600,
+                      fontSize: 14,
+                      color: "#191919",
+                      mt: 0.5,
+                    }}
+                  >
                     {formatINR(order.totalAmount)}
                   </Typography>
                 </Box>
                 <Box>
-                  <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 500 }}>
+                  <Typography
+                    variant="caption"
+                    color="text.secondary"
+                    sx={{ fontWeight: 500 }}
+                  >
                     Coupon
                   </Typography>
-                  <Typography sx={{ fontSize: 14, color: "#191919", mt: 0.5 }}>{order.couponCode ?? "None"}</Typography>
+                  <Typography sx={{ fontSize: 14, color: "#191919", mt: 0.5 }}>
+                    {order.couponCode ?? "None"}
+                  </Typography>
                 </Box>
               </Box>
               <Box>
-                <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 500 }}>
+                <Typography
+                  variant="caption"
+                  color="text.secondary"
+                  sx={{ fontWeight: 500 }}
+                >
                   Address
                 </Typography>
-                <Typography sx={{ fontSize: 14, color: "#191919", mt: 0.5 }}>{order.deliveryAddress}</Typography>
+                <Typography sx={{ fontSize: 14, color: "#191919", mt: 0.5 }}>
+                  {order.deliveryAddress}
+                </Typography>
               </Box>
               <Divider sx={{ borderColor: "#e6e4dd" }} />
-              <Typography variant="subtitle2" sx={{ fontWeight: 600, color: "#191919" }}>Items</Typography>
+              <Typography
+                variant="subtitle2"
+                sx={{ fontWeight: 600, color: "#191919" }}
+              >
+                Items
+              </Typography>
               <Stack spacing={1.25}>
                 {order.items.map((item) => (
                   <Box
@@ -168,7 +218,9 @@ export default function OrderNotificationPage() {
                     <Typography sx={{ fontSize: 14, color: "#191919" }}>
                       Product #{item.productId} (x{item.quantity})
                     </Typography>
-                    <Typography sx={{ fontWeight: 600, fontSize: 14, color: "#191919" }}>
+                    <Typography
+                      sx={{ fontWeight: 600, fontSize: 14, color: "#191919" }}
+                    >
                       {formatINR(item.priceAtTime * item.quantity)}
                     </Typography>
                   </Box>
@@ -180,10 +232,14 @@ export default function OrderNotificationPage() {
                 spacing={1.5}
                 sx={{ justifyContent: "flex-end" }}
               >
-                <Button 
-                  variant="outlined" 
+                <Button
+                  variant="outlined"
                   onClick={() => navigate("/orders")}
-                  sx={{ borderColor: "#e6e4dd", color: "#5e5e5e", "&:hover": { bgcolor: "#f3f1eb", borderColor: "#cbd5e1" } }}
+                  sx={{
+                    borderColor: "#e6e4dd",
+                    color: "#5e5e5e",
+                    "&:hover": { bgcolor: "#f3f1eb", borderColor: "#cbd5e1" },
+                  }}
                 >
                   Back to Orders
                 </Button>
