@@ -118,56 +118,8 @@
       format("truetype");
 }
 
-/* Apple (SF Pro Display/Text aliases mapping to local system fonts with fallback) */
-@font-face {
-  font-family: "Apple";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src:
-    local("SF Pro Text"),
-    local("SF Pro Display"),
-    local("-apple-system"),
-    local("BlinkMacSystemFont"),
-    url(https://fonts.gstatic.com/s/instrumentsans/v4/pximypc9vsFDm051Uf6KVwgkfoSxQ0GsQv8ToedPibnr-yp2JGEJOH9npSTF-Qf1.ttf)
-      format("truetype");
-}
-@font-face {
-  font-family: "Apple";
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src:
-    local("SF Pro Text Medium"),
-    local("SF Pro Display Medium"),
-    local("SFProDisplay-Medium"),
-    url(https://fonts.gstatic.com/s/instrumentsans/v4/pximypc9vsFDm051Uf6KVwgkfoSxQ0GsQv8ToedPibnr-yp2JGEJOH9npST3-Qf1.ttf)
-      format("truetype");
-}
-@font-face {
-  font-family: "Apple";
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src:
-    local("SF Pro Text SemiBold"),
-    local("SF Pro Display SemiBold"),
-    local("SFProDisplay-SemiBold"),
-    url(https://fonts.gstatic.com/s/instrumentsans/v4/pximypc9vsFDm051Uf6KVwgkfoSxQ0GsQv8ToedPibnr-yp2JGEJOH9npSQb_gf1.ttf)
-      format("truetype");
-}
-@font-face {
-  font-family: "Apple";
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src:
-    local("SF Pro Text Bold"),
-    local("SF Pro Display Bold"),
-    local("SFProDisplay-Bold"),
-    url(https://fonts.gstatic.com/s/instrumentsans/v4/pximypc9vsFDm051Uf6KVwgkfoSxQ0GsQv8ToedPibnr-yp2JGEJOH9npSQi_gf1.ttf)
-      format("truetype");
-}
+/* We only support Cohere and Anthropic */
+
 
 /* ─── Premium AI-Native Editorial Design Tokens ───────────────────────────── */
 :root {
@@ -223,7 +175,7 @@
 }
 
 body {
-  font-family: "Anthropic", "Cohere", "Apple";
+  font-family: "Anthropic", "Cohere";
   background-color: #f6f5ef;
   /* Satisfying mesh gradient background (dopamine lighting blobs) */
   background-image:
@@ -246,7 +198,7 @@ button,
 input,
 select,
 textarea {
-  font-family: "Anthropic", "Cohere", "Apple" !important;
+  font-family: "Anthropic", "Cohere" !important;
 }
 
 a {
@@ -401,7 +353,7 @@ input[type="checkbox"].ios-toggle:checked::before {
   color: var(--text-primary) !important;
   border: 1px solid var(--border) !important;
   border-radius: 12px !important;
-  font-family: "Anthropic", "Cohere", "Apple" !important;
+  font-family: "Anthropic", "Cohere" !important;
   font-size: 14px !important;
   font-weight: 500 !important;
   box-shadow: var(--shadow-md) !important;
@@ -466,5 +418,5 @@ textarea,
 button,
 th,
 td {
-  font-family: "Anthropic", "Cohere", "Apple" !important;
+  font-family: "Anthropic", "Cohere" !important;
 }

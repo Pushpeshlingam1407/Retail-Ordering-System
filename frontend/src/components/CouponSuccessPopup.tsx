@@ -103,10 +103,9 @@ export default function CouponSuccessPopup({
                 "&:hover": { bgcolor: "#f3f1eb", borderColor: "#1d1d1f" },
                 "&:active": { transform: "scale(0.98)" },
               }}
-            >
               <Typography
                 sx={{
-                  fontFamily: '"Anthropic", "Cohere", "Apple"',
+                  fontFamily: '"Anthropic", "Cohere"',
                   fontSize: 18,
                   fontWeight: 700,
                   color: "#1d1d1f",

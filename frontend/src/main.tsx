@@ -28,39 +28,39 @@ const theme = createTheme({
     divider: "#e6e4dd",
   },
   typography: {
-    fontFamily: '"Anthropic", "Cohere", "Apple"',
+    fontFamily: '"Anthropic", "Cohere"',
     h1: {
-      fontFamily: '"Anthropic", "Cohere", "Apple"',
+      fontFamily: '"Anthropic", "Cohere"',
       fontWeight: 600,
       letterSpacing: "-0.01em",
     },
     h2: {
-      fontFamily: '"Anthropic", "Cohere", "Apple"',
+      fontFamily: '"Anthropic", "Cohere"',
       fontWeight: 600,
       letterSpacing: "-0.01em",
     },
     h3: {
-      fontFamily: '"Anthropic", "Cohere", "Apple"',
+      fontFamily: '"Anthropic", "Cohere"',
       fontWeight: 500,
       letterSpacing: "-0.01em",
     },
     h4: {
-      fontFamily: '"Anthropic", "Cohere", "Apple"',
+      fontFamily: '"Anthropic", "Cohere"',
       fontWeight: 500,
       letterSpacing: "-0.01em",
     },
     h5: {
-      fontFamily: '"Anthropic", "Cohere", "Apple"',
+      fontFamily: '"Anthropic", "Cohere"',
       fontWeight: 500,
       letterSpacing: "-0.01em",
     },
     h6: {
-      fontFamily: '"Anthropic", "Cohere", "Apple"',
+      fontFamily: '"Anthropic", "Cohere"',
       fontWeight: 500,
       letterSpacing: "-0.01em",
     },
     button: {
-      fontFamily: '"Anthropic", "Cohere", "Apple"',
+      fontFamily: '"Anthropic", "Cohere"',
       fontWeight: 600,
       textTransform: "none",
       letterSpacing: "-0.01em",
