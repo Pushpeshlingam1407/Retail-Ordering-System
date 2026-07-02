@@ -8,15 +8,12 @@ import {
   CardMedia,
   Chip,
   IconButton,
-  InputAdornment,
   Paper,
   Skeleton,
   Stack,
-  TextField,
   Typography,
 } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import SearchIcon from "@mui/icons-material/Search";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { useAuth } from "../context/AuthContext";
@@ -26,6 +23,7 @@ import { getCoupons } from "../api/coupons";
 import type { Product, CouponResponse } from "../types";
 import CouponSuccessPopup from "../components/CouponSuccessPopup";
 import notify from "../utils/notify";
+import { SearchBar } from "../components/SearchBar";
 
 export interface CartLine {
   productId: number;
@@ -299,24 +297,11 @@ export default function ShopPage() {
 
       <Box>
         <Box>
-          <TextField
+          <SearchBar
             fullWidth
-            size="small"
             placeholder="Search products…"
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            slotProps={{
-              input: {
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon
-                      fontSize="small"
-                      sx={{ color: "text.secondary" }}
-                    />
-                  </InputAdornment>
-                ),
-              },
-            }}
+            onSearchChange={setSearch}
             sx={{ mb: 3 }}
           />
 

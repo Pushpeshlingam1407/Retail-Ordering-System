@@ -1,9 +1,4 @@
 {
-<<<<<<< HEAD
-    "java.configuration.updateBuildConfiguration": "interactive",
-    "java.compile.nullAnalysis.mode": "disabled"
-=======
     "java.compile.nullAnalysis.mode": "automatic",
     "java.configuration.updateBuildConfiguration": "interactive"
->>>>>>> d0df643 (chore: add project configuration settings and ignore patterns for build artifacts and environment files)
 }

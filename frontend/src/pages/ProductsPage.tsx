@@ -11,12 +11,10 @@ import {
   DialogTitle,
   FormControl,
   IconButton,
-  InputAdornment,
   InputLabel,
   MenuItem,
   Paper,
   Select,
-  Skeleton,
   Stack,
   Table,
   TableBody,
@@ -31,7 +29,6 @@ import {
 import AddIcon from "@mui/icons-material/Add";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import SearchIcon from "@mui/icons-material/Search";
 import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
@@ -59,6 +56,8 @@ import type {
 } from "../types";
 import ConfirmDialog from "../components/ConfirmDialog";
 import notify from "../utils/notify";
+import { SearchBar } from "../components/SearchBar";
+import { TableSkeleton } from "../components/SkeletonLoaders";
 
 const PACKAGING_OPTIONS = [
   "Box",
@@ -123,8 +122,8 @@ export default function ProductsPage() {
       // Set sensible defaults once we know the real IDs
       setForm((f) => ({
         ...f,
-        brandId: f.brandId === 0 ? (bData[0]?.id ?? 0) : f.brandId,
-        categoryId: f.categoryId === 0 ? (cData[0]?.id ?? 0) : f.categoryId,
+        brandId: f.brandId === 0 ? bData[0]?.id ?? 0 : f.brandId,
+        categoryId: f.categoryId === 0 ? cData[0]?.id ?? 0 : f.categoryId,
       }));
 
       const invMap: Record<number, Inventory> = {};
@@ -265,7 +264,9 @@ export default function ProductsPage() {
       let pId = editProduct?.id;
       if (editProduct) {
         const updated = await updateProduct(editProduct.id, payload);
-        setProducts((ps) => ps.map((x) => (x.id === updated.id ? updated : x)));
+        setProducts((ps) =>
+          ps.map((x) => (x.id === updated.id ? updated : x)),
+        );
       } else {
         const created = await createProduct(payload);
         setProducts((ps) => [...ps, created]);
@@ -314,7 +315,7 @@ export default function ProductsPage() {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          mb: 4,
+          mb: 3,
         }}
       >
         <Box>
@@ -330,23 +331,10 @@ export default function ProductsPage() {
           </Typography>
         </Box>
         <Stack direction="row" spacing={2}>
-          <TextField
-            size="small"
+          <SearchBar
             placeholder="Search products..."
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            slotProps={{
-              input: {
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon
-                      fontSize="small"
-                      sx={{ color: "text.secondary" }}
-                    />
-                  </InputAdornment>
-                ),
-              },
-            }}
+            onSearchChange={setSearch}
           />
           <Button
             variant="contained"
@@ -361,11 +349,7 @@ export default function ProductsPage() {
 
       {/* ── Table ── */}
       {loading ? (
-        <Stack spacing={1}>
-          {[1, 2, 3, 4, 5].map((i) => (
-            <Skeleton key={i} height={64} variant="rounded" />
-          ))}
-        </Stack>
+        <TableSkeleton rows={5} />
       ) : (
         <TableContainer
           component={Paper}
