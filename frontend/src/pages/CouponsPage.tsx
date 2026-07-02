@@ -268,6 +268,8 @@ export default function CouponsPage() {
                         <Box
                           sx={{ display: "flex", alignItems: "center", gap: 1 }}
                         >
+                          <Typography
+                            sx={{
                               fontFamily: '"Anthropic", "Cohere"',
                               fontWeight: 600,
                               fontSize: 13,

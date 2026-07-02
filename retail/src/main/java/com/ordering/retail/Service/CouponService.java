@@ -25,7 +25,8 @@ public class CouponService {
     }
 
     private Coupon checkAndExpireCoupon(Coupon coupon) {
-        if (Boolean.TRUE.equals(coupon.getActive()) && coupon.getExpiryDate() != null && coupon.getExpiryDate().isBefore(LocalDate.now())) {
+        if (Boolean.TRUE.equals(coupon.getActive()) && coupon.getExpiryDate() != null
+                && coupon.getExpiryDate().isBefore(LocalDate.now())) {
             coupon.setActive(false);
             return couponRepository.save(coupon);
         }
@@ -80,7 +81,8 @@ public class CouponService {
         if (coupon.getExpiryDate() != null && coupon.getExpiryDate().isBefore(LocalDate.now())) {
             throw new IllegalArgumentException("Coupon is expired: " + code);
         }
-        if (coupon.getUsageLimit() != null && coupon.getUsedCount() != null && coupon.getUsedCount() >= coupon.getUsageLimit()) {
+        if (coupon.getUsageLimit() != null && coupon.getUsedCount() != null
+                && coupon.getUsedCount() >= coupon.getUsageLimit()) {
             throw new IllegalArgumentException("Coupon usage limit reached: " + code);
         }
 
