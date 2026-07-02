@@ -105,7 +105,7 @@ export default function CouponSuccessPopup({
             >
               <Typography
                 sx={{
-                  fontFamily: '"Anthropic", "Cohere"',
+                  fontFamily: '"Anthropic", "Cohere", "Apple"',
                   fontSize: 18,
                   fontWeight: 700,
                   color: "#1d1d1f",
