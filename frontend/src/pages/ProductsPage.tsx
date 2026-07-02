@@ -313,8 +313,10 @@ export default function ProductsPage() {
       <Box
         sx={{
           display: "flex",
-          alignItems: "center",
+          flexDirection: { xs: "column", sm: "row" },
+          alignItems: { xs: "flex-start", sm: "center" },
           justifyContent: "space-between",
+          gap: 2,
           mb: 3,
         }}
       >
@@ -330,17 +332,22 @@ export default function ProductsPage() {
             catalogue
           </Typography>
         </Box>
-        <Stack direction="row" spacing={2}>
+        <Stack
+          direction="row"
+          spacing={2}
+          sx={{ width: { xs: "100%", sm: "auto" }, justifyContent: "space-between" }}
+        >
           <SearchBar
             placeholder="Search products..."
             value={search}
             onSearchChange={setSearch}
+            sx={{ flexGrow: 1 }}
           />
           <Button
             variant="contained"
             startIcon={<AddIcon />}
             onClick={openCreate}
-            sx={{ fontWeight: 600, borderRadius: "999px", px: 2.5 }}
+            sx={{ fontWeight: 600, borderRadius: "999px", px: 2.5, whiteSpace: "nowrap" }}
           >
             New Product
           </Button>

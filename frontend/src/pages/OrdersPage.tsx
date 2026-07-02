@@ -17,18 +17,16 @@ import {
   DialogTitle,
   Divider,
   FormControl,
-  InputAdornment,
   MenuItem,
   Select,
-  Skeleton,
   Stack,
-  TextField,
   InputLabel,
+  TextField,
+  Skeleton,
 } from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import SearchIcon from "@mui/icons-material/Search";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 import {
@@ -49,6 +47,8 @@ import type {
 import StatusBadge from "../components/StatusBadge";
 import ConfirmDialog from "../components/ConfirmDialog";
 import notify from "../utils/notify";
+import { SearchBar } from "../components/SearchBar";
+import { TableSkeleton } from "../components/SkeletonLoaders";
 
 const ALL_STATUSES: OrderStatus[] = [
   "PENDING",
@@ -237,8 +237,10 @@ export default function OrdersPage() {
       <Box
         sx={{
           display: "flex",
-          alignItems: "center",
+          flexDirection: { xs: "column", md: "row" },
+          alignItems: { xs: "stretch", md: "center" },
           justifyContent: "space-between",
+          gap: 2,
           mb: 4,
         }}
       >
@@ -248,24 +250,16 @@ export default function OrdersPage() {
         >
           Order Management
         </Typography>
-        <Stack direction="row" spacing={2}>
-          <TextField
-            size="small"
+        <Stack
+          direction={{ xs: "column", sm: "row" }}
+          spacing={2}
+          sx={{ alignItems: "stretch" }}
+        >
+          <SearchBar
             placeholder="Search orders..."
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            slotProps={{
-              input: {
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon
-                      fontSize="small"
-                      sx={{ color: "text.secondary" }}
-                    />
-                  </InputAdornment>
-                ),
-              },
-            }}
+            onSearchChange={setSearch}
+            sx={{ flexGrow: 1 }}
           />
           <FormControl size="small" sx={{ minWidth: 150 }}>
             <Select
@@ -273,11 +267,12 @@ export default function OrdersPage() {
               onChange={(e) =>
                 setStatusFilter(e.target.value as OrderStatus | "ALL")
               }
+              sx={{ borderRadius: "8px" }}
             >
               <MenuItem value="ALL">All statuses</MenuItem>
               {ALL_STATUSES.map((s) => (
                 <MenuItem key={s} value={s}>
-                  {s}
+                  {s.charAt(0) + s.slice(1).toLowerCase()}
                 </MenuItem>
               ))}
             </Select>
@@ -288,7 +283,7 @@ export default function OrdersPage() {
               resetForm();
               setCreateDialog(true);
             }}
-            sx={{ fontWeight: 500 }}
+            sx={{ fontWeight: 500, borderRadius: "999px", whiteSpace: "nowrap" }}
           >
             New Order
           </Button>
@@ -296,10 +291,7 @@ export default function OrdersPage() {
       </Box>
 
       {loading ? (
-        <Stack spacing={1}>
-          <Skeleton height={60} variant="rounded" />
-          <Skeleton height={60} variant="rounded" />
-        </Stack>
+        <TableSkeleton rows={5} />
       ) : (
         <TableContainer component={Paper}>
           <Table>
@@ -536,7 +528,7 @@ export default function OrdersPage() {
               label="User ID"
               type="number"
               value={form.userId}
-              onChange={(e) =>
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setForm((f) => ({
                   ...f,
                   userId: parseInt(e.target.value) || 1,
@@ -547,7 +539,7 @@ export default function OrdersPage() {
             <TextField
               label="Address"
               value={form.deliveryAddress}
-              onChange={(e) =>
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setForm((f) => ({ ...f, deliveryAddress: e.target.value }))
               }
               fullWidth
@@ -580,7 +572,7 @@ export default function OrdersPage() {
                   size="small"
                   label="Qty"
                   value={item.quantity}
-                  onChange={(e) =>
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                     updateItem(idx, { quantity: parseInt(e.target.value) || 1 })
                   }
                   sx={{ width: 80 }}

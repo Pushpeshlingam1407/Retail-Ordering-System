@@ -164,7 +164,7 @@ export default function DashboardPage() {
         <Box
           sx={{
             display: "grid",
-            gridTemplateColumns: "repeat(4, 1fr)",
+            gridTemplateColumns: { xs: "1fr 1fr", sm: "repeat(4, 1fr)" },
             gap: 2,
             mb: 3,
           }}
@@ -184,15 +184,17 @@ export default function DashboardPage() {
       <Paper
         elevation={0}
         sx={{
-          p: { xs: 3, md: 4 },
+          p: { xs: 2.5, md: 4 },
           borderRadius: "16px",
           color: "#1d1d1f",
           background: "#F5F3EB", // Claude sand warm beige
           border: "1px solid rgba(25, 25, 25, 0.08)",
           mb: 4,
           display: "flex",
+          flexDirection: { xs: "column-reverse", sm: "row" },
           justifyContent: "space-between",
-          alignItems: "flex-start",
+          alignItems: { xs: "stretch", sm: "flex-start" },
+          gap: 2,
         }}
       >
         <Box>
