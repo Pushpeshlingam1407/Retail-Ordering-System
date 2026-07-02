@@ -1,5 +1,6 @@
 import React from "react";
-import { TextField, InputAdornment, TextFieldProps } from "@mui/material";
+import { TextField, InputAdornment } from "@mui/material";
+import type { TextFieldProps } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
 export type SearchBarProps = Omit<TextFieldProps, "variant" | "slotProps"> & {

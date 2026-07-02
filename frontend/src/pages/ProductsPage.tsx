@@ -691,10 +691,12 @@ export default function ProductsPage() {
         onClose={() => !saving && setDialogOpen(false)}
         maxWidth="sm"
         fullWidth
-        PaperProps={{
-          sx: {
-            borderRadius: "20px",
-            boxShadow: "0 20px 60px rgba(0,0,0,0.15)",
+        slotProps={{
+          paper: {
+            sx: {
+              borderRadius: "20px",
+              boxShadow: "0 20px 60px rgba(0,0,0,0.15)",
+            },
           },
         }}
       >
