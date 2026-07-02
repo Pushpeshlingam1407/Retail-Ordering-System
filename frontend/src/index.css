@@ -327,7 +327,7 @@ input[type="checkbox"].ios-toggle:checked::before {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 10px 14px;
+  padding: 8px 12px;
   border-radius: 8px;
   color: var(--text-secondary);
   text-decoration: none;

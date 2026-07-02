@@ -96,7 +96,7 @@ export function Sidebar({
     navigate("/login");
   };
 
-  const w = collapsed ? 72 : 260;
+  const w = collapsed ? 64 : 220;
 
   useEffect(() => {
     if (!mobileOpen) return;
@@ -213,7 +213,7 @@ export function Sidebar({
                 onClick={() => onMobileClose()}
                 style={{
                   justifyContent: collapsed ? "center" : "flex-start",
-                  padding: collapsed ? "10px" : "10px 12px",
+                  padding: collapsed ? "8px" : "8px 10px",
                 }}
               >
                 <Box
