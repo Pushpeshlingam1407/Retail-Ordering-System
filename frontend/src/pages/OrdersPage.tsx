@@ -25,7 +25,6 @@ import {
   Skeleton,
 } from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
@@ -283,7 +282,11 @@ export default function OrdersPage() {
               resetForm();
               setCreateDialog(true);
             }}
-            sx={{ fontWeight: 500, borderRadius: "999px", whiteSpace: "nowrap" }}
+            sx={{
+              fontWeight: 500,
+              borderRadius: "999px",
+              whiteSpace: "nowrap",
+            }}
           >
             New Order
           </Button>
@@ -345,64 +348,47 @@ export default function OrdersPage() {
                         <IconButton
                           size="small"
                           onClick={() => viewDetails(o.id)}
+                          title="View Details"
                         >
                           <VisibilityIcon fontSize="small" />
                         </IconButton>
-                        {o.status === "PENDING" && (
-                          <>
-                            <Button
-                              size="small"
-                              variant="outlined"
-                              color="success"
-                              onClick={() => quickAction(o, "CONFIRMED")}
-                              disabled={!!actionIds[o.id]}
-                            >
-                              Accept
-                            </Button>
-                            <Button
-                              size="small"
-                              variant="outlined"
-                              color="error"
-                              onClick={() => quickAction(o, "CANCELLED")}
-                              disabled={!!actionIds[o.id]}
-                            >
-                              Reject
-                            </Button>
-                          </>
-                        )}
-                        {o.status === "CONFIRMED" && (
-                          <Button
-                            size="small"
-                            variant="outlined"
-                            color="info"
-                            onClick={() => quickAction(o, "SHIPPED")}
+
+                        <FormControl size="small" sx={{ minWidth: 120 }}>
+                          <Select
+                            value={o.status}
+                            onChange={(e) =>
+                              quickAction(o, e.target.value as OrderStatus)
+                            }
                             disabled={!!actionIds[o.id]}
+                            sx={{
+                              height: 30,
+                              fontSize: 12,
+                              fontWeight: 600,
+                              borderRadius: "6px",
+                              "& .MuiSelect-select": {
+                                py: "4px",
+                                px: "8px",
+                              },
+                            }}
                           >
-                            Ship Order
-                          </Button>
-                        )}
-                        {o.status === "SHIPPED" && (
-                          <Button
-                            size="small"
-                            variant="contained"
-                            color="success"
-                            onClick={() => quickAction(o, "DELIVERED")}
-                            disabled={!!actionIds[o.id]}
-                            disableElevation
-                          >
-                            Mark Delivered
-                          </Button>
-                        )}
-                        <IconButton
-                          size="small"
-                          onClick={() => openStatusDialog(o)}
-                        >
-                          <EditIcon fontSize="small" />
-                        </IconButton>
+                            {ALL_STATUSES.map((status) => (
+                              <MenuItem
+                                key={status}
+                                value={status}
+                                sx={{ fontSize: 12 }}
+                              >
+                                {status.charAt(0) +
+                                  status.slice(1).toLowerCase()}
+                              </MenuItem>
+                            ))}
+                          </Select>
+                        </FormControl>
+
                         <IconButton
                           size="small"
                           color="error"
                           onClick={() => setDeleteId(o.id)}
+                          title="Delete Order"
                         >
                           <DeleteIcon fontSize="small" />
                         </IconButton>

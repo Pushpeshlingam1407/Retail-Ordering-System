@@ -10,13 +10,11 @@ import {
   FormControl,
   FormControlLabel,
   IconButton,
-  InputAdornment,
   InputLabel,
   LinearProgress,
   MenuItem,
   Paper,
   Select,
-  Skeleton,
   Stack,
   Switch,
   Table,
@@ -31,7 +29,6 @@ import {
 import AddIcon from "@mui/icons-material/Add";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import SearchIcon from "@mui/icons-material/Search";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import {
   getCoupons,
@@ -43,6 +40,8 @@ import {
 import type { CouponRequest, CouponResponse, DiscountType } from "../types";
 import ConfirmDialog from "../components/ConfirmDialog";
 import notify from "../utils/notify";
+import { SearchBar } from "../components/SearchBar";
+import { TableSkeleton } from "../components/SkeletonLoaders";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function toErr(e: any, fallback: string) {
@@ -188,8 +187,10 @@ export default function CouponsPage() {
       <Box
         sx={{
           display: "flex",
-          alignItems: "center",
+          flexDirection: { xs: "column", sm: "row" },
+          alignItems: { xs: "stretch", sm: "center" },
           justifyContent: "space-between",
+          gap: 2,
           mb: 4,
         }}
       >
@@ -199,30 +200,22 @@ export default function CouponsPage() {
         >
           Coupons
         </Typography>
-        <Stack direction="row" spacing={2}>
-          <TextField
-            size="small"
+        <Stack
+          direction="row"
+          spacing={2}
+          sx={{ width: { xs: "100%", sm: "auto" }, justifyContent: "space-between" }}
+        >
+          <SearchBar
             placeholder="Search by code..."
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            slotProps={{
-              input: {
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon
-                      fontSize="small"
-                      sx={{ color: "text.secondary" }}
-                    />
-                  </InputAdornment>
-                ),
-              },
-            }}
+            onSearchChange={setSearch}
+            sx={{ flexGrow: 1 }}
           />
           <Button
             variant="contained"
             startIcon={<AddIcon />}
             onClick={openCreate}
-            sx={{ fontWeight: 500 }}
+            sx={{ fontWeight: 500, borderRadius: "999px", whiteSpace: "nowrap" }}
           >
             New Coupon
           </Button>
@@ -230,9 +223,7 @@ export default function CouponsPage() {
       </Box>
 
       {loading ? (
-        <Stack spacing={1}>
-          <Skeleton height={60} variant="rounded" />
-        </Stack>
+        <TableSkeleton rows={5} />
       ) : (
         <TableContainer component={Paper}>
           <Table>
