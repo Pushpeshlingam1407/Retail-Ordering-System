@@ -633,13 +633,17 @@ export default function OrdersPage() {
         </DialogTitle>
         <DialogContent sx={{ px: 3, pb: 2 }}>
           <FormControl fullWidth sx={{ mt: 1 }}>
+            <InputLabel id="order-status-label">Order Status</InputLabel>
             <Select
+              labelId="order-status-label"
+              label="Order Status"
               value={newStatus}
               onChange={(e) => setNewStatus(e.target.value as OrderStatus)}
+              sx={{ borderRadius: "8px" }}
             >
               {ALL_STATUSES.map((s) => (
                 <MenuItem key={s} value={s}>
-                  {s}
+                  {s.charAt(0) + s.slice(1).toLowerCase()}
                 </MenuItem>
               ))}
             </Select>
